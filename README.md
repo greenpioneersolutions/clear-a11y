@@ -158,6 +158,8 @@ By layer: accessibility tree 31/31, keyboard 16/16, states 8/8, widgets 11/11, v
 
 ## Documentation
 
+Start with [STRATEGY.md](STRATEGY.md) for the reasoning behind the project: what axe-core catches, what it can't, and how each engine closes the gap.
+
 The documentation site lives in [`apps/docs`](apps/docs/README.md) and deploys to GitHub Pages from `main` (`pnpm nx run docs:dev` locally): getting started, guides, architecture, the generated CLI, configuration and rules references, and contributor guides.
 
 ## Development
