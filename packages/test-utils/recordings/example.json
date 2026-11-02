@@ -1,0 +1,10 @@
+{
+  "name": "example",
+  "source": "synthetic",
+  "request": { "judge": "example", "input": "hello" },
+  "response": {
+    "verdict": "pass",
+    "confidence": 0.9,
+    "reason": "Example recording used by test-utils tests."
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "page": "states/tooltip-contrast-ok.html",
+  "title": "Checkout: readable tooltip text",
+  "correctPattern": true,
+  "issues": []
+}

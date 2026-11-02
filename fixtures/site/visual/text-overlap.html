@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Promotion: heading runs into the text when enlarged</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      /* Seeded barrier: the heading has a fixed height and a fixed pixel line height. When text
+         is enlarged to 200%, its letters spill out of the box and over the paragraph (1.4.4). */
+      #promo-heading { height: 24px; margin: 0; font-size: 20px; line-height: 24px; }
+      #promo-copy { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Offers</h1>
+      <h2 id="promo-heading">Summer sale</h2>
+      <p id="promo-copy">All tents and sleeping bags are 20 percent off until Sunday.</p>
+    </main>
+  </body>
+</html>

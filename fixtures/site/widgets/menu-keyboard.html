@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orders: menu items the keyboard cannot reach</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .menu-wrap { position: relative; display: inline-block; }
+      [role='menu'] { position: absolute; margin: 4px 0 0; padding: 4px 0; list-style: none; background: #fff; border: 1px solid #555; min-width: 180px; }
+      [role='menuitem'] { padding: 6px 12px; cursor: pointer; }
+      [role='menuitem']:hover { background: #e8eef7; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Order 10432</h1>
+      <!-- Seeded barrier: the button opens the menu, but focus stays on the button, the items have
+           tabindex="-1" and there is no arrow-key handler, so keyboard users can open the menu but
+           never choose an item (2.1.1). Escape does not close it either. -->
+      <div class="menu-wrap">
+        <button type="button" id="actions-button" aria-haspopup="menu" aria-expanded="false" aria-controls="actions-menu">Order actions</button>
+        <ul role="menu" id="actions-menu" aria-labelledby="actions-button" hidden>
+          <li role="menuitem" id="action-track" tabindex="-1">Track parcel</li>
+          <li role="menuitem" id="action-invoice" tabindex="-1">Download invoice</li>
+          <li role="menuitem" id="action-cancel" tabindex="-1">Cancel order</li>
+        </ul>
+      </div>
+      <p id="last-action"></p>
+    </main>
+    <script>
+      const button = document.getElementById('actions-button');
+      const menu = document.getElementById('actions-menu');
+      button.addEventListener('click', () => {
+        const open = menu.hidden;
+        menu.hidden = !open;
+        button.setAttribute('aria-expanded', String(open));
+      });
+      for (const item of menu.querySelectorAll('[role=menuitem]')) {
+        item.addEventListener('click', () => {
+          document.getElementById('last-action').textContent = `${item.textContent} requested.`;
+          menu.hidden = true;
+          button.setAttribute('aria-expanded', 'false');
+        });
+      }
+    </script>
+  </body>
+</html>

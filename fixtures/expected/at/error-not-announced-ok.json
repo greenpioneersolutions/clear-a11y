@@ -1,0 +1,6 @@
+{
+  "page": "at/error-not-announced-ok.html",
+  "title": "Correct pattern: error summary in a status region",
+  "correctPattern": true,
+  "issues": []
+}

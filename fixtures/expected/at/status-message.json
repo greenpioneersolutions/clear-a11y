@@ -1,0 +1,14 @@
+{
+  "page": "at/status-message.html",
+  "title": "Product: status message not announced",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/status-message#1",
+      "wcag": ["4.1.3"],
+      "selector": "#cart-status | #add-to-cart",
+      "layer": "at",
+      "description": "Added to cart confirmation is not a live region, so it is not announced."
+    }
+  ]
+}

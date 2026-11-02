@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product card: note clipped under text spacing</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      .card { max-width: 320px; border: 1px solid #555; padding: 12px; }
+      .card h2 { margin: 0 0 8px; font-size: 1.25rem; }
+      /* Seeded barrier: a one-line box sized to a tight line height. The WCAG line height of 1.5
+         makes the line taller than the box, so the text is cut off (1.4.12). */
+      #shipping-note { height: 1.2em; line-height: 1.1; overflow: hidden; margin: 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoes</h1>
+      <div class="card">
+        <h2>Ridge 3</h2>
+        <p id="shipping-note">Free returns</p>
+      </div>
+    </main>
+  </body>
+</html>

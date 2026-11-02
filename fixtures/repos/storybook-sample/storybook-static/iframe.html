@@ -1,0 +1,159 @@
+<!doctype html>
+<!--
+  Clear A11Y fixture: a hand-written, FORMAT-COMPATIBLE STAND-IN for the preview iframe that
+  `storybook build` writes (Storybook 8). It is not a real Storybook build: there is no React, no
+  bundle and no addon code. It follows the parts of the contract the runtime layer relies on:
+
+  - stories are opened as iframe.html?id=<story id>&viewMode=story (ids from index.json, v: 5);
+  - the story renders asynchronously into #storybook-root;
+  - an unknown id shows Storybook's error display (body.sb-show-errordisplay, #error-message).
+
+  The markup of each story mirrors what the React components in ../src/components render.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Storybook</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0; }
+      .sb-main-padded { padding: 16px; }
+      .sb-errordisplay { display: none; }
+      .sb-show-errordisplay .sb-errordisplay { display: block; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .button-primary { background: #1a5fb4; color: #fff; border: 0; border-radius: 4px; padding: 10px 16px; font: inherit; }
+      .icon-button { width: 40px; height: 40px; display: inline-grid; place-items: center; border: 1px solid #555; border-radius: 4px; background: #fff; color: #1a1a1a; }
+      .tabs [role='tablist'] { display: flex; gap: 4px; }
+      .tabs [role='tab'] { padding: 8px 16px; border: 1px solid #555; background: #fff; color: #1a1a1a; font: inherit; cursor: pointer; }
+      .tabs [role='tab'][aria-selected='true'] { background: #1a5fb4; color: #fff; }
+      .backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / 0.5); display: grid; place-items: center; }
+      .backdrop[hidden] { display: none; }
+      [role='dialog'] { background: #fff; padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      .card { border: 1px solid #767676; border-radius: 8px; padding: 16px; max-width: 320px; }
+      .card h3 { margin: 0 0 8px; }
+      .card-note { color: #4a4a4a; }
+      .card-note-muted { color: #aaaaaa; }
+    </style>
+  </head>
+  <body class="sb-main-padded sb-show-main">
+    <div id="storybook-root"></div>
+    <div id="storybook-docs"></div>
+    <div class="sb-errordisplay"><h1 id="error-message">Story not found</h1></div>
+    <script>
+      const tabsMarkup = (variant) => {
+        const tabs = [
+          ['1', 'Description', 'Lightweight shoe with a grippy sole.'],
+          ['2', 'Sizing', 'Runs half a size small.'],
+          ['3', 'Reviews', '4.6 out of 5 from 120 reviews.'],
+        ];
+        const tag = variant === 'ok' ? 'button' : 'div';
+        const type = variant === 'ok' ? ' type="button"' : '';
+        return `<div class="tabs"><div role="tablist" aria-label="Product details">${tabs
+          .map(
+            ([id, label], i) =>
+              `<${tag}${type} role="tab" id="tab-${id}" aria-selected="${i === 0}" aria-controls="panel-${id}" tabindex="${i === 0 ? 0 : -1}">${label}</${tag}>`,
+          )
+          .join('')}</div>${tabs
+          .map(
+            ([id, , content], i) =>
+              `<div role="tabpanel" id="panel-${id}" aria-labelledby="tab-${id}"${variant === 'ok' ? ' tabindex="0"' : ''}${i === 0 ? '' : ' hidden'}><p>${content}</p></div>`,
+          )
+          .join('')}</div>`;
+      };
+
+      const tabsBehavior = (root, arrows) => {
+        const tabs = [...root.querySelectorAll('[role=tab]')];
+        const select = (tab, focus) => {
+          for (const t of tabs) {
+            const selected = t === tab;
+            t.setAttribute('aria-selected', String(selected));
+            t.tabIndex = selected ? 0 : -1;
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+          }
+          if (focus) tab.focus();
+        };
+        tabs.forEach((tab, i) => {
+          tab.addEventListener('click', () => select(tab, true));
+          if (!arrows) return;
+          tab.addEventListener('keydown', (event) => {
+            const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[event.key];
+            if (next === undefined) return;
+            event.preventDefault();
+            select(tabs[(next + tabs.length) % tabs.length], true);
+          });
+        });
+      };
+
+      const modalMarkup = (variant) =>
+        `<div class="modal-demo"${variant === 'barrier' ? ' data-clear-a11y-src="src/components/Modal.tsx:11"' : ''}>` +
+        '<button type="button" id="open-dialog" aria-haspopup="dialog">Subscribe</button>' +
+        '<div class="backdrop" hidden><div role="dialog" id="newsletter-dialog" aria-modal="true" aria-labelledby="newsletter-title">' +
+        '<h2 id="newsletter-title">Newsletter</h2>' +
+        '<label>Email <input type="email" id="newsletter-email" autocomplete="email" /></label>' +
+        '<p><button type="button" id="close-dialog">Close</button></p>' +
+        '</div></div></div>';
+
+      const modalBehavior = (root, managed) => {
+        const opener = root.querySelector('#open-dialog');
+        const backdrop = root.querySelector('.backdrop');
+        const dialog = root.querySelector('[role=dialog]');
+        const first = root.querySelector('#newsletter-email');
+        const last = root.querySelector('#close-dialog');
+        const close = () => {
+          backdrop.hidden = true;
+          if (managed) opener.focus();
+        };
+        opener.addEventListener('click', () => {
+          backdrop.hidden = false;
+          if (managed) first.focus();
+        });
+        last.addEventListener('click', close);
+        if (!managed) return;
+        dialog.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') { event.preventDefault(); close(); return; }
+          if (event.key !== 'Tab') return;
+          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+          else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        });
+      };
+
+      const card = (muted) =>
+        '<article class="card"><h3>Trail running shoe</h3><p class="card-price">89 euros</p>' +
+        `<p class="${muted ? 'card-note card-note-muted' : 'card-note'}">Free shipping over 50 euros</p></article>`;
+
+      // Story id -> [title, name, markup, behavior?]
+      const STORIES = {
+        'components-button--primary': ['Components/Button', 'Primary', () => '<button type="button" class="button-primary">Save changes</button>'],
+        'components-button--icon-only': [
+          'Components/Button',
+          'Icon Only',
+          () =>
+            '<button id="close-button" type="button" class="icon-button" data-testid="icon-button">' +
+            '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2"></path></svg>' +
+            '</button>',
+        ],
+        'components-tabs--default': ['Components/Tabs', 'Default', () => tabsMarkup('ok'), (root) => tabsBehavior(root, true)],
+        'components-tabs--no-arrow-keys': ['Components/Tabs', 'No Arrow Keys', () => tabsMarkup('barrier'), (root) => tabsBehavior(root, false)],
+        'components-modal--default': ['Components/Modal', 'Default', () => modalMarkup('ok'), (root) => modalBehavior(root, true)],
+        'components-modal--no-focus-management': ['Components/Modal', 'No Focus Management', () => modalMarkup('barrier'), (root) => modalBehavior(root, false)],
+        'components-card--default': ['Components/Card', 'Default', () => card(false)],
+        'components-card--low-contrast': ['Components/Card', 'Low Contrast', () => card(true)],
+      };
+
+      const params = new URLSearchParams(location.search);
+      const story = STORIES[params.get('id') || ''];
+      // Like Storybook, render after the preview has booted (asynchronously), not during parsing.
+      setTimeout(() => {
+        const root = document.getElementById('storybook-root');
+        if (!story) {
+          document.body.classList.replace('sb-show-main', 'sb-show-errordisplay');
+          return;
+        }
+        const [title, name, markup, behavior] = story;
+        document.title = `${title} - ${name} ⋅ Storybook`;
+        root.innerHTML = markup();
+        if (behavior) behavior(root);
+      }, 150);
+    </script>
+  </body>
+</html>

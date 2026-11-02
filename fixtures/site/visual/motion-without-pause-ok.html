@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News: moving content with working pause buttons</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 48rem; }
+      .ticker { display: flex; align-items: center; gap: 8px; border: 1px solid #595959; padding: 0 8px; }
+      .ticker-window { overflow: hidden; flex: 1; }
+      .ticker-track { display: flex; gap: 48px; width: max-content; padding: 8px 0; animation: scroll-left 20s linear infinite; }
+      .ticker-track p { margin: 0; white-space: nowrap; }
+      .ticker.paused .ticker-track { animation-play-state: paused; }
+      @keyframes scroll-left {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      /* Without motion the headlines wrap, so none of them is cut off. */
+      @media (prefers-reduced-motion: reduce) {
+        .ticker-track { animation: none; width: auto; flex-wrap: wrap; gap: 4px 24px; }
+        .ticker-track p { white-space: normal; }
+      }
+      .carousel { border: 1px solid #595959; padding: 16px; margin-top: 16px; }
+      .slide { margin: 0 0 8px; }
+      .slide[hidden] { display: none; }
+      button { font: inherit; min-height: 44px; padding: 8px 12px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Today's news</h1>
+      <!-- Correct pattern (SC 2.2.2): both moving parts start on their own but each has a visible
+           button right next to it that really stops it. The ticker also stops for people who ask
+           their system for reduced motion, and the carousel doesn't autoplay for them. -->
+      <section class="ticker" id="news-ticker" aria-label="Latest headlines">
+        <div class="ticker-window">
+          <div class="ticker-track" id="ticker-track">
+            <p>City council approves new cycle lanes</p>
+            <p>Storm warning for the coast tonight</p>
+            <p>Local team wins the regional final</p>
+            <p>Library extends weekend opening hours</p>
+          </div>
+        </div>
+        <button type="button" id="pause-ticker" aria-pressed="false">Pause headlines</button>
+      </section>
+      <section class="carousel" id="promo-carousel" aria-roledescription="carousel" aria-label="Promotions">
+        <p class="slide">Winter jackets: 20% off this week.</p>
+        <p class="slide" hidden>Free delivery on orders over 50 euros.</p>
+        <p class="slide" hidden>New trail shoes are in stock.</p>
+        <button type="button" id="pause-carousel">Pause slideshow</button>
+      </section>
+      <article>
+        <h2>Cycle lanes approved after long debate</h2>
+        <p>The council voted on Tuesday to add protected cycle lanes on three main roads. Work starts in spring and should take about a year.</p>
+      </article>
+    </main>
+    <script>
+      const ticker = document.getElementById('news-ticker');
+      const pauseTicker = document.getElementById('pause-ticker');
+      pauseTicker.addEventListener('click', () => {
+        const paused = ticker.classList.toggle('paused');
+        pauseTicker.setAttribute('aria-pressed', String(paused));
+      });
+
+      const slides = Array.from(document.querySelectorAll('#promo-carousel .slide'));
+      const pauseCarousel = document.getElementById('pause-carousel');
+      let current = 0;
+      let timer = null;
+      const next = () => {
+        slides[current].hidden = true;
+        current = (current + 1) % slides.length;
+        slides[current].hidden = false;
+      };
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = setInterval(next, 2000);
+      } else {
+        pauseCarousel.hidden = true;
+      }
+      pauseCarousel.addEventListener('click', () => {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+          pauseCarousel.textContent = 'Play slideshow';
+        } else {
+          timer = setInterval(next, 2000);
+          pauseCarousel.textContent = 'Pause slideshow';
+        }
+      });
+    </script>
+  </body>
+</html>

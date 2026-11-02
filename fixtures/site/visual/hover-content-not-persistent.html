@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Account: password hint disappears on its own</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      .hint { position: relative; display: inline-block; }
+      #password-help { min-height: 32px; font: inherit; }
+      #password-tip {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 300px;
+        max-width: calc(100vw - 48px);
+        padding: 8px;
+        color: #ffffff;
+        background: #1a1a1a;
+      }
+      #password-tip[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Change password</h1>
+      <div class="hint" id="password-hint">
+        <button id="password-help" type="button" aria-describedby="password-tip">Password rules</button>
+        <div id="password-tip" role="tooltip" hidden>At least 12 characters. Use a passphrase you don't use anywhere else.</div>
+      </div>
+      <p>You will be signed out on your other devices after the change.</p>
+    </main>
+    <script>
+      // Seeded barrier (1.4.13): the hint hides itself 600ms after it appears, although the
+      // pointer or focus is still on the button. Hover area and Escape are fine.
+      const wrap = document.getElementById('password-hint');
+      const tip = document.getElementById('password-tip');
+      let timer;
+      const show = () => {
+        tip.hidden = false;
+        clearTimeout(timer);
+        timer = setTimeout(() => { tip.hidden = true; }, 600);
+      };
+      const hide = () => { clearTimeout(timer); tip.hidden = true; };
+      wrap.addEventListener('mouseenter', show);
+      wrap.addEventListener('mouseleave', hide);
+      wrap.addEventListener('focusin', show);
+      wrap.addEventListener('focusout', hide);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+    </script>
+  </body>
+</html>

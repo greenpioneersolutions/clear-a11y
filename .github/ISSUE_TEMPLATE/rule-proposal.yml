@@ -1,0 +1,81 @@
+name: Rule proposal
+description: Propose a new check. New rules are agreed on the issue before code is written.
+title: 'rule: '
+labels: ['rule-proposal']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A rule is one specific check inside an engine, such as `keyboard/focus-order-backward`. Once the approach is agreed here, it's scaffolded with `pnpm nx g @clear-a11y/workspace-plugin:rule`. See [CONTRIBUTING.md](https://github.com/greenpioneersolutions/clear-a11y/blob/main/CONTRIBUTING.md#adding-a-rule).
+  - type: input
+    id: wcag
+    attributes:
+      label: WCAG success criteria
+      description: List the main success criterion first.
+      placeholder: '2.4.3 Focus Order'
+    validations:
+      required: true
+  - type: textarea
+    id: barrier
+    attributes:
+      label: What barrier does it catch?
+      description: Describe the problem and who it affects, in plain words.
+    validations:
+      required: true
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Engine
+      description: Which engine layer should own it?
+      options:
+        - static
+        - keyboard
+        - states
+        - visual
+        - at
+        - widgets
+        - ai
+        - repo
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: detection
+    attributes:
+      label: Detection approach
+      description: How would code detect it? What would the engine measure in the browser, and what would the pure check decide?
+    validations:
+      required: true
+  - type: dropdown
+    id: deterministic
+    attributes:
+      label: Deterministic or AI judgment?
+      description: If the check can't be made deterministic, propose it for the AI layer rather than a flaky heuristic.
+      options:
+        - Deterministic (measured in code)
+        - Needs AI judgment
+        - A mix (deterministic candidate, AI or human decides)
+    validations:
+      required: true
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Expected tier
+      description: AI-only findings can never be `violation`. Use `needs-review` when the WCAG interpretation is ambiguous.
+      options:
+        - violation
+        - likely
+        - needs-review
+    validations:
+      required: true
+  - type: textarea
+    id: fixture
+    attributes:
+      label: Fixture idea
+      description: A minimal barrier page, and a correct-pattern page that must produce no finding.
+      render: html
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: W3C "Understanding" documents, ARIA Authoring Practices patterns, audit experience or existing tools that cover this.

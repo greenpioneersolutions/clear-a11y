@@ -1,0 +1,15 @@
+{
+  "page": "static/strict-csp.html",
+  "title": "Strict CSP: image without alt",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "static/strict-csp#1",
+      "wcag": ["1.1.1"],
+      "selector": "#gallery-photo",
+      "layer": "static",
+      "description": "Informative image has no text alternative. The page has a strict Content-Security-Policy, so the scanner must bypass CSP to inject its checks.",
+      "ruleId": "static/image-alt"
+    }
+  ]
+}

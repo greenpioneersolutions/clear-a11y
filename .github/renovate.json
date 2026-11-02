@@ -1,0 +1,40 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 6am on monday"],
+  "timezone": "Etc/UTC",
+  "labels": ["dependencies"],
+  "rangeStrategy": "auto",
+  "postUpdateOptions": ["pnpmDedupe"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "packageRules": [
+    {
+      "description": "Nx packages must move together.",
+      "groupName": "nx",
+      "matchPackageNames": ["nx", "@nx/**"]
+    },
+    {
+      "description": "The Playwright npm packages and the Playwright Docker image must move together so browsers match.",
+      "groupName": "playwright",
+      "matchPackageNames": [
+        "playwright",
+        "playwright-core",
+        "@playwright/**",
+        "mcr.microsoft.com/playwright"
+      ]
+    },
+    {
+      "description": "Vitest packages move together.",
+      "groupName": "vitest",
+      "matchPackageNames": ["vitest", "@vitest/**"]
+    },
+    {
+      "description": "GitHub Actions updates in one PR.",
+      "groupName": "github actions",
+      "matchManagers": ["github-actions"]
+    }
+  ]
+}

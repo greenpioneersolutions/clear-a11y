@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: error messages tied to their fields</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      .error { color: #a51d2d; font-size: 14px; margin: 4px 0 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Join the newsletter</h1>
+      <!-- Correct pattern: invalid fields get aria-invalid="true" and point at their message with
+           aria-errormessage (email, whose message is also a polite live region because
+           aria-errormessage alone is not announced everywhere) or aria-describedby (phone).
+           The first invalid field gets focus. -->
+      <form id="newsletter" action="#" novalidate>
+        <div class="field">
+          <label for="news-email">Email</label>
+          <input
+            id="news-email"
+            type="email"
+            autocomplete="email"
+            aria-errormessage="news-email-msg"
+          />
+          <p class="error" id="news-email-msg" aria-live="polite" hidden></p>
+        </div>
+        <div class="field">
+          <label for="news-phone">Phone (optional)</label>
+          <input
+            id="news-phone"
+            type="tel"
+            autocomplete="tel"
+            pattern="[0-9 ]{7,}"
+            aria-describedby="news-phone-msg"
+          />
+          <p class="error" id="news-phone-msg" hidden></p>
+        </div>
+        <button type="submit">Subscribe</button>
+      </form>
+    </main>
+    <script>
+      const mark = (input, msgId, text) => {
+        const msg = document.getElementById(msgId);
+        msg.textContent = text;
+        msg.hidden = !text;
+        if (text) input.setAttribute('aria-invalid', 'true');
+        else input.removeAttribute('aria-invalid');
+        return Boolean(text);
+      };
+      document.getElementById('newsletter').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const email = document.getElementById('news-email');
+        const phone = document.getElementById('news-phone');
+        const badEmail = mark(
+          email,
+          'news-email-msg',
+          !email.value
+            ? 'Enter your email address'
+            : email.validity.typeMismatch
+              ? 'Enter an email address like name@example.com'
+              : '',
+        );
+        const badPhone = mark(
+          phone,
+          'news-phone-msg',
+          phone.value && phone.validity.patternMismatch ? 'Use digits only, at least 7' : '',
+        );
+        if (badEmail) email.focus();
+        else if (badPhone) phone.focus();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/keyboard-trap.html",
+  "title": "Comment form: keyboard trap",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/keyboard-trap#1",
+      "wcag": ["2.1.2"],
+      "selector": "#editor",
+      "layer": "keyboard",
+      "description": "The comment editor swallows Tab and Shift+Tab; keyboard users cannot leave it.",
+      "ruleId": "keyboard/keyboard-trap"
+    }
+  ]
+}

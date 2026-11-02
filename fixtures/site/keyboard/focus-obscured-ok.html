@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Article: sticky footer with reserved space</title>
+    <style>
+      /* Correct pattern: scroll-padding-bottom reserves room for the sticky footer, so focused
+         elements are scrolled clear of it, and body padding lets the last links scroll above it. */
+      html { scroll-padding-bottom: calc(45vh + 16px); }
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 0; padding-bottom: 45vh; }
+      main { max-width: 640px; margin: 0 auto; padding: 16px; }
+      .filler { height: 1400px; background: linear-gradient(#fff, #f0f0f0); }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .promo {
+        position: fixed; left: 0; right: 0; bottom: 0; height: 45vh;
+        background: #241f31; color: #fff; padding: 16px; box-sizing: border-box;
+      }
+      .promo a { color: #fff; }
+      .promo a:focus-visible { outline-color: #fff; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running in winter</h1>
+      <p>Short days and frozen paths call for different shoes and a different plan.</p>
+      <div class="filler" aria-hidden="true"></div>
+      <p>
+        Read more in our <a id="terms-link" href="#terms">care guide</a> and
+        <a id="privacy-link" href="#privacy">returns policy</a>.
+      </p>
+    </main>
+    <div class="promo">
+      <p>Winter sale: 20% off all trail shoes this week.</p>
+      <p><a id="promo-link" href="#sale">See the sale</a></p>
+    </div>
+  </body>
+</html>

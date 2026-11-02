@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: FAQ disclosures</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .toggle { display: inline-block; padding: 6px 0; font: inherit; font-weight: 600; background: none; border: 0; color: #1a4f8b; cursor: pointer; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe: questions</h1>
+      <!-- Correct pattern, rewritten from the ARIA Authoring Practices Guide "Disclosure (Show/Hide)
+           for Answers to Frequently Asked Questions" example
+           (https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/): native buttons handle Enter and
+           Space, and aria-expanded always matches whether the answer is shown. -->
+      <h2>
+        <button class="toggle" type="button" id="returns-toggle" aria-expanded="false" aria-controls="returns-panel">Can I return worn shoes?</button>
+      </h2>
+      <div id="returns-panel" hidden><p>Yes, within 30 days if they were only worn indoors.</p></div>
+      <h2>
+        <button class="toggle" type="button" id="warranty-toggle" aria-expanded="true" aria-controls="warranty-panel">How long is the warranty?</button>
+      </h2>
+      <div id="warranty-panel"><p>Two years on the sole and stitching.</p></div>
+    </main>
+    <script>
+      for (const button of document.querySelectorAll('[aria-expanded]')) {
+        button.addEventListener('click', () => {
+          const open = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', String(!open));
+          document.getElementById(button.getAttribute('aria-controls')).hidden = open;
+        });
+      }
+    </script>
+  </body>
+</html>

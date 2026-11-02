@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Article: share dialog drops focus when it closes</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / 0.5); display: grid; place-items: center; }
+      .backdrop[hidden] { display: none; }
+      [role='dialog'] { background: #fff; padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running in winter</h1>
+      <p>Short days and frozen paths call for different shoes and a different plan.</p>
+      <button id="open-share" type="button" aria-haspopup="dialog">Share this article</button>
+      <p><a href="#comments">Comments</a></p>
+    </main>
+    <!-- Seeded barrier: Escape and Close both close the dialog, but nothing sends focus back to
+         the Share button, so it drops to the page body (2.4.3). -->
+    <div class="backdrop" id="backdrop" hidden>
+      <div id="share-dialog" role="dialog" aria-modal="true" aria-labelledby="share-title">
+        <h2 id="share-title">Share</h2>
+        <p><a id="share-email" href="#email">Share by email</a></p>
+        <p><button id="close-share" type="button">Close</button></p>
+      </div>
+    </div>
+    <script>
+      const backdrop = document.getElementById('backdrop');
+      const close = () => { backdrop.hidden = true; };
+      document.getElementById('open-share').addEventListener('click', () => {
+        backdrop.hidden = false;
+        document.getElementById('share-email').focus();
+      });
+      document.getElementById('close-share').addEventListener('click', close);
+      backdrop.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') close();
+      });
+    </script>
+  </body>
+</html>

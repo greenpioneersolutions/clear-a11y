@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout: delivery options toggle without expanded state</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .options { display: none; }
+      .options.open { display: block; }
+      button { font: inherit; padding: 8px 12px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Checkout</h1>
+      <!-- Seeded barrier: the button shows and hides the delivery options with a CSS class but never
+           exposes aria-expanded, so screen readers can't tell whether the section is open (4.1.2). -->
+      <button id="delivery-toggle" type="button">Delivery options</button>
+      <div id="delivery-options" class="options">
+        <p>Standard delivery: 3 to 5 working days, free.</p>
+        <p>Express delivery: next working day, 9 euros.</p>
+      </div>
+    </main>
+    <script>
+      document.getElementById('delivery-toggle').addEventListener('click', () => {
+        document.getElementById('delivery-options').classList.toggle('open');
+      });
+    </script>
+  </body>
+</html>

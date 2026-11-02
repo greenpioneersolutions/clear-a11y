@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Saved addresses deleted on click</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .addresses { padding: 0; list-style: none; max-width: 420px; }
+      .addresses li { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ccc; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Saved addresses</h1>
+      <!-- Correct pattern: the buttons act on click, which fires on release inside the button. -->
+      <ul class="addresses" id="addresses">
+        <li>12 Mill Lane, Ghent <button type="button" id="delete-home">Delete home address</button></li>
+        <li>4 Quay Street, Bruges <button type="button" id="delete-work">Delete work address</button></li>
+      </ul>
+      <p role="status" id="address-status"></p>
+    </main>
+    <script>
+      for (const button of document.querySelectorAll('#addresses button')) {
+        button.addEventListener('click', () => {
+          button.closest('li').remove();
+          document.getElementById('address-status').textContent = 'Address deleted.';
+        });
+      }
+    </script>
+  </body>
+</html>

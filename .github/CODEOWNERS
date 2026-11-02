@@ -1,0 +1,22 @@
+# Code owners are requested for review automatically.
+# PLACEHOLDER: replace @TODO-maintainer (and the other TODO handles) with real
+# maintainer accounts or a team such as @clear-a11y/maintainers before v0.1.
+# Later lines take precedence over earlier ones.
+
+# Default owners for everything.
+*                       @TODO-maintainer
+
+# The Finding schema is a public API: changes need an ADR and two approvals.
+/packages/core/         @TODO-maintainer @TODO-core-owner
+
+# AI providers, judges and prompts: provider policy and prompt-injection
+# hardening need two approvals.
+/packages/ai/           @TODO-maintainer @TODO-ai-owner
+
+# Architecture decisions.
+/docs/adr/              @TODO-maintainer @TODO-core-owner
+
+# CI, release and security-sensitive workflow changes.
+/.github/workflows/     @TODO-maintainer
+/SECURITY.md            @TODO-maintainer
+/GOVERNANCE.md          @TODO-maintainer

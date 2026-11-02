@@ -1,0 +1,6 @@
+{
+  "page": "visual/text-overlap-ok.html",
+  "title": "Promotion: heading grows with its text",
+  "correctPattern": true,
+  "issues": []
+}

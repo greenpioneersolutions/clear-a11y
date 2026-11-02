@@ -1,0 +1,14 @@
+{
+  "page": "at/disclosure-no-state.html",
+  "title": "FAQ: disclosure without expanded state",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/disclosure-no-state#1",
+      "wcag": ["4.1.2"],
+      "selector": "#faq-shipping",
+      "layer": "at",
+      "description": "FAQ toggle shows and hides content but never exposes aria-expanded."
+    }
+  ]
+}

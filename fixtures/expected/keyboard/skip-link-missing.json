@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/skip-link-missing.html",
+  "title": "Shop home: no way past the navigation",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/skip-link-missing#1",
+      "wcag": ["2.4.1"],
+      "selector": "#site-header | #site-nav",
+      "layer": "keyboard",
+      "description": "Eight navigation links come before the content, with no skip link, no main landmark and no headings to bypass them.",
+      "ruleId": "keyboard/skip-link-missing"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "page": "wcag/1-4-2-audio-control-ok.html",
+  "title": "Hotel home page with an optional welcome message",
+  "correctPattern": true,
+  "issues": []
+}

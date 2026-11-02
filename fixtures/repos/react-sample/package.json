@@ -1,0 +1,18 @@
+{
+  "name": "react-sample",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Clear A11Y fixture: a tiny React + TypeScript app with seeded source-level barriers. Never installed or built.",
+  "type": "module",
+  "scripts": {
+    "postinstall": "node -e \"throw new Error('clear-a11y must never run scripts from a scanned repo')\""
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}

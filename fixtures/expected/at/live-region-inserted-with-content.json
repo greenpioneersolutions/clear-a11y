@@ -1,0 +1,15 @@
+{
+  "page": "at/live-region-inserted-with-content.html",
+  "title": "Basket: live region inserted with its message",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/live-region-inserted-with-content#1",
+      "wcag": ["4.1.3"],
+      "selector": "#coupon-status | #apply-coupon",
+      "layer": "at",
+      "description": "The coupon confirmation is inserted as a role=\"status\" region that already contains its message, so screen readers do not announce it.",
+      "ruleId": "at/live-region-inserted-with-content"
+    }
+  ]
+}

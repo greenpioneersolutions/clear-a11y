@@ -1,0 +1,184 @@
+{
+  "name": "@clear-a11y/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Clear A11Y documentation site (Astro Starlight), deployed to GitHub Pages.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "apps/docs"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "catalog:",
+    "@clear-a11y/core": "workspace:*",
+    "@clear-a11y/repo": "workspace:*",
+    "@clear-a11y/runner": "workspace:*",
+    "astro": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@clear-a11y/browser": "workspace:*",
+    "@clear-a11y/test-utils": "workspace:*"
+  },
+  "nx": {
+    "name": "docs",
+    "tags": [
+      "type:app",
+      "scope:docs",
+      "publish:private"
+    ],
+    "targets": {
+      "generate": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "^build",
+          {
+            "projects": [
+              "cli"
+            ],
+            "target": "docs-json"
+          }
+        ],
+        "inputs": [
+          "{projectRoot}/content/**/*",
+          "{projectRoot}/scripts/**/*",
+          "!{projectRoot}/scripts/**/*.test.ts",
+          "{workspaceRoot}/docs/**/*.md",
+          "{workspaceRoot}/apps/*/README.md",
+          "{workspaceRoot}/apps/mcp/SKILL.md",
+          "{workspaceRoot}/CONTRIBUTING.md",
+          "{workspaceRoot}/bench-results/*.json",
+          "^production",
+          {
+            "dependentTasksOutputFiles": "**/cli-reference.json"
+          },
+          {
+            "env": "DOCS_BASE"
+          },
+          {
+            "env": "DOCS_REPO_URL"
+          },
+          {
+            "env": "DOCS_REPO_REF"
+          },
+          {
+            "externalDependencies": [
+              "zod"
+            ]
+          }
+        ],
+        "outputs": [
+          "{projectRoot}/src/content/docs"
+        ],
+        "cache": true,
+        "options": {
+          "command": "node scripts/generate.ts",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "build": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "generate"
+        ],
+        "inputs": [
+          "{projectRoot}/src/**/*",
+          "{projectRoot}/public/**/*",
+          "{projectRoot}/astro.config.mjs",
+          "{projectRoot}/scripts/**/*",
+          "!{projectRoot}/scripts/**/*.test.ts",
+          {
+            "dependentTasksOutputFiles": "**/*.md"
+          },
+          {
+            "env": "DOCS_SITE"
+          },
+          {
+            "env": "DOCS_BASE"
+          },
+          {
+            "env": "DOCS_REPO_URL"
+          },
+          {
+            "externalDependencies": [
+              "astro",
+              "@astrojs/starlight"
+            ]
+          }
+        ],
+        "outputs": [
+          "{projectRoot}/dist"
+        ],
+        "cache": true,
+        "options": {
+          "command": "astro build",
+          "cwd": "{projectRoot}",
+          "env": {
+            "ASTRO_TELEMETRY_DISABLED": "1"
+          }
+        }
+      },
+      "dev": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "generate"
+        ],
+        "continuous": true,
+        "cache": false,
+        "options": {
+          "command": "astro dev",
+          "cwd": "{projectRoot}",
+          "env": {
+            "ASTRO_TELEMETRY_DISABLED": "1"
+          }
+        }
+      },
+      "serve": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "generate"
+        ],
+        "continuous": true,
+        "cache": false,
+        "options": {
+          "command": "astro dev",
+          "cwd": "{projectRoot}",
+          "env": {
+            "ASTRO_TELEMETRY_DISABLED": "1"
+          }
+        }
+      },
+      "preview": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "build"
+        ],
+        "continuous": true,
+        "cache": false,
+        "options": {
+          "command": "astro preview",
+          "cwd": "{projectRoot}",
+          "env": {
+            "ASTRO_TELEMETRY_DISABLED": "1"
+          }
+        }
+      },
+      "test-integration": {
+        "dependsOn": [
+          "^build",
+          "build"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "dependentTasksOutputFiles": "**/*",
+            "transitive": false
+          }
+        ]
+      }
+    }
+  }
+}

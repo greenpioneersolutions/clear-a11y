@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Editor: save confirmation not announced</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      textarea, button { font: inherit; }
+      textarea { max-width: 100%; box-sizing: border-box; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>New post</h1>
+      <label for="post-body">Post</label>
+      <textarea id="post-body" rows="4" cols="40">Trail report: the ridge path is dry.</textarea>
+      <p><button id="save-draft" type="button">Save draft</button></p>
+      <!-- Seeded barrier: the confirmation is revealed by removing `hidden`, but it is not a live
+           region and focus stays on the button, so screen reader users hear nothing (4.1.3). -->
+      <p id="save-status" hidden>Draft saved.</p>
+    </main>
+    <script>
+      document.getElementById('save-draft').addEventListener('click', () => {
+        document.getElementById('save-status').hidden = false;
+      });
+    </script>
+  </body>
+</html>

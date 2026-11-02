@@ -1,0 +1,87 @@
+{
+  "name": "@clear-a11y/queue",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./testing": {
+      "@clear-a11y/source": "./src/testing/index.ts",
+      "types": "./dist/testing/index.d.ts",
+      "import": "./dist/testing/index.js",
+      "default": "./dist/testing/index.js"
+    }
+  },
+  "dependencies": {
+    "@clear-a11y/core": "workspace:*",
+    "tslib": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "bullmq": "catalog:",
+    "ioredis": "catalog:",
+    "vitest": "catalog:"
+  },
+  "peerDependenciesMeta": {
+    "bullmq": {
+      "optional": true
+    },
+    "ioredis": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "bullmq": "catalog:",
+    "ioredis": "catalog:"
+  },
+  "description": "Clear A11Y job queue: one interface with in-memory, SQLite (node:sqlite) and BullMQ (Redis) implementations.",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "queue",
+    "sqlite",
+    "bullmq"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "packages/queue"
+  },
+  "homepage": "https://greenpioneersolutions.github.io/clear-a11y/",
+  "bugs": {
+    "url": "https://github.com/greenpioneersolutions/clear-a11y/issues"
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "README.md",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "nx": {
+    "tags": [
+      "type:data-access",
+      "scope:queue",
+      "publish:public"
+    ]
+  },
+  "license": "Apache-2.0"
+}

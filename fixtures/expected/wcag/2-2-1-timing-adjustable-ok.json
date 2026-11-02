@@ -1,0 +1,6 @@
+{
+  "page": "wcag/2-2-1-timing-adjustable-ok.html",
+  "title": "Live scores page without a time limit",
+  "correctPattern": true,
+  "issues": []
+}

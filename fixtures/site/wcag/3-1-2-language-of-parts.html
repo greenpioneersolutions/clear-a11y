@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Customer reviews with an unmarked French quote</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>What our guests say</h1>
+      <!-- Seeded barrier: the French review is not marked with lang="fr", so screen readers read it
+           with English pronunciation. WCAG 3.1.2. -->
+      <blockquote id="review-fr">
+        <p>Un séjour merveilleux, le personnel était très accueillant et le petit-déjeuner délicieux.</p>
+      </blockquote>
+      <p>Claire, from Lyon</p>
+      <blockquote id="review-en">
+        <p>Lovely rooms and a quiet garden. We will be back.</p>
+      </blockquote>
+      <p>Tom, from Leeds</p>
+    </main>
+  </body>
+</html>

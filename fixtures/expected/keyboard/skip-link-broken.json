@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/skip-link-broken.html",
+  "title": "Shop home: skip link points nowhere",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/skip-link-broken#1",
+      "wcag": ["2.4.1"],
+      "selector": "#skip-link",
+      "layer": "keyboard",
+      "description": "The Skip to main content link targets #main-content, which does not exist, so keyboard users still have to Tab through the navigation.",
+      "ruleId": "keyboard/skip-link-broken"
+    }
+  ]
+}

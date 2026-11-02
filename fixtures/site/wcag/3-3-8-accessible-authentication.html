@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign-in form that blocks pasting the password</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 12px; }
+      input, select { font: inherit; border: 2px solid #767676; padding: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Sign in</h1>
+      <!-- Seeded barrier: the password field cancels paste and sets autocomplete="off", so password
+           managers and copy-paste can't be used; people must remember and type it. WCAG 3.3.8. -->
+      <form id="login" action="#">
+        <div class="field">
+          <label for="username">Email address</label>
+          <input id="username" type="email" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="off" required />
+        </div>
+        <button type="submit">Sign in</button>
+      </form>
+    </main>
+    <script>
+      // "Security": typing the password is forced by cancelling paste.
+      document.getElementById('password').addEventListener('paste', (e) => e.preventDefault());
+    </script>
+  </body>
+</html>

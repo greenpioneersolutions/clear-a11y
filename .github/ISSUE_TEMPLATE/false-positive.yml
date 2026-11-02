@@ -1,0 +1,61 @@
+name: False positive
+description: Clear A11Y reported something that is not an accessibility barrier.
+title: 'false positive: '
+labels: ['false-positive', 'needs-repro']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        False positives erode trust, so we take them seriously. The **minimal HTML reproduction** is the most important part: it becomes a correct-pattern fixture in `fixtures/site/`, so the fix is measured and the problem can't quietly come back.
+
+        Please remove anything private (names, real URLs, credentials, screenshots of internal sites).
+  - type: input
+    id: rule-id
+    attributes:
+      label: Rule id
+      description: The `ruleId` from the finding.
+      placeholder: keyboard/focus-order-backward
+    validations:
+      required: true
+  - type: textarea
+    id: finding
+    attributes:
+      label: Finding JSON
+      description: Paste the finding from the JSON report (`tier`, `wcag`, `target`, `evidence`, `message`). Remove private data.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal HTML reproduction
+      description: The smallest self-contained HTML page that still produces the false positive. Inline the CSS and JavaScript it needs.
+      render: html
+      placeholder: |
+        <!doctype html>
+        <html lang="en">
+          <head><meta charset="utf-8"><title>Repro</title></head>
+          <body>
+            ...
+          </body>
+        </html>
+    validations:
+      required: true
+  - type: textarea
+    id: why-not-barrier
+    attributes:
+      label: Why isn't this a barrier?
+      description: Explain who the finding claims is affected and why they aren't. If you tested with a keyboard, screen reader or zoom, say what you used and what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: wcag-reference
+    attributes:
+      label: WCAG reference
+      description: The success criterion and the part of the W3C "Understanding" document that supports your reading, if you have it.
+      placeholder: 'SC 2.4.3 Focus Order. Understanding 2.4.3: https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html'
+  - type: input
+    id: version
+    attributes:
+      label: Clear A11Y version
+      description: Output of `clear-a11y --version`, or the commit SHA.

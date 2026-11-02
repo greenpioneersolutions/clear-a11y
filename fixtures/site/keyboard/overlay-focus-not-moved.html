@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Help: dialog opens without taking focus</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / 0.5); display: grid; place-items: center; }
+      .backdrop[hidden] { display: none; }
+      [role='dialog'] { background: #fff; padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Your orders</h1>
+      <button id="open-help" type="button" aria-haspopup="dialog">Get help</button>
+      <p><a href="#orders">Order history</a></p>
+    </main>
+    <!-- Seeded barrier: the dialog opens but focus stays on the Get help button behind it (2.4.3).
+         Escape and Close work and return focus to the button. -->
+    <div class="backdrop" id="backdrop" hidden>
+      <div id="help-dialog" role="dialog" aria-modal="true" aria-labelledby="help-title">
+        <h2 id="help-title">Get help</h2>
+        <p><a id="help-chat" href="#chat">Chat with us</a></p>
+        <p><button id="close-help" type="button">Close</button></p>
+      </div>
+    </div>
+    <script>
+      const backdrop = document.getElementById('backdrop');
+      const opener = document.getElementById('open-help');
+      const close = () => {
+        backdrop.hidden = true;
+        opener.focus();
+      };
+      opener.addEventListener('click', () => { backdrop.hidden = false; });
+      document.getElementById('close-help').addEventListener('click', close);
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !backdrop.hidden) close();
+      });
+    </script>
+  </body>
+</html>

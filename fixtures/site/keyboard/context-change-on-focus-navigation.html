@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Account: tabbing onto a section link loads it</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      nav ul { display: flex; gap: 8px; list-style: none; padding: 0; margin: 0 0 16px; }
+      nav a { display: inline-block; padding: 10px 12px; color: #1a1a1a; }
+      nav a[aria-current='page'] { font-weight: 700; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Your account</h1>
+      <!-- Seeded barrier (SC 3.2.1): the section links load their page as soon as they receive
+           focus. A keyboard user tabbing past "Orders" is taken to the Orders page, where focus
+           starts at the top again, so the rest of this page can't be reached with Tab. -->
+      <nav aria-label="Account sections">
+        <ul>
+          <li><a id="profile-link" href="context-change-on-focus-navigation.html" aria-current="page">Profile</a></li>
+          <li><a id="orders-link" class="load-on-focus" href="context-change-on-focus-navigation.html?section=orders">Orders</a></li>
+          <li><a id="settings-link" class="load-on-focus" href="context-change-on-focus-navigation.html?section=settings">Settings</a></li>
+        </ul>
+      </nav>
+      <h2>Profile</h2>
+      <p>Jamie Rivera, member since 2019.</p>
+      <p><a href="#edit-profile">Edit profile</a></p>
+    </main>
+    <script>
+      for (const link of document.querySelectorAll('.load-on-focus')) {
+        link.addEventListener('focus', () => {
+          window.location.href = link.href;
+        });
+      }
+    </script>
+  </body>
+</html>

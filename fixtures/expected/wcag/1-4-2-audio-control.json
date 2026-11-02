@@ -1,0 +1,15 @@
+{
+  "page": "wcag/1-4-2-audio-control.html",
+  "title": "Hotel home page with background music",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-4-2-audio-control#1",
+      "wcag": ["1.4.2"],
+      "selector": "#welcome-music",
+      "layer": "at",
+      "description": "Background music plays automatically on a loop and there is no control to pause, stop or mute it.",
+      "ruleId": "at/audio-autoplay-no-control"
+    }
+  ]
+}

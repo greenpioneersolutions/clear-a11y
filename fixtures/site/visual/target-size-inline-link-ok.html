@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Help article: inline links in text</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      a { color: #1a5fb4; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Exporting your data</h1>
+      <!-- Correct pattern: links inside a sentence are exempt from 2.5.8 (inline exception),
+           even though each is shorter than 24px and they sit on neighboring lines. -->
+      <p>
+        You can export a <a href="#csv">CSV file</a> or a <a href="#json">JSON file</a> from the
+        <a href="#settings">settings page</a>. Large exports are e-mailed to you; see
+        <a href="#limits">export limits</a> and the <a href="#faq">FAQ</a> for details.
+      </p>
+    </main>
+  </body>
+</html>

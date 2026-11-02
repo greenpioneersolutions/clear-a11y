@@ -1,0 +1,6 @@
+{
+  "page": "wcag/2-5-4-motion-actuation-ok.html",
+  "title": "Notes app with an undo button and opt-in shake",
+  "correctPattern": true,
+  "issues": []
+}

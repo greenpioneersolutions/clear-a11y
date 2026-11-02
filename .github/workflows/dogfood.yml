@@ -1,0 +1,50 @@
+name: Dogfood
+
+# Practice what we test: everything we ship with a user interface must pass Clear A11Y itself with
+# zero violation findings. On every change this builds and scans
+#   - the HTML report (a sample report.html written by the CLI from fixture pages),
+#   - the documentation site (apps/docs/dist, every page, plus an internal link check),
+#   - the desktop app's renderer (every view, with real scan data behind a stand-in bridge),
+# with every engine. Engine changes can change these results, so it runs on every pull request,
+# not only when the UIs change. Fork-safe: no secrets, no Nx Cloud, read-only token.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  NX_NO_CLOUD: true
+  NX_DAEMON: false
+  ASTRO_TELEMETRY_DISABLED: 1
+
+jobs:
+  dogfood:
+    name: Scan our own UIs with Clear A11Y
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pnpm, Node.js, dependencies and Chromium
+        uses: ./.github/actions/setup
+        with:
+          playwright: 'true'
+
+      # Each target builds what it scans first (dependsOn): the CLI and its libraries, the docs
+      # site, the desktop renderer. The trailing argument picks the dogfood test file.
+      - name: HTML report (write a sample report.html, then scan it)
+        run: pnpm nx run cli:test-integration -- report-dogfood
+
+      - name: Documentation site (build it, then scan every page and check links)
+        run: pnpm nx run docs:test-integration -- dogfood
+
+      - name: Desktop app renderer (build it, then scan every view)
+        run: pnpm nx run desktop:test-integration -- dogfood

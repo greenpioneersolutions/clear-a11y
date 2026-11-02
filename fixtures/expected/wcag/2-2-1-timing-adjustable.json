@@ -1,0 +1,14 @@
+{
+  "page": "wcag/2-2-1-timing-adjustable.html",
+  "title": "Live scores page that reloads itself",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-2-1-timing-adjustable#1",
+      "wcag": ["2.2.1"],
+      "selector": "#auto-refresh | meta[http-equiv=\"refresh\"]",
+      "layer": "static",
+      "description": "The page reloads itself every 5 minutes with a meta refresh, with no way to turn off, adjust or extend the time limit."
+    }
+  ]
+}

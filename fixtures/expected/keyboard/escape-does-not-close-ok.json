@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/escape-does-not-close-ok.html",
+  "title": "Search filters: dialog closes on Escape",
+  "correctPattern": true,
+  "issues": []
+}

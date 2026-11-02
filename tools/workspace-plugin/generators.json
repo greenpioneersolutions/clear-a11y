@@ -1,0 +1,19 @@
+{
+  "generators": {
+    "engine": {
+      "factory": "./dist/generators/engine/engine",
+      "schema": "./dist/generators/engine/schema.json",
+      "description": "Create a Clear A11Y engine package under packages/engines/<name>."
+    },
+    "rule": {
+      "factory": "./dist/generators/rule/rule",
+      "schema": "./dist/generators/rule/schema.json",
+      "description": "Create a rule: rule file, unit test, barrier + correct-pattern fixtures, expected findings and a doc stub."
+    },
+    "fixture": {
+      "factory": "./dist/generators/fixture/fixture",
+      "schema": "./dist/generators/fixture/schema.json",
+      "description": "Create a fixture page under fixtures/site and its expected findings under fixtures/expected."
+    }
+  }
+}

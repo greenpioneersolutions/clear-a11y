@@ -1,0 +1,6 @@
+{
+  "page": "static/ok.html",
+  "title": "Correct pattern: static checks",
+  "correctPattern": true,
+  "issues": []
+}

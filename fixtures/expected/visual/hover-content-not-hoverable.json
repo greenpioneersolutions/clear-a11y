@@ -1,0 +1,15 @@
+{
+  "page": "visual/hover-content-not-hoverable.html",
+  "title": "Product page: shipping tooltip vanishes on the way to it",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/hover-content-not-hoverable#1",
+      "wcag": ["1.4.13"],
+      "selector": "#shipping-info | #shipping-tip",
+      "layer": "visual",
+      "description": "The shipping tooltip closes as soon as the pointer leaves the button, so it disappears before the pointer reaches it.",
+      "ruleId": "visual/hover-content-not-hoverable"
+    }
+  ]
+}

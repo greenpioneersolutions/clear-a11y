@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/context-change-on-focus-ok.html",
+  "title": "Newsletter: help appears inline on focus",
+  "correctPattern": true,
+  "issues": []
+}

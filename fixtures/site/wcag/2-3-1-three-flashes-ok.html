@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flash sale animation with a slow pulse</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      #sale-flash { width: 100%; max-width: 480px; height: 240px; background: #fff; border: 2px solid #1a1a1a; }
+      #sale-flash.playing { animation: flash 160ms steps(1) infinite; }
+      #sale-flash.pulsing { animation: pulse 4s ease-in-out infinite; }
+      @keyframes flash { 0% { background: #fff; } 50% { background: #d00000; } }
+      @keyframes pulse { 0%, 100% { background: #fff; } 50% { background: #fde8e8; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Flash sale</h1>
+      <!-- Correct pattern: the animation is a slow pulse (one change every 2 seconds), far below the
+           three-flashes threshold. -->
+      <p>Press the button to see this week's deals.</p>
+      <button type="button" id="play" onclick="document.getElementById('sale-flash').classList.add('pulsing')">Play the sale animation</button>
+      <div id="sale-flash" role="img" aria-label="Sale animation"></div>
+    </main>
+  </body>
+</html>

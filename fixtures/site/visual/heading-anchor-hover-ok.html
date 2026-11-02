@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: heading anchor link shown on hover</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      /*
+        The heading reserves space at the end of its line (padding) and the anchor link is pulled
+        into that space with a negative margin, the way many documentation themes do it. The icon
+        fades in on hover; it covers only the heading's padding, never its text.
+      */
+      .heading { font-size: 1.5rem; line-height: 1.25; margin: 1.5rem 0 0.5rem; }
+      .heading h2 { display: inline; font-size: inherit; margin: 0; padding-inline-end: 1.1em; }
+      .anchor {
+        display: inline-flex;
+        position: relative;
+        margin-inline-start: -0.85em;
+        color: #1a4fa0;
+        opacity: 0;
+      }
+      .anchor svg { width: 0.85em; height: 0.85em; }
+      .heading:hover .anchor,
+      .anchor:focus-visible { opacity: 1; }
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+      }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Returns</h1>
+      <div class="heading">
+        <h2 id="how-to-return">How to return an item</h2><a class="anchor" href="#how-to-return"
+          ><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1 1.5 1.5 1-1a3 3 0 0 1 4 4l-3 3a3 3 0 0 1-4 0zM14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1-1.5-1.5-1 1a3 3 0 0 1-4-4l3-3a3 3 0 0 1 4 0z"/></svg
+          ><span class="sr-only">Section titled “How to return an item”</span></a
+        >
+      </div>
+      <p>Pack the item in its original box and attach the prepaid label from your order email.</p>
+      <div class="heading">
+        <h2 id="refunds">Refunds</h2><a class="anchor" href="#refunds"
+          ><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1 1.5 1.5 1-1a3 3 0 0 1 4 4l-3 3a3 3 0 0 1-4 0zM14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1-1.5-1.5-1 1a3 3 0 0 1-4-4l3-3a3 3 0 0 1 4 0z"/></svg
+          ><span class="sr-only">Section titled “Refunds”</span></a
+        >
+      </div>
+      <p>Refunds reach your account within five working days after we receive the item.</p>
+    </main>
+  </body>
+</html>

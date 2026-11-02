@@ -1,0 +1,15 @@
+{
+  "page": "visual/reflow.html",
+  "title": "Article: fixed width breaks reflow",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/reflow#1",
+      "wcag": ["1.4.10"],
+      "selector": "#content",
+      "layer": "visual",
+      "description": "A fixed 1100px content column forces horizontal scrolling at 320 CSS px.",
+      "ruleId": "visual/reflow-horizontal-scroll"
+    }
+  ]
+}

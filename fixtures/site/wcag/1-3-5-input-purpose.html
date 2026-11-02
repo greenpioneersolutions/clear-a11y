@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Account details form without autocomplete</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 12px; }
+      input, select { font: inherit; border: 2px solid #767676; padding: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Your details</h1>
+      <!-- Seeded barrier: name, email and phone fields have no autocomplete tokens. WCAG 1.3.5. -->
+      <form id="details" action="#">
+        <div class="field">
+          <label for="full-name">Full name</label>
+          <input id="full-name" name="full-name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" required />
+        </div>
+        <button type="submit">Save details</button>
+      </form>
+    </main>
+  </body>
+</html>

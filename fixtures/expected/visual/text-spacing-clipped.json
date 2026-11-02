@@ -1,0 +1,15 @@
+{
+  "page": "visual/text-spacing-clipped.html",
+  "title": "Product card: note clipped under text spacing",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/text-spacing-clipped#1",
+      "wcag": ["1.4.12"],
+      "selector": "#shipping-note",
+      "layer": "visual",
+      "description": "The one-line note has a fixed height sized to a tight line height; with WCAG text spacing (line height 1.5) the text is cut off.",
+      "ruleId": "visual/text-spacing-clipped"
+    }
+  ]
+}

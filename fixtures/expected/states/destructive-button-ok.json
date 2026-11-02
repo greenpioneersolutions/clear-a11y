@@ -1,0 +1,6 @@
+{
+  "page": "states/destructive-button-ok.html",
+  "title": "Account settings: actions the scanner must never trigger",
+  "correctPattern": true,
+  "issues": []
+}

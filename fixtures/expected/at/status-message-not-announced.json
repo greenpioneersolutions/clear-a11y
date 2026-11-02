@@ -1,0 +1,15 @@
+{
+  "page": "at/status-message-not-announced.html",
+  "title": "Editor: save confirmation not announced",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/status-message-not-announced#1",
+      "wcag": ["4.1.3"],
+      "selector": "#save-status | #save-draft",
+      "layer": "at",
+      "description": "The \"Draft saved.\" confirmation is revealed visually but is not a live region and focus does not move, so it is not announced.",
+      "ruleId": "at/status-message-not-announced"
+    }
+  ]
+}

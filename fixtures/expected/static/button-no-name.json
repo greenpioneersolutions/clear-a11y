@@ -1,0 +1,14 @@
+{
+  "page": "static/button-no-name.html",
+  "title": "Notice: icon button without a name",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "static/button-no-name#1",
+      "wcag": ["4.1.2"],
+      "selector": "#close-notice",
+      "layer": "static",
+      "description": "Icon-only close button has no accessible name."
+    }
+  ]
+}

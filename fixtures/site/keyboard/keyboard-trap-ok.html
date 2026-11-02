@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comment form: editor with a documented exit</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      #editor { border: 1px solid #555; min-height: 120px; padding: 8px; max-width: 480px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Leave a comment</h1>
+      <p><a id="before" href="#guidelines">Read the guidelines</a></p>
+      <!-- Correct pattern: the editor uses Tab to indent, but tells users how to leave
+           (Escape, then Tab) and honours it, so focus is never trapped (2.1.2). -->
+      <p id="editor-help">Tab inserts spaces. Press Escape, then Tab, to leave the editor.</p>
+      <div id="editor" role="textbox" aria-multiline="true" aria-label="Comment" aria-describedby="editor-help" contenteditable="true" tabindex="0"></div>
+      <p><button id="post" type="button">Post comment</button></p>
+    </main>
+    <script>
+      const editor = document.getElementById('editor');
+      let leaving = false;
+      editor.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          leaving = true;
+          return;
+        }
+        if (event.key === 'Tab' && !leaving) {
+          event.preventDefault();
+          document.execCommand('insertText', false, '    ');
+        }
+      });
+      editor.addEventListener('blur', () => { leaving = false; });
+      editor.addEventListener('input', () => { leaving = false; });
+    </script>
+  </body>
+</html>

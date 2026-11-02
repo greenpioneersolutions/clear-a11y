@@ -1,0 +1,15 @@
+{
+  "page": "visual/non-text-contrast.html",
+  "title": "Sign up: faint field border",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/non-text-contrast#1",
+      "wcag": ["1.4.11"],
+      "selector": "#signup-email",
+      "layer": "visual",
+      "description": "The email field has a #ddd border on white (about 1.4:1) and no fill, so its boundary is not visible enough.",
+      "ruleId": "visual/non-text-contrast"
+    }
+  ]
+}

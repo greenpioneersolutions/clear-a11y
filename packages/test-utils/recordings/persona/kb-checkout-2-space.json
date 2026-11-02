@@ -1,0 +1,17 @@
+{
+  "name": "persona/kb-checkout-2-space",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-keyboard-only",
+    "promptVersion": 1,
+    "match": {
+      "step": 2,
+      "focused": "checkbox \"I accept the terms and conditions\""
+    }
+  },
+  "response": {
+    "action": "press",
+    "key": "Space",
+    "reason": "Tick the terms checkbox."
+  }
+}

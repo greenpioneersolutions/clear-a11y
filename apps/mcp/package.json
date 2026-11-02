@@ -1,0 +1,85 @@
+{
+  "name": "@clear-a11y/mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    "./SKILL.md": "./SKILL.md",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "clear-a11y-mcp": "./dist/main.js"
+  },
+  "nx": {
+    "name": "mcp",
+    "tags": [
+      "type:app",
+      "scope:mcp",
+      "publish:public"
+    ],
+    "targets": {
+      "test-integration": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "@clear-a11y/browser": "workspace:*",
+    "@clear-a11y/core": "workspace:*",
+    "@clear-a11y/reporter": "workspace:*",
+    "@clear-a11y/runner": "workspace:*",
+    "@modelcontextprotocol/sdk": "catalog:",
+    "tslib": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@clear-a11y/test-utils": "workspace:*"
+  },
+  "description": "Clear A11Y MCP server: lets your own coding agent scan sites and repos for accessibility barriers, walk the keyboard focus path and fetch findings and reports.",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "mcp",
+    "model-context-protocol",
+    "claude-code",
+    "testing"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "apps/mcp"
+  },
+  "homepage": "https://greenpioneersolutions.github.io/clear-a11y/",
+  "bugs": {
+    "url": "https://github.com/greenpioneersolutions/clear-a11y/issues"
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "README.md",
+    "SKILL.md",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "sideEffects": [
+    "./dist/main.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

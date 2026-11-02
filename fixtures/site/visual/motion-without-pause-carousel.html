@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home: promo carousel advances on its own</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 48rem; }
+      .carousel { border: 1px solid #595959; padding: 16px; min-height: 96px; }
+      .slide { margin: 0; }
+      .slide[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Outdoor gear</h1>
+      <!-- Seeded barrier (SC 2.2.2): the promotions rotate every 2 seconds, forever, next to the
+           rest of the page, with no pause or stop button. The script only skips autoplay when the
+           system asks for reduced motion, which most people never set, so a human auditor fails it. -->
+      <section class="carousel" id="promo-carousel" aria-roledescription="carousel" aria-label="Promotions">
+        <p class="slide">Winter jackets: 20% off this week.</p>
+        <p class="slide" hidden>Free delivery on orders over 50 euros.</p>
+        <p class="slide" hidden>New trail shoes are in stock.</p>
+      </section>
+      <h2>Popular categories</h2>
+      <ul>
+        <li>Jackets</li>
+        <li>Shoes</li>
+        <li>Backpacks</li>
+      </ul>
+    </main>
+    <script>
+      const slides = Array.from(document.querySelectorAll('#promo-carousel .slide'));
+      let current = 0;
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setInterval(() => {
+          slides[current].hidden = true;
+          current = (current + 1) % slides.length;
+          slides[current].hidden = false;
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

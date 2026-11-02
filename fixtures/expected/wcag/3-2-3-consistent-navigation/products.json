@@ -1,0 +1,14 @@
+{
+  "page": "wcag/3-2-3-consistent-navigation/products.html",
+  "title": "Shop products page with the navigation reordered",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/3-2-3-consistent-navigation/products#1",
+      "wcag": ["3.2.3"],
+      "selector": "#site-nav",
+      "layer": "persona",
+      "description": "The main navigation links appear in a different relative order on the products page than on the home page."
+    }
+  ]
+}

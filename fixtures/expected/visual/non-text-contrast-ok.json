@@ -1,0 +1,6 @@
+{
+  "page": "visual/non-text-contrast-ok.html",
+  "title": "Sign up: visible field border",
+  "correctPattern": true,
+  "issues": []
+}

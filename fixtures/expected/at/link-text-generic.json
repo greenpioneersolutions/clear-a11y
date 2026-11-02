@@ -1,0 +1,15 @@
+{
+  "page": "at/link-text-generic.html",
+  "title": "News: several \"Read more\" links with no context",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/link-text-generic#1",
+      "wcag": ["2.4.4"],
+      "selector": "#news-1 | #news-2 | #news-3",
+      "layer": "at",
+      "description": "Three \"Read more\" links go to different articles with no distinguishing text or context.",
+      "ruleId": "at/link-text-generic"
+    }
+  ]
+}

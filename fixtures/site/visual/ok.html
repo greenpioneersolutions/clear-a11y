@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: visual</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { max-width: 70ch; margin: 0 auto; padding: 16px; }
+      .hero { padding: 48px 24px; background-color: #1c3d5a; background-image: linear-gradient(120deg, #1c3d5a 0%, #26496b 100%); }
+      .hero h2 { color: #ffffff; margin: 0; }
+      .card { max-width: 260px; border: 1px solid #555; padding: 12px; }
+      .pager { display: flex; gap: 8px; }
+      .pager a { min-width: 24px; min-height: 24px; padding: 8px; color: #1a1a1a; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>How we test accessibility</h1>
+      <div class="hero"><h2>Spring sale</h2></div>
+      <div class="card"><p>Unlimited projects, shared fixtures and priority support for your whole team.</p></div>
+      <nav class="pager" aria-label="Pagination"><a href="#p1" aria-current="page">1</a><a href="#p2">2</a><a href="#p3">3</a></nav>
+    </main>
+  </body>
+</html>

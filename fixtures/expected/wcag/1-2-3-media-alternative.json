@@ -1,0 +1,15 @@
+{
+  "page": "wcag/1-2-3-media-alternative.html",
+  "title": "Recipe video without audio description",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-2-3-media-alternative#1",
+      "wcag": ["1.2.3", "1.2.5"],
+      "selector": "#recipe-video",
+      "layer": "at",
+      "description": "The folding steps are only shown visually; there is no audio description and no text alternative describing them.",
+      "ruleId": "at/media-alternative-missing"
+    }
+  ]
+}

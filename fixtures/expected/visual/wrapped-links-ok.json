@@ -1,0 +1,6 @@
+{
+  "page": "visual/wrapped-links-ok.html",
+  "title": "Correct pattern: inline links that wrap onto the next line at 320 px and 200% zoom",
+  "correctPattern": true,
+  "issues": []
+}

@@ -1,0 +1,47 @@
+{
+  "$comment": "Persona tasks for the fixture benchmark (tools/bench loads this file). Each task runs on the barrier page and its -ok counterpart via a glob match.",
+  "tasks": [
+    {
+      "id": "checkout-pay",
+      "goal": "Accept the terms and pay for the order",
+      "match": "persona/checkout-keyboard-*.html",
+      "constraint": "keyboard-only",
+      "steps": [
+        { "name": "I accept the terms", "action": "activate" },
+        { "role": "button", "name": "Pay now" }
+      ],
+      "success": { "text": "Payment complete" },
+      "maxSteps": 20
+    },
+    {
+      "id": "basket-add",
+      "goal": "Add the shoe to the basket",
+      "match": "persona/basket-keyboard-*.html",
+      "constraint": "keyboard-only",
+      "steps": [{ "role": "button", "namePattern": "add to (basket|cart)" }],
+      "success": { "text": "Added to basket" },
+      "maxSteps": 20
+    },
+    {
+      "id": "newsletter-signup",
+      "goal": "Sign up for the newsletter",
+      "match": "persona/signup-screen-reader-*.html",
+      "constraint": "screen-reader",
+      "steps": [
+        { "role": "textbox", "name": "Email", "action": "type", "text": "reader@example.test" },
+        { "role": "button", "name": "Sign up" }
+      ],
+      "success": { "text": "You are subscribed" },
+      "maxSteps": 20
+    },
+    {
+      "id": "help-delivery",
+      "goal": "Find the delivery information",
+      "match": "persona/ok.html",
+      "constraint": "screen-reader",
+      "steps": [{ "role": "link", "name": "Delivery and returns" }],
+      "success": { "urlIncludes": "#delivery" },
+      "maxSteps": 10
+    }
+  ]
+}

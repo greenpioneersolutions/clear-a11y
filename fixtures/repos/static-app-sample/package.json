@@ -1,0 +1,10 @@
+{
+  "name": "static-app-sample",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Clear A11Y fixture: an app whose dev script is a tiny dependency-free Node server, so the --boot path is testable without installing a framework.",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs --port 0"
+  }
+}

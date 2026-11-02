@@ -1,0 +1,17 @@
+{
+  "name": "persona/kb-checkout-4-enter",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-keyboard-only",
+    "promptVersion": 1,
+    "match": {
+      "step": 4,
+      "focused": "button \"Pay now\""
+    }
+  },
+  "response": {
+    "action": "press",
+    "key": "Enter",
+    "reason": "Pay now has focus; press it."
+  }
+}

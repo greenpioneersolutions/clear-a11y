@@ -1,0 +1,6 @@
+{
+  "page": "states/context-change-on-input-ok.html",
+  "title": "Store finder: a Go button starts the change",
+  "correctPattern": true,
+  "issues": []
+}

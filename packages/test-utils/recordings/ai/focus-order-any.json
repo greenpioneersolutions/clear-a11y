@@ -1,0 +1,11 @@
+{
+  "name": "ai/focus-order-any",
+  "source": "synthetic",
+  "request": { "judge": "focus-order", "promptVersion": 1, "match": {} },
+  "response": {
+    "verdict": "fail",
+    "confidence": 0.8,
+    "reason": "After First name, Tab jumps to Country and then back up to Last name, splitting the name fields.",
+    "suggestion": "Remove the positive tabindex values so focus follows the visual order."
+  }
+}

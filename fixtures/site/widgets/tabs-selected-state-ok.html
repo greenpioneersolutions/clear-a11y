@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: tabs with manual activation</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      [role='tablist'] { display: flex; gap: 4px; }
+      [role='tab'] { padding: 8px 16px; border: 1px solid #555; background: #fff; color: #1a1a1a; font: inherit; }
+      [role='tab'][aria-selected='true'] { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Order help</h1>
+      <!-- Correct pattern, rewritten from the ARIA Authoring Practices Guide "Tabs with Manual
+           Activation" example (https://www.w3.org/WAI/ARIA/apg/patterns/tabs/): arrow keys move
+           focus, Enter, Space or a click activates, and aria-selected always follows the panel. -->
+      <div role="tablist" aria-label="Order help">
+        <button role="tab" id="tab-delivery" aria-selected="true" aria-controls="panel-delivery" tabindex="0">Delivery</button>
+        <button role="tab" id="tab-shipping" aria-selected="false" aria-controls="panel-shipping" tabindex="-1">Shipping costs</button>
+        <button role="tab" id="tab-returns" aria-selected="false" aria-controls="panel-returns" tabindex="-1">Returns</button>
+      </div>
+      <div role="tabpanel" id="panel-delivery" aria-labelledby="tab-delivery" tabindex="0"><p>Orders arrive in two to four working days.</p></div>
+      <div role="tabpanel" id="panel-shipping" aria-labelledby="tab-shipping" tabindex="0" hidden><p>Free shipping from 50 euros.</p></div>
+      <div role="tabpanel" id="panel-returns" aria-labelledby="tab-returns" tabindex="0" hidden><p>Return within 30 days for a full refund.</p></div>
+    </main>
+    <script>
+      const tabs = [...document.querySelectorAll('[role=tab]')];
+      function activate(tab) {
+        for (const t of tabs) {
+          const selected = t === tab;
+          t.setAttribute('aria-selected', String(selected));
+          t.tabIndex = selected ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+        }
+      }
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => activate(tab));
+        tab.addEventListener('keydown', (event) => {
+          const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[event.key];
+          if (next === undefined) return;
+          event.preventDefault();
+          const target = tabs[(next + tabs.length) % tabs.length];
+          for (const t of tabs) t.tabIndex = t === target ? 0 : -1;
+          target.focus();
+        });
+      });
+    </script>
+  </body>
+</html>

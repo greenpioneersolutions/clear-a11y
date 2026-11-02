@@ -1,0 +1,71 @@
+name: CI
+
+# Fork-safe: runs on pull_request (never pull_request_target), uses no secrets
+# and no Nx Cloud, and only needs read access to the repository.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  NX_NO_CLOUD: true
+  NX_DAEMON: false
+
+jobs:
+  main:
+    name: Lint, typecheck, test, build, bench
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out (full history for nx affected)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm, Node.js, dependencies and Chromium
+        uses: ./.github/actions/setup
+        with:
+          playwright: 'true'
+
+      - name: Derive base and head SHAs for nx affected
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Check TypeScript project references are in sync
+        run: pnpm nx sync:check
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint, typecheck, test and build affected projects
+        run: pnpm nx affected -t lint typecheck test build
+
+      # docs:test-integration is the docs dogfood scan, which dogfood.yml runs on every change.
+      - name: Integration and end-to-end tests for affected projects
+        run: pnpm nx affected -t test-integration e2e --exclude=docs
+
+      - name: Run the benchmark
+        run: pnpm nx run bench:run
+
+      - name: Add benchmark results to the job summary
+        if: always()
+        run: |
+          if [ -f bench-results/latest.md ]; then
+            cat bench-results/latest.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No benchmark results were written." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload benchmark results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-results
+          path: bench-results/
+          if-no-files-found: ignore

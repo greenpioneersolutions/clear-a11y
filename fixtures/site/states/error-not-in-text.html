@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delivery address: errors shown only by a red border</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      input { border: 2px solid #5e5c64; padding: 4px; }
+      input.invalid { border-color: #c01c28; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Delivery address</h1>
+      <!-- Seeded barrier (3.3.1, also 1.4.1): submitting with empty fields only turns their border
+           red. No text says what is wrong, and nothing is exposed to assistive technology.
+           Expected findings: fixtures/expected/states/error-not-in-text.json -->
+      <form id="delivery" action="#" novalidate>
+        <div class="field">
+          <label for="street">Street and number</label>
+          <input id="street" type="text" autocomplete="street-address" />
+        </div>
+        <div class="field">
+          <label for="postcode">Postcode</label>
+          <input id="postcode" type="text" autocomplete="postal-code" />
+        </div>
+        <button type="submit">Continue to payment</button>
+      </form>
+    </main>
+    <script>
+      document.getElementById('delivery').addEventListener('submit', (event) => {
+        event.preventDefault();
+        for (const input of document.querySelectorAll('#delivery input')) {
+          input.classList.toggle('invalid', !input.value.trim());
+        }
+      });
+    </script>
+  </body>
+</html>

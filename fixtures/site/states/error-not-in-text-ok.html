@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delivery address: errors described in text</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      input { border: 2px solid #5e5c64; padding: 4px; }
+      input[aria-invalid='true'] { border-color: #c01c28; }
+      .error { color: #a51d2d; font-size: 14px; margin: 4px 0 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Delivery address</h1>
+      <!-- Correct pattern: the red border comes with a text message that is linked to the field
+           (aria-describedby), and the field is marked aria-invalid. -->
+      <form id="delivery" action="#" novalidate>
+        <div class="field">
+          <label for="street">Street and number</label>
+          <input
+            id="street"
+            type="text"
+            autocomplete="street-address"
+            aria-describedby="street-msg"
+          />
+          <p class="error" id="street-msg" hidden></p>
+        </div>
+        <div class="field">
+          <label for="postcode">Postcode</label>
+          <input
+            id="postcode"
+            type="text"
+            autocomplete="postal-code"
+            aria-describedby="postcode-msg"
+          />
+          <p class="error" id="postcode-msg" hidden></p>
+        </div>
+        <button type="submit">Continue to payment</button>
+      </form>
+    </main>
+    <script>
+      const messages = {
+        street: 'Enter your street and house number',
+        postcode: 'Enter your postcode',
+      };
+      document.getElementById('delivery').addEventListener('submit', (event) => {
+        event.preventDefault();
+        for (const input of document.querySelectorAll('#delivery input')) {
+          const msg = document.getElementById(input.id + '-msg');
+          const empty = !input.value.trim();
+          if (empty) input.setAttribute('aria-invalid', 'true');
+          else input.removeAttribute('aria-invalid');
+          msg.textContent = empty ? messages[input.id] : '';
+          msg.hidden = !empty;
+        }
+        // Move focus to the first invalid field: its aria-describedby message is announced.
+        document.querySelector('#delivery [aria-invalid="true"]')?.focus();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Timetable: only works in landscape</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 48rem; }
+      table { border-collapse: collapse; }
+      th, td { border: 1px solid #595959; padding: 4px 8px; text-align: left; }
+      #rotate-message { display: none; padding: 32px 16px; text-align: center; font-size: 1.25rem; }
+      /* Seeded barrier (SC 1.3.4): in portrait the whole page is replaced by a rotate message. */
+      @media (orientation: portrait) {
+        main { display: none; }
+        #rotate-message { display: block; }
+      }
+    </style>
+  </head>
+  <body>
+    <p id="rotate-message">Please rotate your device to landscape to view the timetable.</p>
+    <main>
+      <h1>Bus 12 timetable</h1>
+      <p>Departures from Central Station, Monday to Friday.</p>
+      <table>
+        <thead>
+          <tr><th scope="col">Stop</th><th scope="col">First bus</th><th scope="col">Last bus</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Central Station</td><td>06:10</td><td>23:40</td></tr>
+          <tr><td>Market Square</td><td>06:16</td><td>23:46</td></tr>
+          <tr><td>University</td><td>06:24</td><td>23:54</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

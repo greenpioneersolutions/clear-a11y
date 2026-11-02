@@ -1,0 +1,62 @@
+{
+  "name": "@clear-a11y/reporter",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@clear-a11y/core": "workspace:*",
+    "tslib": "catalog:"
+  },
+  "devDependencies": {
+    "zod": "catalog:"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "packages/reporter"
+  },
+  "homepage": "https://greenpioneersolutions.github.io/clear-a11y/",
+  "bugs": {
+    "url": "https://github.com/greenpioneersolutions/clear-a11y/issues"
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Clear A11Y reporters: canonical JSON, SARIF and an accessible HTML report.",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "sarif",
+    "report",
+    "testing"
+  ],
+  "nx": {
+    "tags": [
+      "type:feature",
+      "scope:reporter",
+      "publish:public"
+    ]
+  }
+}

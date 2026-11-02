@@ -1,0 +1,6 @@
+{
+  "page": "visual/reflow-two-dimensional-ok.html",
+  "title": "Pricing: comparison table scrolls in its own region",
+  "correctPattern": true,
+  "issues": []
+}

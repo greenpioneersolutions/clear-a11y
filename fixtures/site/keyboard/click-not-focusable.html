@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product page: mouse-only wishlist control</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .actions { display: flex; gap: 16px; align-items: center; }
+      .wishlist { display: inline-flex; gap: 8px; align-items: center; padding: 8px 12px; border: 1px solid #555; border-radius: 6px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe</h1>
+      <p>Grippy, light and waterproof. 120 euros.</p>
+      <div class="actions">
+        <button id="add-to-basket" type="button">Add to basket</button>
+        <!-- Seeded barrier: a span with a click listener (added in script, not onclick) acts as a
+             button but can't be reached or activated with the keyboard (2.1.1). -->
+        <span id="wishlist" class="wishlist">&#9825; Save to wishlist</span>
+      </div>
+      <p id="status"></p>
+    </main>
+    <script>
+      document.getElementById('add-to-basket').addEventListener('click', () => {
+        document.getElementById('status').textContent = 'Added to basket.';
+      });
+      document.getElementById('wishlist').addEventListener('click', () => {
+        document.getElementById('status').textContent = 'Saved to your wishlist.';
+      });
+    </script>
+  </body>
+</html>

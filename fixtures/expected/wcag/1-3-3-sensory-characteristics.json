@@ -1,0 +1,14 @@
+{
+  "page": "wcag/1-3-3-sensory-characteristics.html",
+  "title": "Trial sign-up with colour and position instructions",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-3-3-sensory-characteristics#1",
+      "wcag": ["1.3.3"],
+      "selector": "#trial-instructions",
+      "layer": "ai",
+      "description": "The instruction refers to \"the round green button on the right\" instead of naming the Continue button; it depends on colour, shape and position."
+    }
+  ]
+}

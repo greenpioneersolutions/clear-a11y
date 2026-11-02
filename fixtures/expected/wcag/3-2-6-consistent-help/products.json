@@ -1,0 +1,14 @@
+{
+  "page": "wcag/3-2-6-consistent-help/products.html",
+  "title": "Shop products page that moves the help link",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/3-2-6-consistent-help/products#1",
+      "wcag": ["3.2.6"],
+      "selector": "#help-link",
+      "layer": "persona",
+      "description": "The \"Help and contact\" link is in the header on the home page but in the footer on the products page, so it is not in the same relative order across pages."
+    }
+  ]
+}

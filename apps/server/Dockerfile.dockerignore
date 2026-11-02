@@ -1,0 +1,20 @@
+# BuildKit reads <Dockerfile>.dockerignore next to the Dockerfile, so the build context
+# (the repository root) stays small without a root-level .dockerignore.
+**/node_modules
+**/dist
+**/out-tsc
+**/test-output
+**/coverage
+**/.vitest
+**/*.tsbuildinfo
+.git
+.nx
+.claude
+.clear-a11y
+bench-results
+**/.env
+**/.env.*
+**/*.db
+**/*.db-wal
+**/*.db-shm
+**/storageState*.json

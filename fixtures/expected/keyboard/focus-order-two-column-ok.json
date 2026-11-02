@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/focus-order-two-column-ok.html",
+  "title": "Delivery form: two columns, column by column",
+  "correctPattern": true,
+  "issues": []
+}

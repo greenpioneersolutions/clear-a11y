@@ -1,0 +1,6 @@
+{
+  "page": "states/modal-unlabelled-input-ok.html",
+  "title": "Blog: labelled field inside the subscribe dialog",
+  "correctPattern": true,
+  "issues": []
+}

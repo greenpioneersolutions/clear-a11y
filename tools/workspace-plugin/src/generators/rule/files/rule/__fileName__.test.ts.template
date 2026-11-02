@@ -1,0 +1,14 @@
+import { detect<%= className %>, <%= propertyName %>Rule } from './<%= fileName %>.js';
+
+describe('<%= ruleId %>', () => {
+  it('has rule metadata', () => {
+    expect(<%= propertyName %>Rule.id).toBe('<%= ruleId %>');
+    expect(<%= propertyName %>Rule.wcag).toEqual(<%- JSON.stringify(wcag).replace(/"/g, "'") %>);
+  });
+
+  it.todo('detects the barrier');
+
+  it('does not flag the correct pattern', () => {
+    expect(detect<%= className %>({ selector: 'main' })).toBe(false);
+  });
+});

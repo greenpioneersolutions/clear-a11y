@@ -1,0 +1,45 @@
+{
+  "name": "@clear-a11y/bench",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@clear-a11y/runner": "workspace:*",
+    "@clear-a11y/test-utils": "workspace:*",
+    "tslib": "catalog:"
+  },
+  "description": "Benchmark harness: precision/recall by WCAG SC and engine layer against fixtures/.",
+  "nx": {
+    "name": "bench",
+    "tags": [
+      "type:tool",
+      "scope:bench",
+      "publish:private"
+    ],
+    "targets": {
+      "run": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "build"
+        ],
+        "cache": false,
+        "options": {
+          "command": "node tools/bench/dist/main.js"
+        }
+      }
+    }
+  },
+  "license": "Apache-2.0"
+}

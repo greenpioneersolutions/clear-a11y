@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plans: text clipped under user text spacing</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .card { width: 260px; border: 1px solid #555; padding: 12px; }
+      /* Seeded barrier: fixed height + overflow hidden. With WCAG text spacing overrides
+         (line-height 1.5, letter 0.12em, word 0.16em, paragraph 2em) the text gets cut off (1.4.12). */
+      #card-text { height: 48px; overflow: hidden; margin: 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Choose a plan</h1>
+      <div class="card">
+        <h2>Team</h2>
+        <p id="card-text">Unlimited projects, shared fixtures and priority support for your whole team.</p>
+      </div>
+    </main>
+  </body>
+</html>

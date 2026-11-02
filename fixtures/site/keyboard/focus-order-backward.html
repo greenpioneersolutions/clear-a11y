@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shipping form: focus order jumps backward</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 640px; }
+      .field { display: flex; flex-direction: column; }
+      /* Seeded barrier: Country comes second in the DOM but is placed on row 2 visually.
+         Tab order: First name -> Country (row 2) -> Last name (back up to row 1). */
+      #country-field { grid-row: 2; grid-column: 1 / span 2; }
+      #first-name-field { grid-row: 1; grid-column: 1; }
+      #last-name-field { grid-row: 1; grid-column: 2; }
+      #submit { grid-row: 3; grid-column: 1; justify-self: start; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Shipping address</h1>
+      <form action="#">
+        <div class="field" id="first-name-field">
+          <label for="first-name">First name</label>
+          <input id="first-name" autocomplete="given-name" />
+        </div>
+        <div class="field" id="country-field">
+          <label for="country">Country</label>
+          <select id="country" autocomplete="country-name">
+            <option>Belgium</option>
+            <option>Netherlands</option>
+          </select>
+        </div>
+        <div class="field" id="last-name-field">
+          <label for="last-name">Last name</label>
+          <input id="last-name" autocomplete="family-name" />
+        </div>
+        <button id="submit" type="submit">Continue</button>
+      </form>
+    </main>
+  </body>
+</html>

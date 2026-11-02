@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: button grows with its label</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      /* Correct pattern: a minimum size instead of a fixed one, and the label may wrap. */
+      #subscribe-button {
+        min-width: 24vw;
+        max-width: 100%;
+        min-height: 40px;
+        padding: 4px 8px;
+        font: inherit;
+        color: #ffffff;
+        background: #1c3d5a;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Stay in the loop</h1>
+      <p>One email a month with new rules and benchmark results.</p>
+      <button id="subscribe-button" type="button">Subscribe to the newsletter</button>
+    </main>
+  </body>
+</html>

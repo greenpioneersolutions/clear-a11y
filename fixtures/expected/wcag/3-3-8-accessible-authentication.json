@@ -1,0 +1,15 @@
+{
+  "page": "wcag/3-3-8-accessible-authentication.html",
+  "title": "Sign-in form that blocks pasting the password",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/3-3-8-accessible-authentication#1",
+      "wcag": ["3.3.8"],
+      "selector": "#password",
+      "layer": "at",
+      "description": "The password field blocks paste and turns off autocomplete, so users can't use a password manager or paste the password; signing in depends on recalling and transcribing it.",
+      "ruleId": "at/auth-paste-blocked"
+    }
+  ]
+}

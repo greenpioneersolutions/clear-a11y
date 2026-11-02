@@ -1,0 +1,15 @@
+{
+  "page": "at/role-missing.html",
+  "title": "Shop: focusable filter chip without a role",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/role-missing#1",
+      "wcag": ["4.1.2"],
+      "selector": "#in-stock-filter",
+      "layer": "at",
+      "description": "The \"In stock only\" filter is a focusable, clickable span with no role: screen readers read it as plain text.",
+      "ruleId": "at/role-missing"
+    }
+  ]
+}

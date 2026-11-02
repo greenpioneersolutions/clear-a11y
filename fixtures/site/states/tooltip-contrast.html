@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout: low-contrast tooltip text</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .tip-wrap { display: inline-block; }
+      #ship-help { font: inherit; padding: 4px 12px; }
+      .tip { display: block; margin-top: 4px; padding: 4px 8px; border: 1px solid #d0d0d0; background: #ffffff; color: #a0a0a0; font-size: 14px; max-width: 280px; }
+      .tip[hidden] { display: none; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Checkout</h1>
+      <p>Order total: 64.00 EUR</p>
+      <!-- Seeded barrier (1.4.3): the tooltip text is light grey on white (about 2.6:1). It only
+           exists on hover or focus, so a scan of the default state never measures it.
+           Expected findings: fixtures/expected/states/tooltip-contrast.json -->
+      <div class="tip-wrap" id="ship-wrap">
+        <button id="ship-help" type="button" aria-describedby="ship-tip">Shipping costs</button>
+        <span id="ship-tip" class="tip" role="tooltip" hidden>
+          Free shipping on orders over 50 EUR. Otherwise 4.90 EUR.
+        </span>
+      </div>
+    </main>
+    <script>
+      const wrap = document.getElementById('ship-wrap');
+      const tip = document.getElementById('ship-tip');
+      const show = () => (tip.hidden = false);
+      const hide = () => (tip.hidden = true);
+      wrap.addEventListener('mouseenter', show);
+      wrap.addEventListener('mouseleave', hide);
+      wrap.addEventListener('focusin', show);
+      wrap.addEventListener('focusout', hide);
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') hide();
+      });
+    </script>
+  </body>
+</html>

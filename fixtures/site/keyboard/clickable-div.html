@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout: clickable div instead of a button</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .btn { display: inline-block; background: #1a5fb4; color: #fff; padding: 12px 20px; border-radius: 6px; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Your basket</h1>
+      <p>1 x Trail running shoe, 120 euros.</p>
+      <!-- Seeded barrier: mouse-only control. Not focusable, no role (2.1.1, 4.1.2). -->
+      <div id="pay-now" class="btn" onclick="document.getElementById('result').textContent = 'Order placed.'">Pay now</div>
+      <p id="result"></p>
+    </main>
+  </body>
+</html>

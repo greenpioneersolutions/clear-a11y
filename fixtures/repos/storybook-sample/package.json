@@ -1,0 +1,22 @@
+{
+  "name": "storybook-sample",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Clear A11Y fixture: a tiny React component library with Storybook stories and seeded runtime barriers. Never installed or built; storybook-static/ is a hand-written, format-compatible stand-in for `storybook build` output.",
+  "type": "module",
+  "scripts": {
+    "postinstall": "node -e \"throw new Error('clear-a11y must never run scripts from a scanned repo')\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^8.4.0",
+    "storybook": "^8.4.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}

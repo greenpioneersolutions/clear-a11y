@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self'" />
+    <title>Strict CSP: image without alt</title>
+  </head>
+  <body>
+    <main>
+      <h1>Gallery</h1>
+      <!-- Seeded barrier: informative image with no text alternative (1.1.1), on a page whose
+           Content-Security-Policy forbids inline scripts. Engines must still be able to run. -->
+      <img id="gallery-photo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Crect width='240' height='120' fill='%23345'/%3E%3C/svg%3E" width="240" height="120" />
+    </main>
+  </body>
+</html>

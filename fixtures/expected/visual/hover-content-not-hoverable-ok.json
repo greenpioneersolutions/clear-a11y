@@ -1,0 +1,6 @@
+{
+  "page": "visual/hover-content-not-hoverable-ok.html",
+  "title": "Product page: shipping tooltip can be hovered",
+  "correctPattern": true,
+  "issues": []
+}

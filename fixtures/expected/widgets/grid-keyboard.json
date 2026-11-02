@@ -1,0 +1,15 @@
+{
+  "page": "widgets/grid-keyboard.html",
+  "title": "Delivery date: calendar grid without arrow keys",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/grid-keyboard#1",
+      "wcag": ["2.1.1"],
+      "selector": "#june-grid | #day-4",
+      "layer": "widgets",
+      "description": "Only the first day button is in the Tab sequence; the other days have tabindex=\"-1\" and the arrow keys do nothing, so keyboard users cannot pick any other delivery date.",
+      "ruleId": "widgets/grid-keyboard"
+    }
+  ]
+}

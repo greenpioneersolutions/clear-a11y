@@ -1,0 +1,17 @@
+{
+  "name": "persona/sr-signup-1-give-up",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-screen-reader",
+    "promptVersion": 1,
+    "match": {
+      "step": 1,
+      "page": "/persona/signup-screen-reader-blocked.html"
+    }
+  },
+  "response": {
+    "action": "give_up",
+    "ref": "n9",
+    "reason": "The only button after the email field is announced as just \"button\"; I can't tell whether it signs me up."
+  }
+}

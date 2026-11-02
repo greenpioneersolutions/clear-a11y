@@ -1,0 +1,15 @@
+{
+  "page": "visual/hover-content-not-persistent.html",
+  "title": "Account: password hint disappears on its own",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/hover-content-not-persistent#1",
+      "wcag": ["1.4.13"],
+      "selector": "#password-help | #password-hint | #password-tip",
+      "layer": "visual",
+      "description": "The password hint hides itself after 600ms although pointer and focus stay on the button.",
+      "ruleId": "visual/hover-content-not-persistent"
+    }
+  ]
+}

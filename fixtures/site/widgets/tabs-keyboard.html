@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plans: tabs that are not focusable at all</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      [role='tablist'] { display: flex; gap: 4px; }
+      [role='tab'] { padding: 8px 16px; border: 1px solid #555; cursor: pointer; }
+      [role='tab'][aria-selected='true'] { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Choose a plan</h1>
+      <!-- Seeded barrier: the tabs are plain divs with role="tab" and no tabindex, so none of them
+           is in the Tab sequence and keyboard users cannot reach the tab list at all (2.1.1). -->
+      <div role="tablist" id="plan-tabs" aria-label="Plans">
+        <div role="tab" id="tab-monthly" aria-selected="true" aria-controls="panel-monthly">Monthly</div>
+        <div role="tab" id="tab-yearly" aria-selected="false" aria-controls="panel-yearly">Yearly</div>
+        <div role="tab" id="tab-team" aria-selected="false" aria-controls="panel-team">Team</div>
+      </div>
+      <div role="tabpanel" id="panel-monthly" aria-labelledby="tab-monthly"><p>9 euros per month, cancel any time.</p></div>
+      <div role="tabpanel" id="panel-yearly" aria-labelledby="tab-yearly" hidden><p>90 euros per year: two months free.</p></div>
+      <div role="tabpanel" id="panel-team" aria-labelledby="tab-team" hidden><p>7 euros per seat per month, from five seats.</p></div>
+    </main>
+    <script>
+      const tabs = [...document.querySelectorAll('[role=tab]')];
+      for (const tab of tabs) {
+        tab.addEventListener('click', () => {
+          for (const t of tabs) {
+            const selected = t === tab;
+            t.setAttribute('aria-selected', String(selected));
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

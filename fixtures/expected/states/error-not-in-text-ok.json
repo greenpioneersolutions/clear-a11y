@@ -1,0 +1,6 @@
+{
+  "page": "states/error-not-in-text-ok.html",
+  "title": "Delivery address: errors described in text",
+  "correctPattern": true,
+  "issues": []
+}

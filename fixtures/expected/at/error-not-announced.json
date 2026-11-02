@@ -1,0 +1,15 @@
+{
+  "page": "at/error-not-announced.html",
+  "title": "Sign in: error summary injected silently",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/error-not-announced#1",
+      "wcag": ["4.1.3"],
+      "selector": "#error-summary | #email-error | #signin",
+      "layer": "at",
+      "description": "After a failed submit the error summary and field error appear silently: no live region and focus stays on the button.",
+      "ruleId": "at/error-not-announced"
+    }
+  ]
+}

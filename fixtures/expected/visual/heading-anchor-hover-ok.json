@@ -1,0 +1,6 @@
+{
+  "page": "visual/heading-anchor-hover-ok.html",
+  "title": "Correct pattern: heading anchor icon revealed on hover inside the heading's own padding",
+  "correctPattern": true,
+  "issues": []
+}

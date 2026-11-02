@@ -1,0 +1,65 @@
+{
+  "name": "@clear-a11y/workspace-plugin",
+  "version": "0.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "name": "workspace-plugin",
+    "tags": [
+      "type:tool",
+      "scope:tooling",
+      "publish:private"
+    ],
+    "targets": {
+      "build": {
+        "executor": "@nx/js:tsc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "tools/workspace-plugin/dist",
+          "main": "tools/workspace-plugin/src/index.ts",
+          "tsConfig": "tools/workspace-plugin/tsconfig.lib.json",
+          "rootDir": "tools/workspace-plugin/src",
+          "generatePackageJson": false,
+          "assets": [
+            {
+              "input": "./tools/workspace-plugin/src",
+              "glob": "**/!(*.ts)",
+              "output": "."
+            },
+            {
+              "input": "./tools/workspace-plugin/src",
+              "glob": "**/*.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@nx/devkit": "catalog:",
+    "tslib": "catalog:"
+  },
+  "generators": "./generators.json",
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "generators.json"
+  ],
+  "license": "Apache-2.0",
+  "description": "Local Nx generators for Clear A11Y: engine, rule, fixture."
+}

@@ -1,0 +1,23 @@
+{
+  "page": "widgets/dialog-initial-focus.html",
+  "title": "Search results: dialogs without focus or name",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/dialog-initial-focus#1",
+      "wcag": ["2.4.3"],
+      "selector": "#filters-dialog | #open-filters",
+      "layer": "widgets",
+      "description": "Opening the Filters dialog leaves focus on the Filters button behind it; focus is not moved into the dialog.",
+      "ruleId": "widgets/dialog-initial-focus"
+    },
+    {
+      "id": "widgets/dialog-initial-focus#2",
+      "wcag": ["4.1.2"],
+      "selector": "#share-dialog",
+      "layer": "widgets",
+      "description": "The Share dialog has no accessible name (no aria-labelledby or aria-label), so screen readers announce only \"dialog\".",
+      "ruleId": "widgets/dialog-initial-focus"
+    }
+  ]
+}

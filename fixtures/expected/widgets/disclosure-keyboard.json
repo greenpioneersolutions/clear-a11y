@@ -1,0 +1,23 @@
+{
+  "page": "widgets/disclosure-keyboard.html",
+  "title": "Product FAQ: disclosures that ignore the keyboard or misreport state",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/disclosure-keyboard#1",
+      "wcag": ["2.1.1"],
+      "selector": "#returns-toggle",
+      "layer": "widgets",
+      "description": "The returns question is a focusable div that only listens for clicks: Enter and Space do nothing, so keyboard users cannot open the answer.",
+      "ruleId": "widgets/disclosure-keyboard"
+    },
+    {
+      "id": "widgets/disclosure-keyboard#2",
+      "wcag": ["4.1.2"],
+      "selector": "#warranty-toggle",
+      "layer": "widgets",
+      "description": "The warranty button shows the answer but aria-expanded stays \"false\", so screen readers announce it as collapsed while the answer is shown.",
+      "ruleId": "widgets/disclosure-keyboard"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FAQ: answers in closed details</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { max-width: 40rem; margin: 0 auto; padding: 16px; }
+      details { border: 1px solid #555; padding: 8px 12px; margin: 0 0 12px; }
+      summary { min-height: 24px; cursor: pointer; }
+      dl { margin: 8px 0 0; }
+      dt { font-weight: 700; }
+      dd { margin: 0 0 8px; }
+      ul { margin: 8px 0 0; padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Shipping questions</h1>
+      <!-- Correct pattern: the answers are collapsed in native <details> elements. While a
+           <details> is closed its content is not rendered (Chrome uses content-visibility: hidden),
+           so nothing inside may be measured for overlap, clipping, reflow or contrast. -->
+      <details>
+        <summary>How long does delivery take?</summary>
+        <dl>
+          <dt>Standard delivery to mainland addresses</dt>
+          <dd>Three to five working days after dispatch, tracked</dd>
+          <dt>Express delivery before noon</dt>
+          <dd>Next working day for orders placed before 2 pm</dd>
+        </dl>
+      </details>
+      <details>
+        <summary>Which carriers do you use?</summary>
+        <ul>
+          <li>National postal service for parcels under two kilograms</li>
+          <li>Courier partners for larger parcels and express orders</li>
+        </ul>
+      </details>
+      <details open>
+        <summary>Can I change my address?</summary>
+        <p>Yes, until the order is packed. Write to support with your order number.</p>
+      </details>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/focus-obscured-ok.html",
+  "title": "Article: sticky footer with reserved space",
+  "correctPattern": true,
+  "issues": []
+}

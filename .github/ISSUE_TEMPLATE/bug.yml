@@ -1,0 +1,59 @@
+name: Bug report
+description: Clear A11Y crashed, errored, or behaved wrongly (not a wrong or missing finding).
+title: 'bug: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. If Clear A11Y reported something that isn't a barrier, use the **False positive** form instead. If it missed a barrier, use **Missed issue**. Security problems go to [SECURITY.md](https://github.com/greenpioneersolutions/clear-a11y/blob/main/SECURITY.md), never here.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: The exact command or action, and the page or repo you ran it against (a minimal public example if possible).
+      placeholder: |
+        1. Run `clear-a11y scan http://127.0.0.1:4173/keyboard/...`
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output or logs
+      description: Paste error messages or relevant output. Remove any credentials, API keys or private URLs.
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: Clear A11Y version
+      description: Output of `clear-a11y --version`, or the commit SHA if you built from source.
+    validations:
+      required: true
+  - type: dropdown
+    id: entry-point
+    attributes:
+      label: Where did you run it?
+      options:
+        - CLI
+        - GitHub Action
+        - MCP server
+        - Server / API
+        - Desktop app
+        - Built from source (pnpm nx ...)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Node.js version, browser, and AI provider if one was configured.
+      placeholder: 'macOS 15, Node 22.23, Chromium (Playwright), AI provider: none'

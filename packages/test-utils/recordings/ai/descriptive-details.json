@@ -1,0 +1,15 @@
+{
+  "name": "ai/descriptive-details",
+  "source": "synthetic",
+  "request": {
+    "judge": "descriptive-headings-labels",
+    "promptVersion": 1,
+    "match": { "kind": "heading", "text": "Details" }
+  },
+  "response": {
+    "verdict": "fail",
+    "confidence": 0.75,
+    "reason": "Two different sections are both headed \"Details\", so people navigating by headings can't tell shipping from returns.",
+    "suggestion": "Use \"Shipping details\" and \"Return details\"."
+  }
+}

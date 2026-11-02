@@ -1,0 +1,6 @@
+{
+  "page": "wcag/3-3-7-redundant-entry-ok/billing.html",
+  "title": "Checkout step 2 with a \"same as delivery address\" option",
+  "correctPattern": true,
+  "issues": []
+}

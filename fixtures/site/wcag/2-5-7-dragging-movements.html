@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Task list that can only be reordered by dragging</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .tasks { padding: 0; list-style: none; max-width: 420px; }
+      .tasks li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px; margin-bottom: 4px; border: 1px solid #767676; background: #f6f6f6; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Prioritise your tasks</h1>
+      <!-- Seeded barrier: the list can only be reordered by drag and drop; there is no single-pointer
+           (or keyboard) alternative. WCAG 2.5.7. -->
+      <p>Drag tasks to put the most important first.</p>
+      <ul class="tasks" id="task-list">
+        <li draggable="true">Book the venue</li>
+        <li draggable="true">Send invitations</li>
+        <li draggable="true">Order catering</li>
+      </ul>
+    </main>
+    <script>
+      const list = document.getElementById('task-list');
+      let dragged = null;
+      list.addEventListener('dragstart', (e) => (dragged = e.target.closest('li')));
+      list.addEventListener('dragover', (e) => e.preventDefault());
+      list.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const target = e.target.closest('li');
+        if (dragged && target && dragged !== target) list.insertBefore(dragged, target);
+      });
+    </script>
+  </body>
+</html>

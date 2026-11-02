@@ -1,0 +1,36 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "out-tsc/app",
+    "tsBuildInfoFile": "out-tsc/app/tsconfig.app.tsbuildinfo",
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "lib": ["es2023"]
+  },
+  "include": ["src/main/**/*.ts", "src/preload/**/*.ts", "src/shared/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
+  "references": [
+    {
+      "path": "../../packages/runner/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/reporter/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/queue/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/core/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/ai/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/test-utils/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/browser/tsconfig.lib.json"
+    }
+  ]
+}

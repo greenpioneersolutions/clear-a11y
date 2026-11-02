@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout: Pay now works with a mouse only</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 24px; }
+      .terms { display: flex; gap: 8px; align-items: center; margin: 16px 0; }
+      .pay { display: inline-block; padding: 10px 20px; background: #1a5fb4; color: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Checkout</h1>
+      <!-- Seeded barrier (persona/task-blocked, 2.1.1): "Pay now" is a div with a click
+           handler. It looks like a button, but it has no tabindex, no role and no key handling,
+           so a keyboard-only user can tick the terms box and then never reach Pay now. -->
+      <p><a href="../index.html">Back to basket</a></p>
+      <h2>Your order</h2>
+      <p>Trail running shoe, size 42: 120 euros.</p>
+      <div class="terms">
+        <input id="terms" type="checkbox" />
+        <label for="terms">I accept the terms and conditions</label>
+      </div>
+      <div id="pay" class="pay">Pay now</div>
+      <p id="status" role="status"></p>
+    </main>
+    <script>
+      document.getElementById('pay').addEventListener('click', () => {
+        const accepted = document.getElementById('terms').checked;
+        document.getElementById('status').textContent = accepted
+          ? 'Payment complete. Thank you for your order.'
+          : 'Please accept the terms and conditions first.';
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "page": "visual/target-size-inline-link-ok.html",
+  "title": "Help article: inline links in text",
+  "correctPattern": true,
+  "issues": []
+}

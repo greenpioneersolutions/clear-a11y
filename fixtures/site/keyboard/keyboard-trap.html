@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comment form: keyboard trap</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      #editor { border: 1px solid #555; min-height: 120px; padding: 8px; max-width: 480px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Leave a comment</h1>
+      <p><a id="before" href="#guidelines">Read the guidelines</a></p>
+      <!-- Seeded barrier: the editor swallows Tab and Shift+Tab, so keyboard users can't leave (2.1.2). -->
+      <div id="editor" role="textbox" aria-multiline="true" aria-label="Comment" contenteditable="true" tabindex="0"></div>
+      <p><button id="post" type="button">Post comment</button></p>
+    </main>
+    <script>
+      document.getElementById('editor').addEventListener('keydown', (event) => {
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          document.execCommand('insertText', false, '    ');
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: error summary in a status region</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      .error { color: #a51d2d; font-size: 14px; }
+      input, button { font: inherit; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Sign in</h1>
+      <!-- Correct pattern: the summary is a role="status" region that exists from page load, so
+           writing into it is announced. Field errors are linked with aria-describedby. -->
+      <div id="error-summary" class="error" role="status"></div>
+      <form id="signin" action="#" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" aria-describedby="email-error" />
+          <span id="email-error" class="error"></span>
+        </div>
+        <button type="submit">Sign in</button>
+      </form>
+    </main>
+    <script>
+      document.getElementById('signin').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const input = document.getElementById('email');
+        const empty = !input.value;
+        if (empty) input.setAttribute('aria-invalid', 'true');
+        else input.removeAttribute('aria-invalid');
+        document.getElementById('email-error').textContent = empty ? 'Enter your email address.' : '';
+        document.getElementById('error-summary').textContent = empty ? 'There is a problem: enter your email address.' : '';
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "page": "states/error-not-in-text.html",
+  "title": "Delivery address: errors shown only by a red border",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "states/error-not-in-text#1",
+      "wcag": ["3.3.1", "1.4.1"],
+      "selector": "#street | #postcode",
+      "layer": "states",
+      "description": "Submitting with empty fields only turns their border red: no text describes the error and nothing marks the fields invalid.",
+      "ruleId": "states/error-not-in-text"
+    }
+  ]
+}

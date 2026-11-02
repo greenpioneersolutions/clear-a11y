@@ -1,0 +1,15 @@
+{
+  "page": "states/context-change-on-input.html",
+  "title": "Store finder: choosing a country loads another page",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "states/context-change-on-input#1",
+      "wcag": ["3.2.2"],
+      "selector": "#country",
+      "layer": "states",
+      "description": "Choosing another country in the list loads that country's page straight away. There is no Go button and no text that warns about it.",
+      "ruleId": "states/context-change-on-input"
+    }
+  ]
+}

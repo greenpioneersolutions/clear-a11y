@@ -1,0 +1,6 @@
+{
+  "page": "states/error-not-associated-ok.html",
+  "title": "Newsletter: error messages tied to their fields",
+  "correctPattern": true,
+  "issues": []
+}

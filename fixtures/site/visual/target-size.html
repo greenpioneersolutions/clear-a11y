@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search results: tiny pagination targets</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      /* Seeded barrier: 12px-high links packed together, below the 24px minimum (2.5.8). */
+      #pager a { font-size: 10px; line-height: 12px; padding: 0; margin: 0; display: inline-block; width: 12px; text-align: center; color: #1a1a1a; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Results</h1>
+      <p>Showing page 1 of 4.</p>
+      <nav id="pager" aria-label="Pagination"><a id="page-1" href="#p1" aria-current="page">1</a><a id="page-2" href="#p2">2</a><a id="page-3" href="#p3">3</a><a id="page-4" href="#p4">4</a></nav>
+    </main>
+  </body>
+</html>

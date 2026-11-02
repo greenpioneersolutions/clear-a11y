@@ -1,0 +1,14 @@
+{
+  "page": "wcag/3-1-2-language-of-parts.html",
+  "title": "Customer reviews with an unmarked French quote",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/3-1-2-language-of-parts#1",
+      "wcag": ["3.1.2"],
+      "selector": "#review-fr",
+      "layer": "ai",
+      "description": "The French review has no lang=\"fr\", so assistive technology reads it with English pronunciation rules."
+    }
+  ]
+}

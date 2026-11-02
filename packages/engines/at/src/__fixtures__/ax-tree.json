@@ -1,0 +1,493 @@
+{
+  "//": "Recorded from Chromium (Playwright 1.61) Accessibility.getFullAXTree for: <main><input id=email type=email placeholder=\"Email address\"><label for=n>Name</label><input id=n placeholder=x><input id=t title=Phone><button aria-label=\"Find products\">Search</button><div role=checkbox tabindex=0>Agree</div><div id=g tabindex=0 onclick=1>Go</div><div role=tablist><div role=tab>A</div></div></main>. InlineTextBox nodes removed.",
+  "nodes": [
+    {
+      "nodeId": "1",
+      "ignored": false,
+      "role": { "type": "internalRole", "value": "RootWebArea" },
+      "chromeRole": { "type": "internalRole", "value": 144 },
+      "name": {
+        "type": "computedString",
+        "value": "",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "attribute", "attribute": "aria-label", "superseded": true },
+          { "type": "relatedElement", "nativeSource": "title" }
+        ]
+      },
+      "properties": [
+        { "name": "focusable", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "focused", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "url", "value": { "type": "string", "value": "about:blank" } }
+      ],
+      "childIds": ["2"],
+      "backendDOMNodeId": 1,
+      "frameId": "4EE0F7D914F32F65E30B07163C470AEF"
+    },
+    {
+      "nodeId": "2",
+      "ignored": true,
+      "ignoredReasons": [
+        { "name": "uninteresting", "value": { "type": "boolean", "value": true } }
+      ],
+      "role": { "type": "role", "value": "none" },
+      "chromeRole": { "type": "internalRole", "value": 0 },
+      "parentId": "1",
+      "childIds": ["4"],
+      "backendDOMNodeId": 2
+    },
+    {
+      "nodeId": "4",
+      "ignored": true,
+      "ignoredReasons": [
+        { "name": "uninteresting", "value": { "type": "boolean", "value": true } }
+      ],
+      "role": { "type": "role", "value": "none" },
+      "chromeRole": { "type": "internalRole", "value": 0 },
+      "parentId": "2",
+      "childIds": ["5"],
+      "backendDOMNodeId": 4
+    },
+    {
+      "nodeId": "5",
+      "ignored": false,
+      "role": { "type": "role", "value": "main" },
+      "chromeRole": { "type": "internalRole", "value": 118 },
+      "name": {
+        "type": "computedString",
+        "value": "",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "attribute", "attribute": "title" }
+        ]
+      },
+      "properties": [],
+      "parentId": "4",
+      "childIds": ["6", "9", "10", "13", "15", "16", "17", "18"],
+      "backendDOMNodeId": 5
+    },
+    {
+      "nodeId": "6",
+      "ignored": false,
+      "role": { "type": "role", "value": "textbox" },
+      "chromeRole": { "type": "internalRole", "value": 170 },
+      "name": {
+        "type": "computedString",
+        "value": "Email address",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "relatedElement", "nativeSource": "label" },
+          { "type": "attribute", "attribute": "title" },
+          {
+            "type": "placeholder",
+            "value": { "type": "computedString", "value": "Email address" },
+            "attribute": "placeholder",
+            "attributeValue": { "type": "string", "value": "Email address" }
+          },
+          { "type": "placeholder", "attribute": "aria-placeholder", "superseded": true },
+          { "type": "attribute", "attribute": "title", "superseded": true }
+        ]
+      },
+      "properties": [
+        { "name": "invalid", "value": { "type": "token", "value": "false" } },
+        { "name": "focusable", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "editable", "value": { "type": "token", "value": "plaintext" } },
+        { "name": "settable", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "multiline", "value": { "type": "boolean", "value": false } },
+        { "name": "readonly", "value": { "type": "boolean", "value": false } },
+        { "name": "required", "value": { "type": "boolean", "value": false } }
+      ],
+      "parentId": "5",
+      "childIds": ["7", "8"],
+      "backendDOMNodeId": 6
+    },
+    {
+      "nodeId": "9",
+      "ignored": false,
+      "role": { "type": "internalRole", "value": "LabelText" },
+      "chromeRole": { "type": "internalRole", "value": 104 },
+      "name": {
+        "type": "computedString",
+        "value": "",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "attribute", "attribute": "title" }
+        ]
+      },
+      "properties": [],
+      "parentId": "5",
+      "childIds": ["20"],
+      "backendDOMNodeId": 9
+    },
+    {
+      "nodeId": "10",
+      "ignored": false,
+      "role": { "type": "role", "value": "textbox" },
+      "chromeRole": { "type": "internalRole", "value": 170 },
+      "name": {
+        "type": "computedString",
+        "value": "Name",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          {
+            "type": "relatedElement",
+            "value": { "type": "computedString", "value": "Name" },
+            "nativeSource": "labelfor",
+            "nativeSourceValue": {
+              "type": "nodeList",
+              "relatedNodes": [{ "backendDOMNodeId": 9, "text": "Name" }]
+            }
+          },
+          { "type": "attribute", "attribute": "title", "superseded": true },
+          {
+            "type": "placeholder",
+            "value": { "type": "computedString", "value": "x" },
+            "attribute": "placeholder",
+            "attributeValue": { "type": "string", "value": "x" },
+            "superseded": true
+          },
+          { "type": "placeholder", "attribute": "aria-placeholder", "superseded": true },
+          { "type": "attribute", "attribute": "title", "superseded": true }
+        ]
+      },
+      "properties": [
+        { "name": "invalid", "value": { "type": "token", "value": "false" } },
+        { "name": "focusable", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "editable", "value": { "type": "token", "value": "plaintext" } },
+        { "name": "settable", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "multiline", "value": { "type": "boolean", "value": false } },
+        { "name": "readonly", "value": { "type": "boolean", "value": false } },
+        { "name": "required", "value": { "type": "boolean", "value": false } },
+        {
+          "name": "labelledby",
+          "value": {
+            "type": "nodeList",
+            "relatedNodes": [{ "backendDOMNodeId": 9, "text": "Name" }]
+          }
+        }
+      ],
+      "parentId": "5",
+      "childIds": ["11", "12"],
+      "backendDOMNodeId": 10
+    },
+    {
+      "nodeId": "13",
+      "ignored": false,
+      "role": { "type": "role", "value": "textbox" },
+      "chromeRole": { "type": "internalRole", "value": 170 },
+      "name": {
+        "type": "computedString",
+        "value": "Phone",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "relatedElement", "nativeSource": "label" },
+          {
+            "type": "attribute",
+            "value": { "type": "computedString", "value": "Phone" },
+            "attribute": "title",
+            "attributeValue": { "type": "string", "value": "Phone" }
+          },
+          { "type": "placeholder", "attribute": "placeholder", "superseded": true },
+          { "type": "placeholder", "attribute": "aria-placeholder", "superseded": true },
+          {
+            "type": "attribute",
+            "value": { "type": "computedString", "value": "Phone" },
+            "attribute": "title",
+            "attributeValue": { "type": "string", "value": "Phone" },
+            "superseded": true
+          }
+        ]
+      },
+      "properties": [
+        { "name": "invalid", "value": { "type": "token", "value": "false" } },
+        { "name": "focusable", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "editable", "value": { "type": "token", "value": "plaintext" } },
+        { "name": "settable", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "multiline", "value": { "type": "boolean", "value": false } },
+        { "name": "readonly", "value": { "type": "boolean", "value": false } },
+        { "name": "required", "value": { "type": "boolean", "value": false } }
+      ],
+      "parentId": "5",
+      "childIds": ["14"],
+      "backendDOMNodeId": 13
+    },
+    {
+      "nodeId": "15",
+      "ignored": false,
+      "role": { "type": "role", "value": "button" },
+      "chromeRole": { "type": "internalRole", "value": 9 },
+      "name": {
+        "type": "computedString",
+        "value": "Find products",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          {
+            "type": "attribute",
+            "value": { "type": "computedString", "value": "Find products" },
+            "attribute": "aria-label",
+            "attributeValue": { "type": "string", "value": "Find products" }
+          },
+          { "type": "relatedElement", "superseded": true, "nativeSource": "label" },
+          {
+            "type": "contents",
+            "value": { "type": "computedString", "value": "Search" },
+            "superseded": true
+          },
+          { "type": "attribute", "attribute": "title", "superseded": true }
+        ]
+      },
+      "properties": [
+        { "name": "invalid", "value": { "type": "token", "value": "false" } },
+        { "name": "focusable", "value": { "type": "booleanOrUndefined", "value": true } }
+      ],
+      "parentId": "5",
+      "childIds": ["21"],
+      "backendDOMNodeId": 15
+    },
+    {
+      "nodeId": "16",
+      "ignored": false,
+      "role": { "type": "role", "value": "checkbox" },
+      "chromeRole": { "type": "internalRole", "value": 14 },
+      "name": {
+        "type": "computedString",
+        "value": "Agree",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "contents", "value": { "type": "computedString", "value": "Agree" } },
+          { "type": "attribute", "attribute": "title", "superseded": true }
+        ]
+      },
+      "properties": [
+        { "name": "focusable", "value": { "type": "booleanOrUndefined", "value": true } },
+        { "name": "checked", "value": { "type": "tristate", "value": "false" } }
+      ],
+      "parentId": "5",
+      "childIds": ["22"],
+      "backendDOMNodeId": 16
+    },
+    {
+      "nodeId": "17",
+      "ignored": false,
+      "role": { "type": "role", "value": "generic" },
+      "chromeRole": { "type": "internalRole", "value": 88 },
+      "name": {
+        "type": "computedString",
+        "value": "",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "attribute", "attribute": "title" }
+        ]
+      },
+      "properties": [
+        { "name": "focusable", "value": { "type": "booleanOrUndefined", "value": true } }
+      ],
+      "parentId": "5",
+      "childIds": ["23"],
+      "backendDOMNodeId": 17
+    },
+    {
+      "nodeId": "18",
+      "ignored": false,
+      "role": { "type": "role", "value": "tablist" },
+      "chromeRole": { "type": "internalRole", "value": 165 },
+      "name": {
+        "type": "computedString",
+        "value": "",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "attribute", "attribute": "title" }
+        ]
+      },
+      "properties": [
+        { "name": "multiselectable", "value": { "type": "boolean", "value": false } },
+        { "name": "orientation", "value": { "type": "token", "value": "horizontal" } }
+      ],
+      "parentId": "5",
+      "childIds": ["19"],
+      "backendDOMNodeId": 18
+    },
+    {
+      "nodeId": "7",
+      "ignored": true,
+      "ignoredReasons": [],
+      "role": { "type": "role", "value": "none" },
+      "chromeRole": { "type": "internalRole", "value": 0 },
+      "parentId": "6",
+      "childIds": [],
+      "backendDOMNodeId": 7
+    },
+    {
+      "nodeId": "8",
+      "ignored": false,
+      "role": { "type": "role", "value": "generic" },
+      "chromeRole": { "type": "internalRole", "value": 88 },
+      "name": {
+        "type": "computedString",
+        "value": "",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" }
+        ]
+      },
+      "properties": [{ "name": "editable", "value": { "type": "token", "value": "plaintext" } }],
+      "parentId": "6",
+      "childIds": [],
+      "backendDOMNodeId": 8
+    },
+    {
+      "nodeId": "20",
+      "ignored": false,
+      "role": { "type": "internalRole", "value": "StaticText" },
+      "chromeRole": { "type": "internalRole", "value": 158 },
+      "name": {
+        "type": "computedString",
+        "value": "Name",
+        "sources": [{ "type": "contents", "value": { "type": "computedString", "value": "Name" } }]
+      },
+      "properties": [],
+      "parentId": "9",
+      "childIds": [],
+      "backendDOMNodeId": 20
+    },
+    {
+      "nodeId": "11",
+      "ignored": true,
+      "ignoredReasons": [],
+      "role": { "type": "role", "value": "none" },
+      "chromeRole": { "type": "internalRole", "value": 0 },
+      "parentId": "10",
+      "childIds": [],
+      "backendDOMNodeId": 11
+    },
+    {
+      "nodeId": "12",
+      "ignored": false,
+      "role": { "type": "role", "value": "generic" },
+      "chromeRole": { "type": "internalRole", "value": 88 },
+      "name": {
+        "type": "computedString",
+        "value": "",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" }
+        ]
+      },
+      "properties": [{ "name": "editable", "value": { "type": "token", "value": "plaintext" } }],
+      "parentId": "10",
+      "childIds": [],
+      "backendDOMNodeId": 12
+    },
+    {
+      "nodeId": "14",
+      "ignored": false,
+      "role": { "type": "role", "value": "generic" },
+      "chromeRole": { "type": "internalRole", "value": 88 },
+      "name": {
+        "type": "computedString",
+        "value": "",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" }
+        ]
+      },
+      "properties": [{ "name": "editable", "value": { "type": "token", "value": "plaintext" } }],
+      "parentId": "13",
+      "childIds": [],
+      "backendDOMNodeId": 14
+    },
+    {
+      "nodeId": "21",
+      "ignored": false,
+      "role": { "type": "internalRole", "value": "StaticText" },
+      "chromeRole": { "type": "internalRole", "value": 158 },
+      "name": {
+        "type": "computedString",
+        "value": "Search",
+        "sources": [
+          { "type": "contents", "value": { "type": "computedString", "value": "Search" } }
+        ]
+      },
+      "properties": [],
+      "parentId": "15",
+      "childIds": [],
+      "backendDOMNodeId": 21
+    },
+    {
+      "nodeId": "22",
+      "ignored": false,
+      "role": { "type": "internalRole", "value": "StaticText" },
+      "chromeRole": { "type": "internalRole", "value": 158 },
+      "name": {
+        "type": "computedString",
+        "value": "Agree",
+        "sources": [{ "type": "contents", "value": { "type": "computedString", "value": "Agree" } }]
+      },
+      "properties": [],
+      "parentId": "16",
+      "childIds": [],
+      "backendDOMNodeId": 22
+    },
+    {
+      "nodeId": "23",
+      "ignored": false,
+      "role": { "type": "internalRole", "value": "StaticText" },
+      "chromeRole": { "type": "internalRole", "value": 158 },
+      "name": {
+        "type": "computedString",
+        "value": "Go",
+        "sources": [{ "type": "contents", "value": { "type": "computedString", "value": "Go" } }]
+      },
+      "properties": [],
+      "parentId": "17",
+      "childIds": [],
+      "backendDOMNodeId": 23
+    },
+    {
+      "nodeId": "19",
+      "ignored": false,
+      "role": { "type": "role", "value": "tab" },
+      "chromeRole": { "type": "internalRole", "value": 164 },
+      "name": {
+        "type": "computedString",
+        "value": "A",
+        "sources": [
+          { "type": "relatedElement", "attribute": "aria-labelledby" },
+          { "type": "attribute", "attribute": "aria-label" },
+          { "type": "contents", "value": { "type": "computedString", "value": "A" } },
+          { "type": "attribute", "attribute": "title", "superseded": true }
+        ]
+      },
+      "properties": [
+        { "name": "selected", "value": { "type": "booleanOrUndefined", "value": false } }
+      ],
+      "parentId": "18",
+      "childIds": ["24"],
+      "backendDOMNodeId": 19
+    },
+    {
+      "nodeId": "24",
+      "ignored": false,
+      "role": { "type": "internalRole", "value": "StaticText" },
+      "chromeRole": { "type": "internalRole", "value": 158 },
+      "name": {
+        "type": "computedString",
+        "value": "A",
+        "sources": [{ "type": "contents", "value": { "type": "computedString", "value": "A" } }]
+      },
+      "properties": [],
+      "parentId": "19",
+      "childIds": [],
+      "backendDOMNodeId": 24
+    }
+  ]
+}

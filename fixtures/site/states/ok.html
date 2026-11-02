@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: dialog and form errors</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      dialog { padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      dialog::backdrop { background: rgb(0 0 0 / 0.5); }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      .error { color: #a51d2d; font-size: 14px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Account</h1>
+      <button id="open-settings" type="button">Open settings</button>
+      <dialog id="settings-dialog" aria-labelledby="settings-title">
+        <h2 id="settings-title">Settings</h2>
+        <label><input id="dark-mode" type="checkbox" /> Dark mode</label>
+        <p><button id="close-settings" type="button">Close</button></p>
+      </dialog>
+
+      <h2>Create an account</h2>
+      <div id="error-summary" role="alert"></div>
+      <form id="signup" action="#" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" aria-describedby="email-error" />
+          <span id="email-error" class="error"></span>
+        </div>
+        <button type="submit">Create account</button>
+      </form>
+    </main>
+    <script>
+      const dialog = document.getElementById('settings-dialog');
+      const opener = document.getElementById('open-settings');
+      opener.addEventListener('click', () => dialog.showModal());
+      document.getElementById('close-settings').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('close', () => opener.focus());
+
+      document.getElementById('signup').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const input = document.getElementById('email');
+        const error = document.getElementById('email-error');
+        const summary = document.getElementById('error-summary');
+        if (!input.value) {
+          input.setAttribute('aria-invalid', 'true');
+          error.textContent = 'Enter your email address, like name@example.com';
+          summary.textContent = 'There is 1 error: enter your email address.';
+          input.focus();
+        } else {
+          input.removeAttribute('aria-invalid');
+          error.textContent = '';
+          summary.textContent = '';
+        }
+      });
+    </script>
+  </body>
+</html>

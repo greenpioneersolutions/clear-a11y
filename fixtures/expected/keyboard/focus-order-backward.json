@@ -1,0 +1,23 @@
+{
+  "page": "keyboard/focus-order-backward.html",
+  "title": "Shipping form: focus order jumps backward",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/focus-order-backward#1",
+      "wcag": ["2.4.3", "1.3.2"],
+      "selector": "#last-name | #country",
+      "layer": "keyboard",
+      "description": "Tab goes First name, Country (row 2), then back up to Last name: focus order does not follow the visual order.",
+      "ruleId": "keyboard/focus-order-backward"
+    },
+    {
+      "id": "keyboard/focus-order-backward#2",
+      "wcag": ["1.4.10"],
+      "selector": "#last-name-field | #country-field | #first-name-field",
+      "layer": "visual",
+      "description": "At 320 CSS px the two-column grid can't shrink below the inputs' default width, so the form is wider than the viewport and the page scrolls sideways.",
+      "ruleId": "visual/reflow-horizontal-scroll"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hotel home page with background music</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Welcome to the Lakeside Hotel</h1>
+      <!-- Seeded barrier: background music starts by itself, loops, and there is no way to pause or
+           mute it on the page. WCAG 1.4.2. -->
+      <audio id="welcome-music" src="../_assets/media/background-music.mp3" autoplay loop></audio>
+      <p>Rooms with a view of the lake, a heated pool and breakfast on the terrace.</p>
+    </main>
+  </body>
+</html>

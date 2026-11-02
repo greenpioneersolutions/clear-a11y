@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: names, states and status messages</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe</h1>
+      <h2>
+        <button id="faq-shipping" type="button" aria-expanded="false" aria-controls="faq-shipping-panel">How long does shipping take?</button>
+      </h2>
+      <div id="faq-shipping-panel" hidden><p>Two to four working days in the EU.</p></div>
+      <button id="add-to-cart" type="button">Add to cart</button>
+      <div id="cart-status" role="status"></div>
+    </main>
+    <script>
+      const toggle = document.getElementById('faq-shipping');
+      toggle.addEventListener('click', () => {
+        const panel = document.getElementById('faq-shipping-panel');
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!open));
+        panel.hidden = open;
+      });
+      document.getElementById('add-to-cart').addEventListener('click', () => {
+        document.getElementById('cart-status').textContent = 'Added to cart. 1 item in your cart.';
+      });
+    </script>
+  </body>
+</html>

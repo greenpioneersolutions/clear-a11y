@@ -1,0 +1,51 @@
+name: Set up the workspace
+description: >-
+  pnpm (version from packageManager), Node.js (version from .nvmrc), a frozen-lockfile install and,
+  optionally, Playwright's Chromium cached by the pinned Playwright version. Needs no secrets.
+
+inputs:
+  playwright:
+    description: Also install Chromium and its system dependencies for Playwright ('true' or 'false').
+    required: false
+    default: 'false'
+  registry-url:
+    description: npm registry to write into .npmrc (only the release workflow sets it).
+    required: false
+    default: ''
+
+runs:
+  using: composite
+  steps:
+    - name: Set up pnpm (version from packageManager)
+      uses: pnpm/action-setup@v4
+
+    - name: Set up Node.js (version from .nvmrc)
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+        cache: pnpm
+        registry-url: ${{ inputs.registry-url }}
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
+
+    # The browser build must match the Playwright version, so the cache key is that version
+    # (pinned in the pnpm catalog), not the lockfile hash.
+    - name: Read the pinned Playwright version
+      id: playwright
+      if: inputs.playwright == 'true'
+      shell: bash
+      run: echo "version=$(pnpm exec playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+    - name: Cache Playwright browsers
+      if: inputs.playwright == 'true'
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
+    - name: Install Chromium and its system dependencies
+      if: inputs.playwright == 'true'
+      shell: bash
+      run: pnpm exec playwright install --with-deps chromium

@@ -1,0 +1,65 @@
+# Example: scan what each pull request changed with Clear A11Y.
+# Copy to .github/workflows/accessibility.yml and adjust the build/serve steps to your app.
+name: Accessibility
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  clear-a11y:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write # only for github/codeql-action/upload-sarif
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # the action diffs the PR's base and head commits locally
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Start the app (or point base-url at a preview deployment instead).
+      - name: Build and serve the app
+        run: |
+          npm run build
+          npx --yes serve@14 --listen 4173 dist &
+          npx --yes wait-on@8 --timeout 60000 http://localhost:4173
+
+      # Optional: build Storybook so changed components are scanned story by story.
+      - run: npx storybook build --output-dir storybook-static --quiet
+
+      # Chromium for the browser layers. Use the Playwright version the action ships
+      # (the action prints the exact command if the browser is missing).
+      - run: npx --yes playwright@1.61.1 install --with-deps chromium
+
+      - uses: greenpioneersolutions/clear-a11y@action-v0
+        id: a11y
+        with:
+          base-url: http://localhost:4173
+          routes: .github/clear-a11y-routes.json
+          default-targets: /
+          storybook-static: storybook-static
+          fail-on: violation
+
+      # Code scanning alerts for findings with a source file and line.
+      # Pull requests from forks get a read-only token, so the upload is skipped there.
+      - uses: github/codeql-action/upload-sarif@v4
+        if: always() && steps.a11y.outputs.sarif-path != '' && github.event.pull_request.head.repo.full_name == github.repository
+        with:
+          sarif_file: ${{ steps.a11y.outputs.sarif-path }}
+          category: clear-a11y
+
+      # The full HTML report (with screenshots and the needs-review questions).
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clear-a11y-report
+          path: clear-a11y-report/

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product page: keyboard-operable controls</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .actions { display: flex; gap: 16px; align-items: center; }
+      .card { border: 1px solid #555; border-radius: 6px; padding: 12px; max-width: 320px; cursor: pointer; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe</h1>
+      <p>Grippy, light and waterproof. 120 euros.</p>
+      <!-- Correct pattern: every action is a real button. -->
+      <div class="actions">
+        <button id="add-to-basket" type="button">Add to basket</button>
+        <button id="wishlist" type="button">&#9825; Save to wishlist</button>
+      </div>
+      <p id="status" role="status"></p>
+      <h2>You may also like</h2>
+      <!-- Correct pattern: the whole card is clickable for mouse users, and the link inside it
+           offers the same action to keyboard users. -->
+      <div class="card" id="related-card">
+        <h3><a id="related-link" href="#road-shoe">Road running shoe</a></h3>
+        <p>Light and fast on tarmac.</p>
+      </div>
+    </main>
+    <script>
+      const status = document.getElementById('status');
+      document.getElementById('add-to-basket').addEventListener('click', () => { status.textContent = 'Added to basket.'; });
+      document.getElementById('wishlist').addEventListener('click', () => { status.textContent = 'Saved to your wishlist.'; });
+      document.getElementById('related-card').addEventListener('click', () => { document.getElementById('related-link').click(); });
+    </script>
+  </body>
+</html>

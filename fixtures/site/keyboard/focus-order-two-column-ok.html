@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delivery form: two columns, column by column</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      form { display: flex; flex-wrap: wrap; gap: 32px; max-width: 720px; }
+      fieldset { flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 12px; border: 1px solid #555; }
+      .field { display: flex; flex-direction: column; }
+      input, select { max-width: 100%; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Delivery details</h1>
+      <!-- Correct pattern: two visual columns, each a fieldset. Tab finishes the left column, then
+           wraps up to the top of the right column. That jump up is a legitimate column wrap. -->
+      <form action="#">
+        <fieldset>
+          <legend>Billing address</legend>
+          <div class="field"><label for="bill-street">Street</label><input id="bill-street" autocomplete="billing street-address" /></div>
+          <div class="field"><label for="bill-city">City</label><input id="bill-city" autocomplete="billing address-level2" /></div>
+          <div class="field"><label for="bill-zip">Postcode</label><input id="bill-zip" autocomplete="billing postal-code" /></div>
+        </fieldset>
+        <fieldset>
+          <legend>Delivery address</legend>
+          <div class="field"><label for="ship-street">Street</label><input id="ship-street" autocomplete="shipping street-address" /></div>
+          <div class="field"><label for="ship-city">City</label><input id="ship-city" autocomplete="shipping address-level2" /></div>
+          <div class="field"><label for="ship-zip">Postcode</label><input id="ship-zip" autocomplete="shipping postal-code" /></div>
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>

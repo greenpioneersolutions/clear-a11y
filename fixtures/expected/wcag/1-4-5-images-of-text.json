@@ -1,0 +1,14 @@
+{
+  "page": "wcag/1-4-5-images-of-text.html",
+  "title": "Sale banner as an image of text",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-4-5-images-of-text#1",
+      "wcag": ["1.4.5"],
+      "selector": "#sale-banner",
+      "layer": "ai",
+      "description": "The sale banner is an image of text; the same message could be real text styled with CSS."
+    }
+  ]
+}

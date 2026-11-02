@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "ClearA11yFixture",
+  "title": "Create a fixture page and its expected findings",
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "Page path under fixtures/site without extension, e.g. \"keyboard/skip-link-missing\".",
+      "pattern": "^[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*)*$",
+      "$default": { "$source": "argv", "index": 0 },
+      "x-prompt": "Fixture path (e.g. keyboard/skip-link-missing)?"
+    },
+    "title": { "type": "string", "description": "Page title." },
+    "correctPattern": {
+      "type": "boolean",
+      "default": false,
+      "description": "A correct-pattern page that must produce zero findings."
+    },
+    "wcag": {
+      "type": "string",
+      "description": "Comma-separated WCAG success criteria, e.g. \"2.4.1\"."
+    },
+    "layer": {
+      "type": "string",
+      "description": "Engine layer expected to catch the barrier (static, keyboard, states, visual, at, widgets, ai, persona, repo)."
+    },
+    "ruleId": {
+      "type": "string",
+      "description": "Rule expected to catch the barrier, e.g. keyboard/skip-link-missing."
+    },
+    "description": {
+      "type": "string",
+      "description": "What a human auditor would log for this barrier."
+    }
+  },
+  "required": ["path"]
+}

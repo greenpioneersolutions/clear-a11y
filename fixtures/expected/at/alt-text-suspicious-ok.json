@@ -1,0 +1,6 @@
+{
+  "page": "at/alt-text-suspicious-ok.html",
+  "title": "Correct pattern: alt text that describes the image",
+  "correctPattern": true,
+  "issues": []
+}

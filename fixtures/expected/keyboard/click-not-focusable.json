@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/click-not-focusable.html",
+  "title": "Product page: mouse-only wishlist control",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/click-not-focusable#1",
+      "wcag": ["2.1.1", "4.1.2"],
+      "selector": "#wishlist",
+      "layer": "keyboard",
+      "description": "Save to wishlist is a span with a click listener: it cannot be reached or activated with a keyboard.",
+      "ruleId": "keyboard/click-not-focusable"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "name": "@clear-a11y/action",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "description": "Clear A11Y GitHub Action: scans what a pull request changed and writes SARIF, an HTML report and a job summary.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "apps/action"
+  },
+  "dependencies": {
+    "@actions/core": "catalog:",
+    "@clear-a11y/browser": "workspace:*",
+    "@clear-a11y/core": "workspace:*",
+    "@clear-a11y/repo": "workspace:*",
+    "@clear-a11y/reporter": "workspace:*",
+    "@clear-a11y/runner": "workspace:*"
+  },
+  "devDependencies": {
+    "@clear-a11y/test-utils": "workspace:*",
+    "esbuild": "catalog:"
+  },
+  "nx": {
+    "name": "action",
+    "tags": [
+      "type:app",
+      "scope:action",
+      "publish:private"
+    ],
+    "targets": {
+      "build": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production",
+          "{projectRoot}/scripts/bundle.mjs"
+        ],
+        "outputs": [
+          "{projectRoot}/dist"
+        ],
+        "cache": true,
+        "options": {
+          "command": "node scripts/bundle.mjs",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "test-integration": {
+        "dependsOn": [
+          "^build",
+          "build"
+        ]
+      }
+    }
+  }
+}

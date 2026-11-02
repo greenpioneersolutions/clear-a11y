@@ -1,0 +1,15 @@
+{
+  "page": "wcag/2-5-2-pointer-cancellation.html",
+  "title": "Saved addresses deleted on mouse down",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-5-2-pointer-cancellation#1",
+      "wcag": ["2.5.2"],
+      "selector": "#delete-home | #delete-work",
+      "layer": "at",
+      "description": "The delete buttons remove the address on mousedown; the action can't be aborted by moving the pointer away before releasing.",
+      "ruleId": "at/pointer-down-action"
+    }
+  ]
+}

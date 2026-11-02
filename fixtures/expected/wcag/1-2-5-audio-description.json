@@ -1,0 +1,15 @@
+{
+  "page": "wcag/1-2-5-audio-description.html",
+  "title": "Assembly video without audio description",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-2-5-audio-description#1",
+      "wcag": ["1.2.5"],
+      "selector": "#assembly-video",
+      "layer": "at",
+      "description": "The assembly steps are only shown on screen; there is no audio description or audio-described version.",
+      "ruleId": "at/media-alternative-missing"
+    }
+  ]
+}

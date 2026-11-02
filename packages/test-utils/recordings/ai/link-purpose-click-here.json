@@ -1,0 +1,11 @@
+{
+  "name": "ai/link-purpose-click-here",
+  "source": "synthetic",
+  "request": { "judge": "link-purpose", "promptVersion": 1, "match": { "linkText": "Click here" } },
+  "response": {
+    "verdict": "fail",
+    "confidence": 0.9,
+    "reason": "\"Click here\" says nothing about the destination, and the list item and the \"Resources\" heading are the same for all three links.",
+    "suggestion": "Use the destination as the link text, e.g. \"Accessibility testing guide\"."
+  }
+}

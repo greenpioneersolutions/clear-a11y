@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/escape-does-not-close.html",
+  "title": "Search filters: dialog ignores Escape",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/escape-does-not-close#1",
+      "wcag": ["2.1.1"],
+      "selector": "#filters-dialog",
+      "layer": "keyboard",
+      "description": "Pressing Escape does not close the Filters dialog; keyboard users have to find the Close button.",
+      "ruleId": "keyboard/escape-does-not-close"
+    }
+  ]
+}

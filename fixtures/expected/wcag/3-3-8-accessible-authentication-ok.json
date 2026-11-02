@@ -1,0 +1,6 @@
+{
+  "page": "wcag/3-3-8-accessible-authentication-ok.html",
+  "title": "Sign-in form that works with password managers",
+  "correctPattern": true,
+  "issues": []
+}

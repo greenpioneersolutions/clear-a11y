@@ -1,0 +1,58 @@
+{
+  "name": "@clear-a11y/core",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "tslib": "catalog:",
+    "zod": "catalog:"
+  },
+  "description": "Clear A11Y core: Finding schema, WCAG map, config and shared types.",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "wcag22",
+    "testing"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://greenpioneersolutions.github.io/clear-a11y/",
+  "bugs": {
+    "url": "https://github.com/greenpioneersolutions/clear-a11y/issues"
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "nx": {
+    "tags": [
+      "type:util",
+      "scope:shared",
+      "publish:public"
+    ]
+  }
+}

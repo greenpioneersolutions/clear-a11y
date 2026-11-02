@@ -1,0 +1,15 @@
+{
+  "page": "visual/orientation-locked.html",
+  "title": "Timetable: only works in landscape",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/orientation-locked#1",
+      "wcag": ["1.3.4"],
+      "selector": "#rotate-message | main | body",
+      "layer": "visual",
+      "description": "In portrait the timetable is hidden and replaced by \"Please rotate your device to landscape\". People whose device is fixed in portrait cannot use the page.",
+      "ruleId": "visual/orientation-locked"
+    }
+  ]
+}

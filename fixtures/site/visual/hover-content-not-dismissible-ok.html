@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout: help tooltip closes with Escape</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      .has-tip { position: relative; }
+      #help-wrap { display: inline-block; }
+      #help-trigger { min-width: 32px; min-height: 32px; font: inherit; }
+      #help-tip {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 280px;
+        max-width: calc(100vw - 48px);
+        padding: 8px;
+        color: #ffffff;
+        background: #1a1a1a;
+      }
+      #help-tip[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Payment</h1>
+      <p class="has-tip">
+        Security code
+        <span id="help-wrap">
+          <button id="help-trigger" type="button" aria-describedby="help-tip">?</button>
+          <span id="help-tip" role="tooltip" hidden>The three digits on the back of your card, next to the signature strip.</span>
+        </span>
+      </p>
+      <p>We never store your security code. It is sent once to your bank to confirm the payment and then discarded.</p>
+    </main>
+    <script>
+      // Correct pattern (1.4.13): hoverable (the tooltip is inside the hover area, no gap),
+      // persistent (no timer) and dismissible (Escape closes it without moving pointer or focus).
+      const wrap = document.getElementById('help-wrap');
+      const tip = document.getElementById('help-tip');
+      const show = () => { tip.hidden = false; };
+      const hide = () => { tip.hidden = true; };
+      wrap.addEventListener('mouseenter', show);
+      wrap.addEventListener('mouseleave', hide);
+      wrap.addEventListener('focusin', show);
+      wrap.addEventListener('focusout', hide);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+    </script>
+  </body>
+</html>

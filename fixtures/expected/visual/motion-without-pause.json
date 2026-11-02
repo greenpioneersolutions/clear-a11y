@@ -1,0 +1,15 @@
+{
+  "page": "visual/motion-without-pause.html",
+  "title": "News: headline ticker scrolls without a pause button",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/motion-without-pause#1",
+      "wcag": ["2.2.2"],
+      "selector": "#ticker-track | #news-ticker",
+      "layer": "visual",
+      "description": "The headline ticker starts scrolling on page load, never stops, sits next to the article and has no pause, stop or hide button.",
+      "ruleId": "visual/motion-without-pause"
+    }
+  ]
+}

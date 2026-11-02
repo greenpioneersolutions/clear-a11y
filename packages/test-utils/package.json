@@ -1,0 +1,39 @@
+{
+  "name": "@clear-a11y/test-utils",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@clear-a11y/browser": "workspace:*",
+    "@clear-a11y/core": "workspace:*",
+    "tslib": "catalog:"
+  },
+  "description": "Test helpers for Clear A11Y: fixture server, recorded AI responses, matchers.",
+  "nx": {
+    "tags": [
+      "type:test",
+      "scope:testing",
+      "publish:private"
+    ],
+    "targets": {
+      "test-integration": {}
+    }
+  },
+  "license": "Apache-2.0",
+  "files": [
+    "dist",
+    "recordings"
+  ]
+}

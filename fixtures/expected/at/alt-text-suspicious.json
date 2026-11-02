@@ -1,0 +1,31 @@
+{
+  "page": "at/alt-text-suspicious.html",
+  "title": "Product page: alt text that describes nothing",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/alt-text-suspicious#1",
+      "wcag": ["1.1.1"],
+      "selector": "#product-photo",
+      "layer": "at",
+      "description": "The product photo's alt text is a camera file name (DSC_0042.JPG).",
+      "ruleId": "at/alt-text-suspicious"
+    },
+    {
+      "id": "at/alt-text-suspicious#2",
+      "wcag": ["1.1.1"],
+      "selector": "#size-chart",
+      "layer": "at",
+      "description": "The size chart's alt text is its URL, so the chart's data is not available as text.",
+      "ruleId": "at/alt-text-suspicious"
+    },
+    {
+      "id": "at/alt-text-suspicious#3",
+      "wcag": ["1.1.1"],
+      "selector": "#review-badge",
+      "layer": "at",
+      "description": "The review badge's alt text is the placeholder word \"image\".",
+      "ruleId": "at/alt-text-suspicious"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "page": "widgets/tabs-selected-state-ok.html",
+  "title": "Correct pattern: tabs with manual activation",
+  "correctPattern": true,
+  "issues": []
+}

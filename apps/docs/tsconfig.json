@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "../../packages/runner"
+    },
+    {
+      "path": "../../packages/repo"
+    },
+    {
+      "path": "../../packages/core"
+    },
+    {
+      "path": "../../packages/test-utils"
+    },
+    {
+      "path": "../../packages/browser"
+    },
+    {
+      "path": "./tsconfig.scripts.json"
+    }
+  ]
+}

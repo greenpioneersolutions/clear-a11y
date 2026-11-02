@@ -1,0 +1,15 @@
+{
+  "page": "at/error-not-identified.html",
+  "title": "Delivery: invalid field shown only with a red border",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/error-not-identified#1",
+      "wcag": ["3.3.1"],
+      "selector": "#postcode",
+      "layer": "at",
+      "description": "An empty postcode is marked only with a red border and background; no text says what is wrong.",
+      "ruleId": "at/error-not-identified"
+    }
+  ]
+}

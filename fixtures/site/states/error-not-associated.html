@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: error messages not tied to their fields</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      .error { color: #a51d2d; font-size: 14px; margin: 4px 0 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Join the newsletter</h1>
+      <!-- Seeded barrier (3.3.1): error messages appear under the fields (email when empty or
+           malformed, phone only when malformed), but nothing marks the fields invalid
+           (no aria-invalid) or links the message to the field (no aria-describedby or
+           aria-errormessage). Expected findings: fixtures/expected/states/error-not-associated.json -->
+      <form id="newsletter" action="#" novalidate>
+        <div class="field">
+          <label for="news-email">Email</label>
+          <input id="news-email" type="email" autocomplete="email" />
+          <p class="error" id="news-email-msg" hidden></p>
+        </div>
+        <div class="field">
+          <label for="news-phone">Phone (optional)</label>
+          <input id="news-phone" type="tel" autocomplete="tel" pattern="[0-9 ]{7,}" />
+          <p class="error" id="news-phone-msg" hidden></p>
+        </div>
+        <button type="submit">Subscribe</button>
+      </form>
+    </main>
+    <script>
+      const show = (id, text) => {
+        const el = document.getElementById(id);
+        el.textContent = text;
+        el.hidden = !text;
+      };
+      document.getElementById('newsletter').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const email = document.getElementById('news-email');
+        const phone = document.getElementById('news-phone');
+        show(
+          'news-email-msg',
+          !email.value
+            ? 'Enter your email address'
+            : email.validity.typeMismatch
+              ? 'Enter an email address like name@example.com'
+              : '',
+        );
+        show(
+          'news-phone-msg',
+          phone.value && phone.validity.patternMismatch ? 'Use digits only, at least 7' : '',
+        );
+      });
+    </script>
+  </body>
+</html>

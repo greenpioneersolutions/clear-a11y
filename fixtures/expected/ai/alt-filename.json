@@ -1,0 +1,14 @@
+{
+  "page": "ai/alt-filename.html",
+  "title": "Team page: meaningless alt text",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "ai/alt-filename#1",
+      "wcag": ["1.1.1"],
+      "selector": "#team-photo",
+      "layer": "ai",
+      "description": "Alt text is a file name (IMG_2041.jpg), not a description of the photo."
+    }
+  ]
+}

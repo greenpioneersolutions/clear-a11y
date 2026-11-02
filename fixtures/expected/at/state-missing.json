@@ -1,0 +1,15 @@
+{
+  "page": "at/state-missing.html",
+  "title": "Pricing: tabs without a selected state",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/state-missing#1",
+      "wcag": ["4.1.2"],
+      "selector": "#plan-tabs | #tab-monthly | #tab-yearly",
+      "layer": "at",
+      "description": "The active tab is shown only with a CSS class; no tab has aria-selected=\"true\", so every tab is announced as not selected.",
+      "ruleId": "at/state-missing"
+    }
+  ]
+}

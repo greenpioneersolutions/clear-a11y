@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News: several "Read more" links with no context</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 0 16px; }
+      a { color: #1a4f8b; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Latest news</h1>
+      <!-- Seeded barrier (2.4.4): three "Read more" links go to different articles. Each sits
+           alone in its list item under the same heading, so neither the link nor its context
+           says which article it opens. -->
+      <ul>
+        <li><a id="news-1" href="#new-office">Read more</a></li>
+        <li><a id="news-2" href="#award">Read more</a></li>
+        <li><a id="news-3" href="#hiring">Read more</a></li>
+      </ul>
+      <h2 id="new-office">We opened a new office</h2>
+      <h2 id="award">We won a design award</h2>
+      <h2 id="hiring">We are hiring</h2>
+    </main>
+  </body>
+</html>

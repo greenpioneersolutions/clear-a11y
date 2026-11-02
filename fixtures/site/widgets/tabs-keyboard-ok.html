@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: vertical tabs with arrow keys</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .tabs { display: flex; gap: 16px; }
+      [role='tablist'] { display: flex; flex-direction: column; gap: 4px; }
+      [role='tab'] { padding: 8px 16px; border: 1px solid #555; background: #fff; color: #1a1a1a; font: inherit; text-align: left; }
+      [role='tab'][aria-selected='true'] { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Choose a plan</h1>
+      <!-- Correct pattern, rewritten from the ARIA Authoring Practices Guide "Tabs with Automatic
+           Activation" example (https://www.w3.org/WAI/ARIA/apg/patterns/tabs/): roving tabindex,
+           Up/Down Arrow for a vertical tab list, Home and End. -->
+      <div class="tabs">
+        <div role="tablist" id="plan-tabs" aria-label="Plans" aria-orientation="vertical">
+          <button role="tab" id="tab-monthly" aria-selected="true" aria-controls="panel-monthly" tabindex="0">Monthly</button>
+          <button role="tab" id="tab-yearly" aria-selected="false" aria-controls="panel-yearly" tabindex="-1">Yearly</button>
+          <button role="tab" id="tab-team" aria-selected="false" aria-controls="panel-team" tabindex="-1">Team</button>
+        </div>
+        <div>
+          <div role="tabpanel" id="panel-monthly" aria-labelledby="tab-monthly" tabindex="0"><p>9 euros per month, cancel any time.</p></div>
+          <div role="tabpanel" id="panel-yearly" aria-labelledby="tab-yearly" tabindex="0" hidden><p>90 euros per year: two months free.</p></div>
+          <div role="tabpanel" id="panel-team" aria-labelledby="tab-team" tabindex="0" hidden><p>7 euros per seat per month, from five seats.</p></div>
+        </div>
+      </div>
+    </main>
+    <script>
+      const tabs = [...document.querySelectorAll('[role=tab]')];
+      function select(tab) {
+        for (const t of tabs) {
+          const selected = t === tab;
+          t.setAttribute('aria-selected', String(selected));
+          t.tabIndex = selected ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+        }
+        tab.focus();
+      }
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab));
+        tab.addEventListener('keydown', (event) => {
+          const next = { ArrowDown: i + 1, ArrowUp: i - 1, Home: 0, End: tabs.length - 1 }[event.key];
+          if (next === undefined) return;
+          event.preventDefault();
+          select(tabs[(next + tabs.length) % tabs.length]);
+        });
+      });
+    </script>
+  </body>
+</html>

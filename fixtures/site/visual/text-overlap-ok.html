@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Promotion: heading grows with its text</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      /* Correct pattern: no fixed height and a unitless line height, so enlarged text pushes the
+         paragraph down instead of running into it. */
+      #promo-heading { margin: 0; font-size: 20px; line-height: 1.2; }
+      #promo-copy { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Offers</h1>
+      <h2 id="promo-heading">Summer sale</h2>
+      <p id="promo-copy">All tents and sleeping bags are 20 percent off until Sunday.</p>
+    </main>
+  </body>
+</html>

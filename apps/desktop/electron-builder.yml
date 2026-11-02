@@ -1,0 +1,30 @@
+# electron-builder config for an UNPACKED app (`pnpm nx run desktop:package`, i.e. `--dir`).
+# Installers, code signing, notarization and auto-update are out of scope until the release wave.
+# `electronDist` is passed on the command line (scripts/electron.mjs) so the Electron binary that
+# was fetched once is reused and nothing is downloaded again.
+appId: dev.clear-a11y.desktop
+productName: Clear A11Y
+copyright: Copyright the Clear A11Y contributors. Apache-2.0.
+directories:
+  output: release
+  buildResources: build
+files:
+  - dist/**/*
+  - '!dist/**/*.map'
+  - package.json
+asar: true
+# Playwright and its browsers folder must stay outside the asar archive.
+asarUnpack:
+  - '**/node_modules/playwright-core/**'
+  - '**/node_modules/playwright/**'
+npmRebuild: false
+mac:
+  target: dir
+  identity: null
+  category: public.app-category.developer-tools
+win:
+  target: dir
+linux:
+  target: dir
+  category: Development
+publish: null

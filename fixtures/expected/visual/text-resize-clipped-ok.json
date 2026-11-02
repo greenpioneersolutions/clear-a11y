@@ -1,0 +1,6 @@
+{
+  "page": "visual/text-resize-clipped-ok.html",
+  "title": "Newsletter: button grows with its label",
+  "correctPattern": true,
+  "issues": []
+}

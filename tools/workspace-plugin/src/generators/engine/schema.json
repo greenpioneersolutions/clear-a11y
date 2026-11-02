@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "ClearA11yEngine",
+  "title": "Create a Clear A11Y engine package",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Engine name, e.g. \"keyboard\". Creates @clear-a11y/engine-<name> in packages/engines/<name>.",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "$default": { "$source": "argv", "index": 0 },
+      "x-prompt": "Engine name (e.g. keyboard)?"
+    },
+    "description": {
+      "type": "string",
+      "description": "One sentence describing what the engine detects."
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "default": false,
+      "description": "Skip running pnpm install after generating."
+    }
+  },
+  "required": ["name"]
+}

@@ -1,0 +1,14 @@
+import { openFixture } from '@clear-a11y/test-utils';
+import { create<%= className %>Engine } from '../src/index.js';
+
+describe('engine-<%= name %> (integration)', () => {
+  it('reports nothing on the blank fixture page', async () => {
+    const fixture = await openFixture('blank.html');
+    try {
+      const findings = await create<%= className %>Engine().run(fixture.ctx);
+      expect(findings).toEqual([]);
+    } finally {
+      await fixture.close();
+    }
+  });
+});

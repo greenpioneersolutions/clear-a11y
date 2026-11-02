@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/focus-obscured-dismissible-ok.html",
+  "title": "Docs: contents panel closes with Escape",
+  "correctPattern": true,
+  "issues": []
+}

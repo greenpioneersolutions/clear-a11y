@@ -1,0 +1,15 @@
+{
+  "page": "wcag/2-5-4-motion-actuation.html",
+  "title": "Notes app with shake to undo only",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-5-4-motion-actuation#1",
+      "wcag": ["2.5.4"],
+      "selector": "html | body",
+      "layer": "at",
+      "description": "Undo is only available by shaking the device (devicemotion); there is no button for it and the motion response can't be disabled.",
+      "ruleId": "at/motion-actuation"
+    }
+  ]
+}

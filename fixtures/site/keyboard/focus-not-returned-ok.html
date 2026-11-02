@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Article: share dialog returns focus</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      dialog { padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      dialog::backdrop { background: rgb(0 0 0 / 0.5); }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running in winter</h1>
+      <p>Short days and frozen paths call for different shoes and a different plan.</p>
+      <button id="open-share" type="button" aria-haspopup="dialog">Share this article</button>
+      <p><a href="#comments">Comments</a></p>
+      <!-- Correct pattern: native <dialog> with showModal() moves focus in, closes on Escape and
+           restores focus to the Share button when it closes. -->
+      <dialog id="share-dialog" aria-labelledby="share-title">
+        <h2 id="share-title">Share</h2>
+        <p><a id="share-email" href="#email">Share by email</a></p>
+        <p><button id="close-share" type="button">Close</button></p>
+      </dialog>
+    </main>
+    <script>
+      const dialog = document.getElementById('share-dialog');
+      const opener = document.getElementById('open-share');
+      opener.addEventListener('click', () => dialog.showModal());
+      document.getElementById('close-share').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('close', () => opener.focus());
+    </script>
+  </body>
+</html>

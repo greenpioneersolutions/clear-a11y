@@ -1,0 +1,15 @@
+{
+  "page": "visual/hover-content-not-dismissible.html",
+  "title": "Checkout: help tooltip can't be dismissed",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/hover-content-not-dismissible#1",
+      "wcag": ["1.4.13"],
+      "selector": "#help-trigger | #help-wrap | #help-tip",
+      "layer": "visual",
+      "description": "The security code tooltip appears on hover and focus, covers the paragraph below, and Escape does not close it.",
+      "ruleId": "visual/hover-content-not-dismissible"
+    }
+  ]
+}

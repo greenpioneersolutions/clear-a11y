@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: modal that contains focus and closes on Escape</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / 0.5); display: grid; place-items: center; }
+      .backdrop[hidden] { display: none; }
+      [role='dialog'] { background: #fff; padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      .field { display: flex; flex-direction: column; margin-bottom: 12px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running in winter</h1>
+      <p><a href="#article">Read the article</a> or <a href="#archive">browse the archive</a>.</p>
+    </main>
+    <!-- Correct pattern: the modal is open on load and a script keeps Tab inside it (aria-modal).
+         That is not a keyboard trap, because Escape and the Close button both close it (2.1.2). -->
+    <div class="backdrop" id="backdrop">
+      <div id="newsletter-dialog" role="dialog" aria-modal="true" aria-labelledby="newsletter-title">
+        <h2 id="newsletter-title">Get the newsletter</h2>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" />
+        </div>
+        <p>
+          <button id="subscribe" type="button">Subscribe</button>
+          <button id="close-newsletter" type="button">Close</button>
+        </p>
+      </div>
+    </div>
+    <script>
+      const backdrop = document.getElementById('backdrop');
+      const dialog = document.getElementById('newsletter-dialog');
+      const focusables = () => Array.from(dialog.querySelectorAll('input, button'));
+      const close = () => { backdrop.hidden = true; };
+      document.getElementById('close-newsletter').addEventListener('click', close);
+      document.getElementById('subscribe').addEventListener('click', close);
+      document.addEventListener('keydown', (event) => {
+        if (backdrop.hidden) return;
+        if (event.key === 'Escape') {
+          close();
+          return;
+        }
+        if (event.key !== 'Tab') return;
+        const items = focusables();
+        const i = items.indexOf(document.activeElement);
+        event.preventDefault();
+        const next = event.shiftKey ? (i <= 0 ? items.length - 1 : i - 1) : (i + 1) % items.length;
+        items[next].focus();
+      });
+    </script>
+  </body>
+</html>

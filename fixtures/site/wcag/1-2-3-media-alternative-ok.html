@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recipe video with a described transcript</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      figure { margin: 16px 0; max-width: 480px; }
+      video { background: #222; display: block; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>How to fold dumplings</h1>
+      <!-- Correct pattern: captions, an audio description track, and a transcript that describes
+           what is shown. -->
+      <figure>
+        <video id="recipe-video" controls width="480" height="270" preload="none">
+          <source src="../_assets/media/dumplings.mp4" type="video/mp4" />
+          <track kind="captions" src="../_assets/media/dumplings.en.vtt" srclang="en" label="English" default />
+          <track kind="descriptions" src="../_assets/media/dumplings.descriptions.vtt" srclang="en" label="Audio descriptions" />
+        </video>
+        <figcaption>Folding dumplings, 3 minutes. <a href="#transcript">Read the transcript, including what is shown</a></figcaption>
+      </figure>
+      <section id="transcript" aria-labelledby="transcript-title">
+        <h2 id="transcript-title">Transcript</h2>
+        <p>[A wrapper lies flat on the board. A teaspoon of filling goes in the centre.] Chef: Like this.</p>
+      </section>
+    </main>
+  </body>
+</html>

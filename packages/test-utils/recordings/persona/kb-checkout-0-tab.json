@@ -1,0 +1,16 @@
+{
+  "name": "persona/kb-checkout-0-tab",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-keyboard-only",
+    "promptVersion": 1,
+    "match": {
+      "step": 0
+    }
+  },
+  "response": {
+    "action": "press",
+    "key": "Tab",
+    "reason": "Nothing has focus yet; move to the first control."
+  }
+}

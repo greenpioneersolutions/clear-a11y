@@ -1,0 +1,66 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+    "emitDeclarationOnly": false,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "lib": ["es2023", "dom", "dom.iterable"]
+  },
+  "include": ["src/**/*.ts"],
+  "references": [
+    {
+      "path": "../repo/tsconfig.lib.json"
+    },
+    {
+      "path": "../engines/widgets/tsconfig.lib.json"
+    },
+    {
+      "path": "../engines/visual/tsconfig.lib.json"
+    },
+    {
+      "path": "../engines/static/tsconfig.lib.json"
+    },
+    {
+      "path": "../engines/states/tsconfig.lib.json"
+    },
+    {
+      "path": "../engines/keyboard/tsconfig.lib.json"
+    },
+    {
+      "path": "../engines/at/tsconfig.lib.json"
+    },
+    {
+      "path": "../crawler/tsconfig.lib.json"
+    },
+    {
+      "path": "../core/tsconfig.lib.json"
+    },
+    {
+      "path": "../browser/tsconfig.lib.json"
+    },
+    {
+      "path": "../ai/tsconfig.lib.json"
+    },
+    {
+      "path": "../test-utils/tsconfig.lib.json"
+    }
+  ],
+  "exclude": [
+    "vite.config.ts",
+    "vite.config.mts",
+    "vitest.config.ts",
+    "vitest.config.mts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.js",
+    "src/**/*.spec.js",
+    "src/**/*.test.jsx",
+    "src/**/*.spec.jsx",
+    "vitest.integration.config.mts"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "persona/sr-signup-1-activate",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-screen-reader",
+    "promptVersion": 1,
+    "match": {
+      "step": 1,
+      "page": "/persona/signup-screen-reader-ok.html"
+    }
+  },
+  "response": {
+    "action": "activate",
+    "ref": "n9",
+    "reason": "The Sign up button submits the email."
+  }
+}

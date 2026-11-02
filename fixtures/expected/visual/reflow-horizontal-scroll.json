@@ -1,0 +1,15 @@
+{
+  "page": "visual/reflow-horizontal-scroll.html",
+  "title": "Release notes: fixed-width layout",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/reflow-horizontal-scroll#1",
+      "wcag": ["1.4.10"],
+      "selector": "#layout",
+      "layer": "visual",
+      "description": "A fixed 960px layout box forces horizontal scrolling at 320 CSS px.",
+      "ruleId": "visual/reflow-horizontal-scroll"
+    }
+  ]
+}

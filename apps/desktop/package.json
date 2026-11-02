@@ -1,0 +1,122 @@
+{
+  "name": "@clear-a11y/desktop",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/main/main.js",
+  "description": "Clear A11Y desktop app (Electron): add sites and repo folders, run scans, read the accessible report and focus paths, answer review questions and pick an AI provider.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "apps/desktop"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "nx": {
+    "name": "desktop",
+    "tags": [
+      "type:app",
+      "scope:desktop",
+      "publish:private"
+    ],
+    "targets": {
+      "build-main": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "^build"
+        ],
+        "inputs": [
+          "production",
+          "^production"
+        ],
+        "outputs": [
+          "{projectRoot}/dist/main",
+          "{projectRoot}/dist/preload"
+        ],
+        "cache": true,
+        "options": {
+          "command": "node scripts/build-main.mjs",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "build-renderer": {
+        "executor": "nx:run-commands",
+        "inputs": [
+          "production",
+          "^production"
+        ],
+        "outputs": [
+          "{projectRoot}/dist/renderer"
+        ],
+        "cache": true,
+        "options": {
+          "command": "vite build -c vite.renderer.config.mts",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "build": {
+        "executor": "nx:noop",
+        "dependsOn": [
+          "build-main",
+          "build-renderer"
+        ]
+      },
+      "test-integration": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ]
+      },
+      "start": {
+        "executor": "nx:run-commands",
+        "continuous": true,
+        "dependsOn": [
+          "build"
+        ],
+        "cache": false,
+        "options": {
+          "command": "node scripts/electron.mjs start",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "fetch-electron": {
+        "executor": "nx:run-commands",
+        "cache": false,
+        "options": {
+          "command": "node node_modules/electron/install.js",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "package": {
+        "executor": "nx:run-commands",
+        "dependsOn": [
+          "build"
+        ],
+        "cache": false,
+        "options": {
+          "command": "node scripts/electron.mjs package",
+          "cwd": "{projectRoot}"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@clear-a11y/ai": "workspace:*",
+    "@clear-a11y/core": "workspace:*",
+    "@clear-a11y/queue": "workspace:*",
+    "@clear-a11y/reporter": "workspace:*",
+    "@clear-a11y/runner": "workspace:*",
+    "playwright": "catalog:",
+    "preact": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@clear-a11y/browser": "workspace:*",
+    "@clear-a11y/test-utils": "workspace:*",
+    "electron": "catalog:",
+    "electron-builder": "catalog:",
+    "esbuild": "catalog:"
+  }
+}

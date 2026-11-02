@@ -1,0 +1,73 @@
+{
+  "name": "@clear-a11y/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/main.js",
+  "description": "Clear A11Y API server: queue scans over HTTP, poll their status, fetch findings and reports. Self-hosted; no Redis needed.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "apps/server"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "README.md"
+  ],
+  "nx": {
+    "name": "server",
+    "tags": [
+      "type:app",
+      "scope:server",
+      "publish:private"
+    ],
+    "targets": {
+      "test-integration": {},
+      "serve": {
+        "executor": "nx:run-commands",
+        "continuous": true,
+        "dependsOn": [
+          "build"
+        ],
+        "cache": false,
+        "options": {
+          "command": "node apps/server/dist/main.js"
+        }
+      },
+      "docker-build": {
+        "executor": "nx:run-commands",
+        "cache": false,
+        "options": {
+          "command": "docker build -f apps/server/Dockerfile -t clear-a11y/server:local ."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@clear-a11y/ai": "workspace:*",
+    "@clear-a11y/core": "workspace:*",
+    "@clear-a11y/queue": "workspace:*",
+    "@clear-a11y/reporter": "workspace:*",
+    "@clear-a11y/runner": "workspace:*",
+    "@nestjs/common": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "bullmq": "catalog:",
+    "ioredis": "catalog:",
+    "reflect-metadata": "catalog:",
+    "rxjs": "catalog:",
+    "tslib": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@clear-a11y/test-utils": "workspace:*",
+    "@nestjs/testing": "catalog:",
+    "@types/supertest": "catalog:",
+    "supertest": "catalog:"
+  }
+}

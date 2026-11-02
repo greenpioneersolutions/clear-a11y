@@ -1,0 +1,115 @@
+/*
+ * Theme overrides found by scanning this site with Clear A11Y (see README and
+ * docs/decisions-pending/S15.md). Each rule says which finding it fixes.
+ */
+
+/*
+ * static/label-content-name-mismatch + at/label-in-name (WCAG 2.5.3): the search button's visible
+ * text included the "Ctrl K" hint, but its accessible name is "Search". The shortcut still works
+ * and is exposed with aria-keyshortcuts; the visible hint is hidden so name and label match.
+ */
+site-search button[data-open-modal] > kbd {
+  display: none !important;
+}
+
+/*
+ * visual/non-text-contrast (WCAG 1.4.11): the theme select had no border or fill, so its boundary
+ * had 1:1 contrast against the page.
+ */
+starlight-theme-select select {
+  border: 1px solid var(--sl-color-gray-3);
+  border-radius: 0.25rem;
+}
+
+/*
+ * visual/text-resize-clipped (WCAG 1.4.4): the site title (and its wrapper in the header) had a
+ * fixed size with overflow hidden, so at 200% text size it was cut off on narrow screens. Let it
+ * wrap instead, even inside a word when there is no other way to fit.
+ */
+.site-title {
+  white-space: normal;
+}
+.site-title span {
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+
+/*
+ * static/scrollable-region-focusable (WCAG 2.1.1) and static/color-contrast "partially obscured"
+ * (needs-review): Starlight turns tables into horizontally scrolling blocks, which keyboard users
+ * can't scroll. Lay them out as real tables that fit the column instead: cells wrap, long code
+ * included.
+ */
+.sl-markdown-content table:not(:where(.not-content *)) {
+  display: table;
+  width: 100%;
+  overflow: visible;
+}
+.sl-markdown-content :is(th, td):not(:where(.not-content *)),
+.sl-markdown-content :is(th, td):not(:where(.not-content *)) * {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+/*
+ * Code blocks (Expressive Code).
+ * - keyboard/focus-order-backward (WCAG 2.4.3): the copy button sat at the top right, but comes
+ *   after the scrollable code in the Tab order, so focus jumped back up. It now sits at the bottom
+ *   right, where Tab order and reading order agree.
+ * - keyboard/focus-not-visible (WCAG 2.4.7): the scrollable code area (tabindex=0) had a faint
+ *   focus indicator. Give it the same strong outline as links.
+ */
+.sl-markdown-content .expressive-code .copy {
+  inset-block-start: auto;
+  inset-block-end: calc(var(--ec-brdWd) + 0.4rem);
+}
+.sl-markdown-content .expressive-code pre:focus-visible {
+  outline: 3px solid var(--sl-color-text-accent);
+  outline-offset: -3px;
+}
+
+/*
+ * Search dialog (Pagefind).
+ * - visual/text-resize-clipped (WCAG 1.4.4): the clear button's "Clear" text was hidden by
+ *   clipping it under the icon, so enlarged text overflowed. The button keeps its accessible name
+ *   ("Clear"), but its text takes no space; the icon is the visible label.
+ * - static/color-contrast needs-review: decorative icons drawn as masked pseudo elements (the
+ *   magnifier on the search form that wraps the results, the page and tree icons of each result)
+ *   and a transparent pseudo element stretched over each result to make the whole card clickable
+ *   stopped contrast from being measured. They are removed; the input keeps its "Search" label,
+ *   results keep their indentation and the result title stays the link.
+ */
+#starlight__search .pagefind-ui__search-clear {
+  font-size: 0;
+}
+#starlight__search .pagefind-ui__form::before,
+#starlight__search .pagefind-ui__result-link::after,
+#starlight__search .pagefind-ui__result-inner > .pagefind-ui__result-title::before,
+#starlight__search .pagefind-ui__result-nested::before {
+  content: none;
+}
+
+/* Rule metadata on rule pages: a compact definition list. */
+.rule-meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+}
+.rule-meta dt {
+  font-weight: 600;
+  margin: 0;
+}
+.rule-meta dd {
+  margin: 0;
+}
+@media (max-width: 30rem) {
+  .rule-meta {
+    grid-template-columns: 1fr;
+  }
+  .rule-meta dd + dt {
+    margin-top: 0.5rem;
+  }
+}

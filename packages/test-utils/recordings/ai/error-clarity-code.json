@@ -1,0 +1,11 @@
+{
+  "name": "ai/error-clarity-code",
+  "source": "synthetic",
+  "request": { "judge": "error-clarity", "promptVersion": 1, "match": { "errorText": "Error 42" } },
+  "response": {
+    "verdict": "fail",
+    "confidence": 0.9,
+    "reason": "\"Error 42\" does not say what is wrong, although the field's pattern shows a date format was expected.",
+    "suggestion": "\"Enter the date as DD/MM/YYYY, for example 07/03/2026.\""
+  }
+}

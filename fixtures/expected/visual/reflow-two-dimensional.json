@@ -1,0 +1,15 @@
+{
+  "page": "visual/reflow-two-dimensional.html",
+  "title": "Pricing: plan cards scroll sideways",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/reflow-two-dimensional#1",
+      "wcag": ["1.4.10"],
+      "selector": "#plans",
+      "layer": "visual",
+      "description": "At 320 CSS px the plan cards stay in one row and the region scrolls sideways, although plain text cards do not need a two-dimensional layout.",
+      "ruleId": "visual/reflow-two-dimensional"
+    }
+  ]
+}

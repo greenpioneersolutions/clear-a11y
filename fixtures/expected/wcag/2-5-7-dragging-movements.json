@@ -1,0 +1,15 @@
+{
+  "page": "wcag/2-5-7-dragging-movements.html",
+  "title": "Task list that can only be reordered by dragging",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-5-7-dragging-movements#1",
+      "wcag": ["2.5.7", "2.1.1"],
+      "selector": "#task-list",
+      "layer": "at",
+      "description": "Tasks can only be reordered by dragging; there are no Move up/Move down buttons or another single-pointer (or keyboard) way to change the order.",
+      "ruleId": "at/drag-without-alternative"
+    }
+  ]
+}

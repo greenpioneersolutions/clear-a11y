@@ -1,0 +1,16 @@
+{
+  "name": "persona/kb-checkout-4-give-up",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-keyboard-only",
+    "promptVersion": 1,
+    "match": {
+      "step": 4,
+      "focused": null
+    }
+  },
+  "response": {
+    "action": "give_up",
+    "reason": "Pay now is on screen but Tab went from the terms checkbox straight out of the page; I can't reach it."
+  }
+}

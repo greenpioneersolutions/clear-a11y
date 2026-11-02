@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/scripts",
+    "tsBuildInfoFile": "./out-tsc/scripts/tsconfig.tsbuildinfo",
+    "rootDir": ".",
+    "allowImportingTsExtensions": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "lib": ["es2023", "dom", "dom.iterable"]
+  },
+  "include": [
+    "scripts/**/*.ts",
+    "test/**/*.ts",
+    "vitest.config.mts",
+    "vitest.integration.config.mts"
+  ],
+  "references": [
+    { "path": "../../packages/core/tsconfig.lib.json" },
+    { "path": "../../packages/repo/tsconfig.lib.json" },
+    { "path": "../../packages/runner/tsconfig.lib.json" },
+    { "path": "../../packages/browser/tsconfig.lib.json" },
+    { "path": "../../packages/test-utils/tsconfig.lib.json" }
+  ]
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign up: visible field border</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #ffffff; }
+      main { padding: 16px; }
+      label { display: block; margin-bottom: 4px; }
+      /* Correct pattern: a #767676 border on white is 4.5:1. */
+      #signup-email { font: inherit; padding: 8px; width: 280px; border: 1px solid #767676; background: #ffffff; color: #1a1a1a; }
+      /* An icon-only button whose dark icon has strong contrast needs no border. */
+      #clear-email { width: 32px; height: 32px; padding: 4px; border: 0; background: none; vertical-align: middle; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Create an account</h1>
+      <form>
+        <label for="signup-email">Email address</label>
+        <input id="signup-email" type="email" autocomplete="email" />
+        <button id="clear-email" type="reset" aria-label="Clear email">
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5 L19 19 M19 5 L5 19" stroke="#1a1a1a" stroke-width="3" /></svg>
+        </button>
+      </form>
+    </main>
+  </body>
+</html>

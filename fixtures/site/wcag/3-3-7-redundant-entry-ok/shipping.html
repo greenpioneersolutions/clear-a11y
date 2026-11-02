@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout step 1: delivery address</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 12px; }
+      input, select { font: inherit; border: 2px solid #767676; padding: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Step 1 of 2: Delivery address</h1>
+      <!-- Correct pattern (with billing.html): step 2 offers to reuse this address. -->
+      <form id="shipping-form" action="billing.html">
+        <div class="field">
+          <label for="ship-line1">Address line 1</label>
+          <input id="ship-line1" name="ship-line1" autocomplete="shipping address-line1" required />
+        </div>
+        <div class="field">
+          <label for="ship-city">Town or city</label>
+          <input id="ship-city" name="ship-city" autocomplete="shipping address-level2" required />
+        </div>
+        <div class="field">
+          <label for="ship-postcode">Postcode</label>
+          <input id="ship-postcode" name="ship-postcode" autocomplete="shipping postal-code" required />
+        </div>
+        <button type="submit">Continue to payment</button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes app with shake to undo only</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      textarea { font: inherit; width: 100%; max-width: 420px; height: 120px; border: 2px solid #767676; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Notes</h1>
+      <!-- Seeded barrier: shaking the device undoes the last edit; there is no undo button and the
+           motion response can't be turned off. WCAG 2.5.4. -->
+      <label for="note">Note</label>
+      <textarea id="note">Buy oat milk</textarea>
+      <p>Tip: shake your phone to undo.</p>
+      <p role="status" id="note-status"></p>
+    </main>
+    <script>
+      let previous = document.getElementById('note').value;
+      window.addEventListener('devicemotion', (e) => {
+        const a = e.acceleration;
+        if (a && Math.abs(a.x ?? 0) > 15) {
+          document.getElementById('note').value = previous;
+          document.getElementById('note-status').textContent = 'Undone.';
+        }
+      });
+    </script>
+  </body>
+</html>

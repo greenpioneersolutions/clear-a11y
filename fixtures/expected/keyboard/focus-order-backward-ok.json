@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/focus-order-backward-ok.html",
+  "title": "Shipping form: focus order follows the visual order",
+  "correctPattern": true,
+  "issues": []
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Persona tasks: correct pattern</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 24px; }
+      a { color: #1a4f8b; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Help centre</h1>
+      <!-- Correct pattern: this page must produce zero findings. The persona task "find the
+           delivery information" (fixtures/personas.json) completes here with native links. -->
+      <nav aria-label="Help topics">
+        <ul>
+          <li><a href="#sizes">Size guide</a></li>
+          <li><a href="#delivery">Delivery and returns</a></li>
+        </ul>
+      </nav>
+      <h2 id="sizes">Size guide</h2>
+      <p>Our shoes run true to size. Between sizes, choose the larger one.</p>
+      <h2 id="delivery">Delivery and returns</h2>
+      <p>Delivery takes two to four working days in the EU. Returns are free for 30 days.</p>
+    </main>
+  </body>
+</html>

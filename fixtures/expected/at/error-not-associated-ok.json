@@ -1,0 +1,6 @@
+{
+  "page": "at/error-not-associated-ok.html",
+  "title": "Correct pattern: card error linked with aria-describedby",
+  "correctPattern": true,
+  "issues": []
+}

@@ -1,0 +1,15 @@
+{
+  "page": "widgets/listbox-keyboard.html",
+  "title": "Shoe size: listbox highlight shown only visually",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/listbox-keyboard#1",
+      "wcag": ["4.1.2"],
+      "selector": "#size-list",
+      "layer": "widgets",
+      "description": "Arrow keys move a visual highlight through the sizes, but aria-activedescendant and aria-selected never change, so screen reader users cannot tell which size is chosen.",
+      "ruleId": "widgets/listbox-keyboard"
+    }
+  ]
+}

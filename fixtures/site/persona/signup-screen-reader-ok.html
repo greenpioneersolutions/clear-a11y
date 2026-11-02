@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: correct pattern</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 24px; }
+      .row { display: flex; gap: 8px; align-items: flex-end; }
+      label { display: block; }
+      input { font: inherit; padding: 8px; border: 1px solid #555; border-radius: 4px; }
+      .go { height: 44px; display: inline-flex; gap: 8px; align-items: center; padding: 0 16px; background: #1a5fb4; color: #fff; border: 0; border-radius: 6px; font: inherit; font-weight: 600; }
+      :focus-visible { outline: 3px solid #1a1a1a; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Stay in the loop</h1>
+      <!-- Correct pattern: this page must produce zero findings. The button's visible text
+           "Sign up" is its accessible name; the arrow icon is decorative. -->
+      <p>One email a month about new trails and gear.</p>
+      <div class="row">
+        <div>
+          <label for="email">Email address</label>
+          <input id="email" type="email" autocomplete="email" />
+        </div>
+        <button id="signup" class="go" type="button">
+          Sign up
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20">
+            <path d="M3 10h11M10 4l6 6-6 6" stroke="#fff" stroke-width="2.5" fill="none" />
+          </svg>
+        </button>
+      </div>
+      <p id="status" role="status"></p>
+    </main>
+    <script>
+      document.getElementById('signup').addEventListener('click', () => {
+        const email = document.getElementById('email').value.trim();
+        document.getElementById('status').textContent = email
+          ? `Thanks! You are subscribed as ${email}.`
+          : 'Enter your email address to subscribe.';
+      });
+    </script>
+  </body>
+</html>

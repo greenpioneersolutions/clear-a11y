@@ -1,0 +1,24 @@
+import type { RuleMeta } from '@clear-a11y/core';
+
+export const <%= propertyName %>Rule: RuleMeta = {
+  id: '<%= ruleId %>',
+  engine: 'engine-<%= engine %>',
+  wcag: <%- JSON.stringify(wcag).replace(/"/g, "'") %>,
+  tier: '<%= tier %>',
+  title: '<%= title %>',
+  description: 'TODO: what this rule catches and who it affects.',
+  fix: 'TODO: how to fix it.',
+};
+
+/** Input for the pure check. Replace with the data the engine collects from the page. */
+export interface <%= className %>Input {
+  selector: string;
+}
+
+/**
+ * Pure analysis for <%= ruleId %>. No browser I/O here: the engine collects the input,
+ * this function decides. Returns true when the barrier is present.
+ */
+export function detect<%= className %>(_input: <%= className %>Input): boolean {
+  return false;
+}

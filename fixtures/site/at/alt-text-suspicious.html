@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product page: alt text that describes nothing</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 0 16px; }
+      img { max-width: 100%; height: auto; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe</h1>
+      <!-- Seeded barriers (1.1.1): every image has alt text, so rules scanners pass, but the
+           text is a camera file name, a URL and a placeholder word. -->
+      <img
+        id="product-photo"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Crect width='240' height='120' fill='%23345'/%3E%3C/svg%3E"
+        width="240"
+        height="120"
+        alt="DSC_0042.JPG"
+      />
+      <p>Light, grippy and made for wet rock.</p>
+      <img
+        id="size-chart"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='80'%3E%3Crect width='240' height='80' fill='%23567'/%3E%3C/svg%3E"
+        width="240"
+        height="80"
+        alt="https://cdn.example.com/charts/size-chart-v3.png"
+      />
+      <h2>Reviews</h2>
+      <img
+        id="review-badge"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='38' fill='%23789'/%3E%3C/svg%3E"
+        width="80"
+        height="80"
+        alt="image"
+      />
+      <p>4.6 out of 5 from 212 runners.</p>
+    </main>
+  </body>
+</html>

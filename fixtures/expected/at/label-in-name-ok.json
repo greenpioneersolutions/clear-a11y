@@ -1,0 +1,6 @@
+{
+  "page": "at/label-in-name-ok.html",
+  "title": "Correct pattern: accessible name starts with the visible label",
+  "correctPattern": true,
+  "issues": []
+}

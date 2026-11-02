@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign up: faint field border</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #ffffff; }
+      main { padding: 16px; }
+      label { display: block; margin-bottom: 4px; }
+      /* Seeded barrier: a #ddd border on white is about 1.4:1, and the field has no fill. People
+         with low vision can't see where to type (1.4.11 needs 3:1). */
+      #signup-email { font: inherit; padding: 8px; width: 280px; border: 1px solid #dddddd; background: #ffffff; color: #1a1a1a; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Create an account</h1>
+      <form>
+        <label for="signup-email">Email address</label>
+        <input id="signup-email" type="email" autocomplete="email" />
+      </form>
+    </main>
+  </body>
+</html>

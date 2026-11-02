@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Release notes: fluid layout</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      header, main { padding: 16px; }
+      /* Correct pattern: the layout caps its width but shrinks with the viewport. */
+      #layout { max-width: 960px; }
+      img { max-width: 100%; height: auto; }
+    </style>
+  </head>
+  <body>
+    <header><a href="#notes">Skip to release notes</a></header>
+    <main id="notes">
+      <div id="layout">
+        <h1>Release notes</h1>
+        <p>Version 4.2 adds offline mode, faster search and a new export dialog. Your saved filters are kept when you upgrade.</p>
+        <p>Offline mode keeps the last 50 documents you opened available without a connection.</p>
+        <img src="../_assets/pale-photo.png" width="960" height="480" alt="" />
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "page": "wcag/2-5-1-pointer-gestures-ok.html",
+  "title": "Product carousel with previous and next buttons",
+  "correctPattern": true,
+  "issues": []
+}

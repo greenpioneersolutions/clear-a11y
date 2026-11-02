@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delivery: invalid field shown only with a red border</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      input { font: inherit; border: 2px solid #767676; }
+      input.invalid { border-color: #c01c28; background: #fdecec; }
+      button { font: inherit; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Delivery address</h1>
+      <!-- Seeded barrier: an empty postcode only turns red. No text says what is wrong, so the
+           error is not identified for anyone who can't see the color change (3.3.1). -->
+      <form id="delivery" action="#" novalidate>
+        <div class="field">
+          <label for="postcode">Postcode</label>
+          <input id="postcode" autocomplete="postal-code" />
+        </div>
+        <button type="submit">Continue</button>
+      </form>
+    </main>
+    <script>
+      document.getElementById('delivery').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const input = document.getElementById('postcode');
+        input.classList.toggle('invalid', !input.value.trim());
+      });
+    </script>
+  </body>
+</html>

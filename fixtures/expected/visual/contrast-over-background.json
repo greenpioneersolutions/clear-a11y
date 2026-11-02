@@ -1,0 +1,15 @@
+{
+  "page": "visual/contrast-over-background.html",
+  "title": "Travel: caption over a pale photo",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/contrast-over-background#1",
+      "wcag": ["1.4.3"],
+      "selector": "#banner-caption",
+      "layer": "visual",
+      "description": "White caption directly on a pale photo: about 1.2:1 against the real pixels behind the letters.",
+      "ruleId": "visual/contrast-over-background"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "page": "wcag/1-2-3-media-alternative-ok.html",
+  "title": "Recipe video with a described transcript",
+  "correctPattern": true,
+  "issues": []
+}

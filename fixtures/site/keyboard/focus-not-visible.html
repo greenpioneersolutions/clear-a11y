@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Site header: focus indicator removed</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      nav ul { display: flex; gap: 24px; list-style: none; padding: 0; }
+      nav a { color: #1a1a1a; text-decoration: none; padding: 8px; }
+      /* Seeded barrier: focus indicator removed with nothing to replace it (2.4.7). */
+      nav a:focus { outline: none; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main">
+        <ul>
+          <li><a id="link-home" href="#home">Home</a></li>
+          <li><a id="link-pricing" href="#pricing">Pricing</a></li>
+          <li><a id="link-contact" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Welcome</h1>
+      <p>Use Tab to move through the navigation. You can't see where you are.</p>
+    </main>
+  </body>
+</html>

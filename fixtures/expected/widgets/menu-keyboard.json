@@ -1,0 +1,15 @@
+{
+  "page": "widgets/menu-keyboard.html",
+  "title": "Orders: menu items the keyboard cannot reach",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/menu-keyboard#1",
+      "wcag": ["2.1.1"],
+      "selector": "#actions-button | #actions-menu | #action-track",
+      "layer": "widgets",
+      "description": "The Order actions menu opens, but focus stays on the button, the items have tabindex=\"-1\" and the arrow keys do nothing, so keyboard users cannot choose an action.",
+      "ruleId": "widgets/menu-keyboard"
+    }
+  ]
+}

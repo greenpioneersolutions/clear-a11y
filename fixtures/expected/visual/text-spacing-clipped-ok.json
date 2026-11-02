@@ -1,0 +1,6 @@
+{
+  "page": "visual/text-spacing-clipped-ok.html",
+  "title": "Product card: note adapts to text spacing",
+  "correctPattern": true,
+  "issues": []
+}

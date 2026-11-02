@@ -1,0 +1,6 @@
+{
+  "page": "wcag/3-3-4-error-prevention-ok/placed.html",
+  "title": "Order placed page with a cancellation window",
+  "correctPattern": true,
+  "issues": []
+}

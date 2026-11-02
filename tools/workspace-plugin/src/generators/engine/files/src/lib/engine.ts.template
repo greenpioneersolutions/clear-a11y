@@ -1,0 +1,19 @@
+import type { Engine, PageContext } from '@clear-a11y/browser';
+import type { Finding } from '@clear-a11y/core';
+
+export const ENGINE_NAME = 'engine-<%= name %>';
+
+/**
+ * <%= description %>
+ *
+ * Keep browser I/O here and put analysis in small pure functions under `src/rules/`
+ * so it can be unit tested without a browser.
+ */
+export function create<%= className %>Engine(): Engine {
+  return {
+    name: ENGINE_NAME,
+    async run(_ctx: PageContext): Promise<Finding[]> {
+      return [];
+    },
+  };
+}

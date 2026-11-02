@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/focus-not-returned.html",
+  "title": "Article: share dialog drops focus when it closes",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/focus-not-returned#1",
+      "wcag": ["2.4.3"],
+      "selector": "#share-dialog | #close-share | #open-share",
+      "layer": "keyboard",
+      "description": "Closing the Share dialog (Escape or Close) drops focus to the page body instead of returning it to the Share button.",
+      "ruleId": "keyboard/focus-not-returned"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Travel: caption over a pale photo</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      /* Seeded barrier: white text directly on a pale photo (local PNG). The real pixels behind the
+         letters give about 1.2:1, far below 4.5:1 (1.4.3). The dark background-color is only a
+         fallback that rules scanners see; it is never painted under the image. */
+      .banner {
+        padding: 40px 24px;
+        background-color: #1a1a1a;
+        background-image: url('../_assets/pale-photo.png');
+        background-size: cover;
+      }
+      #banner-caption { margin: 0; color: #ffffff; font-size: 18px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Coastal walks</h1>
+      <div class="banner"><p id="banner-caption">Twelve routes along the northern cliffs, from two to six hours.</p></div>
+      <p>Each route has a map, the walking time and where to park.</p>
+    </main>
+  </body>
+</html>

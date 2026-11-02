@@ -1,0 +1,6 @@
+{
+  "page": "visual/hover-content-not-persistent-ok.html",
+  "title": "Account: password hint stays until dismissed",
+  "correctPattern": true,
+  "issues": []
+}

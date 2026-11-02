@@ -1,0 +1,15 @@
+{
+  "page": "at/label-in-name.html",
+  "title": "Shop: visible label not in the accessible name",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/label-in-name#1",
+      "wcag": ["2.5.3"],
+      "selector": "#search-button",
+      "layer": "at",
+      "description": "The button shows \"Search\" but aria-label renames it \"Find products\", so speech-input users cannot activate it by saying what they see.",
+      "ruleId": "at/label-in-name"
+    }
+  ]
+}

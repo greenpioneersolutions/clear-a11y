@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: navigation popover opened with popovertarget</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 0 1rem; }
+      button { font: inherit; padding: 8px 12px; }
+      #site-nav { margin: 0; padding: 1rem; border: 2px solid #1a1a1a; }
+      #site-nav ul { margin: 0; padding-left: 1.25rem; }
+      #site-nav a { display: inline-block; padding: 4px 0; color: #1a4fa0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!--
+        Correct pattern: a popover invoker. The browser exposes the button's expanded state from
+        the popover's open state (HTML-AAM), so no aria-expanded is needed; Escape and clicking
+        outside close it natively.
+      -->
+      <button id="nav-toggle" type="button" popovertarget="site-nav">Menu</button>
+      <nav id="site-nav" popover aria-label="Site">
+        <ul>
+          <li><a href="#shipping">Shipping</a></li>
+          <li><a href="#returns">Returns</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Help center</h1>
+      <h2 id="shipping">Shipping</h2>
+      <p>Orders ship within two working days.</p>
+      <h2 id="returns">Returns</h2>
+      <p>Return any item within 30 days.</p>
+    </main>
+  </body>
+</html>

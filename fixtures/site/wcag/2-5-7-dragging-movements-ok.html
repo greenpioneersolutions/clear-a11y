@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Task list with move buttons</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .tasks { padding: 0; list-style: none; max-width: 420px; }
+      .tasks li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px; margin-bottom: 4px; border: 1px solid #767676; background: #f6f6f6; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Prioritise your tasks</h1>
+      <!-- Correct pattern: dragging works, and every task also has Move up / Move down buttons. -->
+      <ul class="tasks" id="task-list">
+        <li draggable="true"><span>Book the venue</span> <span><button type="button" class="up">Move up: Book the venue</button> <button type="button" class="down">Move down: Book the venue</button></span></li>
+        <li draggable="true"><span>Send invitations</span> <span><button type="button" class="up">Move up: Send invitations</button> <button type="button" class="down">Move down: Send invitations</button></span></li>
+        <li draggable="true"><span>Order catering</span> <span><button type="button" class="up">Move up: Order catering</button> <button type="button" class="down">Move down: Order catering</button></span></li>
+      </ul>
+      <p role="status" id="task-status"></p>
+    </main>
+    <script>
+      const list = document.getElementById('task-list');
+      let dragged = null;
+      list.addEventListener('dragstart', (e) => (dragged = e.target.closest('li')));
+      list.addEventListener('dragover', (e) => e.preventDefault());
+      list.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const target = e.target.closest('li');
+        if (dragged && target && dragged !== target) list.insertBefore(dragged, target);
+      });
+      list.addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (!button) return;
+        const item = button.closest('li');
+        if (button.classList.contains('up') && item.previousElementSibling)
+          list.insertBefore(item, item.previousElementSibling);
+        if (button.classList.contains('down') && item.nextElementSibling)
+          list.insertBefore(item.nextElementSibling, item);
+        button.focus();
+        const pos = Array.from(list.children).indexOf(item) + 1;
+        document.getElementById('task-status').textContent = `${item.firstElementChild.textContent} is now number ${pos}.`;
+      });
+    </script>
+  </body>
+</html>

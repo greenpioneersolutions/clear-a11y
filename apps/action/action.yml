@@ -1,0 +1,101 @@
+name: Clear A11Y
+description: >-
+  Accessibility testing for pull requests: scans the pages, Storybook stories and source files a
+  change touched, writes SARIF for code scanning, an HTML report and a job summary.
+author: Clear A11Y contributors
+branding:
+  icon: eye
+  color: blue
+
+inputs:
+  base-url:
+    description: >-
+      Base URL of the running app or preview deployment (for example http://localhost:3000).
+      Routes are resolved against it. Without it, only stories and source files are scanned.
+    required: false
+  routes:
+    description: >-
+      Which routes each source file affects: inline JSON or the path of a JSON file, for example
+      {"src/pages/checkout/**": ["/checkout"], "src/components/Header.tsx": ["/"]}.
+      Routes are paths on base-url. Next.js app/ and pages/ files are mapped automatically.
+    required: false
+  default-targets:
+    description: >-
+      Paths on base-url (newline or comma separated) scanned when no changed file maps to a route
+      or story. Empty: scan no pages in that case (the summary says so).
+    required: false
+  repo-path:
+    description: Repository checkout to scan.
+    required: false
+    default: .
+  config:
+    description: Path to a clear-a11y JSON config file (engines, viewports, repo options).
+    required: false
+  storybook-static:
+    description: >-
+      Path to a built Storybook (storybook build), inside repo-path. Stories whose story file or
+      component changed are scanned from it, and their findings are mapped to source files.
+    required: false
+  changed-only:
+    description: >-
+      Scan only what the pull request changed (true) or everything configured, the whole repo and
+      a crawl of base-url when no routes are configured (false).
+    required: false
+    default: 'true'
+  fail-on:
+    description: 'Fail the job when a finding at or above this tier exists: violation, likely, needs-review or never.'
+    required: false
+    default: violation
+  formats:
+    description: 'Report formats to write: sarif, html, json (comma separated).'
+    required: false
+    default: sarif,html
+  out-dir:
+    description: Folder for report.sarif, report.html and screenshots.
+    required: false
+    default: clear-a11y-report
+  max-pages:
+    description: Most pages and stories scanned in the browser per run.
+    required: false
+    default: '25'
+  base-sha:
+    description: Compare from this commit instead of the one in the event (with head-sha).
+    required: false
+  head-sha:
+    description: Compare to this commit instead of the one in the event (with base-sha).
+    required: false
+  artifact-name:
+    description: Name of the artifact your workflow uploads the report as (used in the summary text).
+    required: false
+    default: clear-a11y-report
+  comment:
+    description: >-
+      Also post the summary as a pull request comment (updated on every run). Off by default;
+      needs github-token and `pull-requests: write`. Fork pull requests can't be commented on.
+    required: false
+    default: 'false'
+  github-token:
+    description: Token for the optional comment, for example ${{ github.token }}. Not needed otherwise.
+    required: false
+
+outputs:
+  violations:
+    description: Number of violation findings.
+  likely:
+    description: Number of likely findings.
+  needs-review:
+    description: Number of needs-review findings.
+  sarif-path:
+    description: Path of report.sarif (empty when sarif is not in formats).
+  report-path:
+    description: Path of report.html (empty when html is not in formats).
+  json-path:
+    description: Path of report.json (empty when json is not in formats).
+  scanned-targets:
+    description: JSON array of the page and story URLs scanned in the browser.
+  changed-files:
+    description: Number of changed files considered (empty when not limited to changes).
+
+runs:
+  using: node24
+  main: dist/index.js

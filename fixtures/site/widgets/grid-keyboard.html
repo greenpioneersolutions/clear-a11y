@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delivery date: calendar grid without arrow keys</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      table { border-collapse: collapse; }
+      th, td { padding: 2px; text-align: center; }
+      td button { width: 40px; height: 32px; font: inherit; background: #fff; border: 1px solid #555; color: #1a1a1a; }
+      td button[aria-pressed='true'] { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Choose a delivery date</h1>
+      <!-- Seeded barrier: a roving-tabindex calendar without the arrow-key handler. Only the first
+           day is in the Tab sequence, every other day button has tabindex="-1", so keyboard users
+           can only ever pick 3 June (2.1.1). -->
+      <table role="grid" id="june-grid" aria-label="June 2027">
+        <thead>
+          <tr><th role="columnheader" abbr="Monday">Mo</th><th role="columnheader" abbr="Tuesday">Tu</th><th role="columnheader" abbr="Wednesday">We</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td role="gridcell"><button type="button" id="day-3" tabindex="0" aria-pressed="false">3</button></td>
+            <td role="gridcell"><button type="button" id="day-4" tabindex="-1" aria-pressed="false">4</button></td>
+            <td role="gridcell"><button type="button" id="day-5" tabindex="-1" aria-pressed="false">5</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" id="day-10" tabindex="-1" aria-pressed="false">10</button></td>
+            <td role="gridcell"><button type="button" id="day-11" tabindex="-1" aria-pressed="false">11</button></td>
+            <td role="gridcell"><button type="button" id="day-12" tabindex="-1" aria-pressed="false">12</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <p id="chosen-date"></p>
+    </main>
+    <script>
+      for (const day of document.querySelectorAll('#june-grid button')) {
+        day.addEventListener('click', () => {
+          for (const d of document.querySelectorAll('#june-grid button')) d.setAttribute('aria-pressed', String(d === day));
+          document.getElementById('chosen-date').textContent = `Delivery on ${day.textContent} June.`;
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: button label cut off when zoomed</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      /* Seeded barrier: the button's width follows the viewport but its label can't wrap and
+         overflow is hidden. At 200% zoom (half the CSS viewport) the label is cut off (1.4.4). */
+      #subscribe-button {
+        width: 24vw;
+        height: 40px;
+        padding: 0 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font: inherit;
+        color: #ffffff;
+        background: #1c3d5a;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Stay in the loop</h1>
+      <p>One email a month with new rules and benchmark results.</p>
+      <button id="subscribe-button" type="button">Subscribe to the newsletter</button>
+    </main>
+  </body>
+</html>

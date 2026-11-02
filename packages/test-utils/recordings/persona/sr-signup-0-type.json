@@ -1,0 +1,17 @@
+{
+  "name": "persona/sr-signup-0-type",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-screen-reader",
+    "promptVersion": 1,
+    "match": {
+      "step": 0
+    }
+  },
+  "response": {
+    "action": "type",
+    "ref": "n8",
+    "text": "reader@example.test",
+    "reason": "Fill in the Email address field with the test address."
+  }
+}

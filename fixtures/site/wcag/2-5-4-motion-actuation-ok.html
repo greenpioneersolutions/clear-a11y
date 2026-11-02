@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes app with an undo button and opt-in shake</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      textarea { font: inherit; width: 100%; max-width: 420px; height: 120px; border: 2px solid #767676; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Notes</h1>
+      <!-- Correct pattern: an Undo button, and shake-to-undo is off until the user turns it on. -->
+      <label for="note">Note</label>
+      <textarea id="note">Buy oat milk</textarea>
+      <p><button type="button" id="undo">Undo</button></p>
+      <p><label><input type="checkbox" id="shake" /> Shake to undo</label></p>
+      <p role="status" id="note-status"></p>
+    </main>
+    <script>
+      const note = document.getElementById('note');
+      let previous = note.value;
+      const undo = () => {
+        note.value = previous;
+        document.getElementById('note-status').textContent = 'Undone.';
+      };
+      const onMotion = (e) => {
+        if (Math.abs(e.acceleration?.x ?? 0) > 15) undo();
+      };
+      document.getElementById('undo').addEventListener('click', undo);
+      document.getElementById('shake').addEventListener('change', (e) => {
+        if (e.target.checked) window.addEventListener('devicemotion', onMotion);
+        else window.removeEventListener('devicemotion', onMotion);
+      });
+    </script>
+  </body>
+</html>

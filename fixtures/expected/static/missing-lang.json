@@ -1,0 +1,14 @@
+{
+  "page": "static/missing-lang.html",
+  "title": "About us: page language missing",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "static/missing-lang#1",
+      "wcag": ["3.1.1"],
+      "selector": "html",
+      "layer": "static",
+      "description": "Page has no lang attribute, so screen readers may use the wrong voice."
+    }
+  ]
+}

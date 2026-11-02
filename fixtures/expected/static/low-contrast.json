@@ -1,0 +1,14 @@
+{
+  "page": "static/low-contrast.html",
+  "title": "Pricing: low contrast text",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "static/low-contrast#1",
+      "wcag": ["1.4.3"],
+      "selector": "#fine-print",
+      "layer": "static",
+      "description": "Fine print is #b0b0b0 on white (about 2.1:1), below 4.5:1."
+    }
+  ]
+}

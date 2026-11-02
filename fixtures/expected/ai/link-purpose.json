@@ -1,0 +1,14 @@
+{
+  "page": "ai/link-purpose.html",
+  "title": "Resources: links with no purpose",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "ai/link-purpose#1",
+      "wcag": ["2.4.4"],
+      "selector": "#link-1 | #link-2 | #link-3",
+      "layer": "ai",
+      "description": "Three identical Click here links go to different places with no context."
+    }
+  ]
+}

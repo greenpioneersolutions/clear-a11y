@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/focus-low-contrast.html",
+  "title": "Site header: faint focus outline",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/focus-low-contrast#1",
+      "wcag": ["2.4.7", "1.4.11"],
+      "selector": "#link-home | #link-pricing | #link-contact",
+      "layer": "keyboard",
+      "description": "The focus indicator is a 1px light-gray outline on white (about 1.4:1); keyboard users can barely see where focus is.",
+      "ruleId": "keyboard/focus-not-visible"
+    }
+  ]
+}

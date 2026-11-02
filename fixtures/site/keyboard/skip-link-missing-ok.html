@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop home: landmarks and headings to bypass navigation</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      nav ul { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; padding: 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <!-- Correct pattern: the same navigation, but the content is in a main landmark and starts
+         with a heading, so assistive technology users can jump straight to it. -->
+    <header id="site-header">
+      <a href="#home">Trail Shop</a>
+      <nav id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#shoes">Shoes</a></li>
+          <li><a href="#clothing">Clothing</a></li>
+          <li><a href="#accessories">Accessories</a></li>
+          <li><a href="#sale">Sale</a></li>
+          <li><a href="#stores">Stores</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#help">Help</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>New this week</h1>
+      <p><a href="#trail">Trail running shoe</a>, 120 euros.</p>
+    </main>
+  </body>
+</html>

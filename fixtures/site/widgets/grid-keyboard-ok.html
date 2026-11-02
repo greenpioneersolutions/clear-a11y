@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: calendar grid with arrow keys</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      table { border-collapse: collapse; }
+      th, td { padding: 2px; text-align: center; }
+      td button { width: 40px; height: 32px; font: inherit; background: #fff; border: 1px solid #555; color: #1a1a1a; }
+      td button[aria-pressed='true'] { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Choose a delivery date</h1>
+      <!-- Correct pattern, rewritten from the ARIA Authoring Practices Guide "Data Grid" and "Date
+           Picker Dialog" examples (https://www.w3.org/WAI/ARIA/apg/patterns/grid/): one day button
+           is in the Tab sequence and Left/Right/Up/Down Arrow, Home and End move focus between days
+           with a roving tabindex. -->
+      <table role="grid" id="june-grid" aria-label="June 2027">
+        <thead>
+          <tr><th role="columnheader" abbr="Monday">Mo</th><th role="columnheader" abbr="Tuesday">Tu</th><th role="columnheader" abbr="Wednesday">We</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td role="gridcell"><button type="button" id="day-3" tabindex="0" aria-pressed="false">3</button></td>
+            <td role="gridcell"><button type="button" id="day-4" tabindex="-1" aria-pressed="false">4</button></td>
+            <td role="gridcell"><button type="button" id="day-5" tabindex="-1" aria-pressed="false">5</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" id="day-10" tabindex="-1" aria-pressed="false">10</button></td>
+            <td role="gridcell"><button type="button" id="day-11" tabindex="-1" aria-pressed="false">11</button></td>
+            <td role="gridcell"><button type="button" id="day-12" tabindex="-1" aria-pressed="false">12</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <p id="chosen-date" role="status"></p>
+    </main>
+    <script>
+      const rows = [...document.querySelectorAll('#june-grid tbody tr')].map((tr) => [...tr.querySelectorAll('button')]);
+      function moveTo(r, c) {
+        r = Math.max(0, Math.min(rows.length - 1, r));
+        c = Math.max(0, Math.min(rows[r].length - 1, c));
+        for (const row of rows) for (const b of row) b.tabIndex = -1;
+        rows[r][c].tabIndex = 0;
+        rows[r][c].focus();
+      }
+      rows.forEach((row, r) =>
+        row.forEach((day, c) => {
+          day.addEventListener('click', () => {
+            for (const b of rows.flat()) b.setAttribute('aria-pressed', String(b === day));
+            document.getElementById('chosen-date').textContent = `Delivery on ${day.textContent} June.`;
+          });
+          day.addEventListener('keydown', (event) => {
+            const target = {
+              ArrowRight: [r, c + 1],
+              ArrowLeft: [r, c - 1],
+              ArrowDown: [r + 1, c],
+              ArrowUp: [r - 1, c],
+              Home: [r, 0],
+              End: [r, row.length - 1],
+            }[event.key];
+            if (!target) return;
+            event.preventDefault();
+            moveTo(target[0], target[1]);
+          });
+        }),
+      );
+    </script>
+  </body>
+</html>

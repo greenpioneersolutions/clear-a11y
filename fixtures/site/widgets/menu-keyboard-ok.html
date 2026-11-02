@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: actions menu button</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .menu-wrap { position: relative; display: inline-block; }
+      [role='menu'] { position: absolute; margin: 4px 0 0; padding: 4px 0; list-style: none; background: #fff; border: 1px solid #555; min-width: 180px; }
+      [role='menuitem'] { padding: 6px 12px; cursor: pointer; }
+      [role='menuitem']:focus { background: #e8eef7; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Order 10432</h1>
+      <!-- Correct pattern, rewritten from the ARIA Authoring Practices Guide "Actions Menu Button"
+           example (https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/): Enter, Space and Down
+           Arrow open the menu and focus the first item, Up Arrow opens it on the last item, arrows
+           move with a roving tabindex, Escape closes and returns focus to the button. -->
+      <div class="menu-wrap">
+        <button type="button" id="actions-button" aria-haspopup="menu" aria-expanded="false">Order actions</button>
+        <ul role="menu" id="actions-menu" aria-labelledby="actions-button" hidden>
+          <li role="menuitem" id="action-track" tabindex="-1">Track parcel</li>
+          <li role="menuitem" id="action-invoice" tabindex="-1">Download invoice</li>
+          <li role="menuitem" id="action-cancel" tabindex="-1">Cancel order</li>
+        </ul>
+      </div>
+      <p id="last-action" role="status"></p>
+    </main>
+    <script>
+      const button = document.getElementById('actions-button');
+      const menu = document.getElementById('actions-menu');
+      const items = [...menu.querySelectorAll('[role=menuitem]')];
+      function open(index) {
+        menu.hidden = false;
+        button.setAttribute('aria-expanded', 'true');
+        items[(index + items.length) % items.length].focus();
+      }
+      function close(returnFocus) {
+        menu.hidden = true;
+        button.setAttribute('aria-expanded', 'false');
+        if (returnFocus) button.focus();
+      }
+      button.addEventListener('click', () => (menu.hidden ? open(0) : close(true)));
+      button.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown') { event.preventDefault(); open(0); }
+        if (event.key === 'ArrowUp') { event.preventDefault(); open(-1); }
+      });
+      items.forEach((item, i) => {
+        const choose = () => {
+          document.getElementById('last-action').textContent = `${item.textContent} requested.`;
+          close(true);
+        };
+        item.addEventListener('click', choose);
+        item.addEventListener('keydown', (event) => {
+          const next = { ArrowDown: i + 1, ArrowUp: i - 1, Home: 0, End: items.length - 1 }[event.key];
+          if (next !== undefined) { event.preventDefault(); items[(next + items.length) % items.length].focus(); }
+          else if (event.key === 'Escape') { event.preventDefault(); close(true); }
+          else if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); choose(); }
+          else if (event.key === 'Tab') close(false);
+        });
+      });
+      menu.addEventListener('focusout', (event) => {
+        if (!menu.contains(event.relatedTarget) && event.relatedTarget !== button) close(false);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: invalid field explained in text</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      input { font: inherit; border: 2px solid #767676; }
+      input.invalid { border-color: #c01c28; background: #fdecec; }
+      .error { color: #a51d2d; font-size: 14px; }
+      button { font: inherit; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Delivery address</h1>
+      <!-- Correct pattern: the red border comes with a text error linked to the field, and focus
+           moves to the field so the error is read out. -->
+      <form id="delivery" action="#" novalidate>
+        <div class="field">
+          <label for="postcode">Postcode</label>
+          <input id="postcode" autocomplete="postal-code" aria-describedby="postcode-error" />
+          <span id="postcode-error" class="error"></span>
+        </div>
+        <button type="submit">Continue</button>
+      </form>
+    </main>
+    <script>
+      document.getElementById('delivery').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const input = document.getElementById('postcode');
+        const empty = !input.value.trim();
+        input.classList.toggle('invalid', empty);
+        if (empty) input.setAttribute('aria-invalid', 'true');
+        else input.removeAttribute('aria-invalid');
+        document.getElementById('postcode-error').textContent = empty ? 'Enter your postcode.' : '';
+        if (empty) input.focus();
+      });
+    </script>
+  </body>
+</html>

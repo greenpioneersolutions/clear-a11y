@@ -1,0 +1,15 @@
+{
+  "page": "widgets/tabs-selected-state.html",
+  "title": "Order help: aria-selected never follows the tab",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/tabs-selected-state#1",
+      "wcag": ["4.1.2"],
+      "selector": "#tab-shipping | #tab-returns",
+      "layer": "widgets",
+      "description": "Switching tabs shows the new panel, but aria-selected stays on Delivery, so screen readers announce the wrong tab as selected.",
+      "ruleId": "widgets/tabs-selected-state"
+    }
+  ]
+}

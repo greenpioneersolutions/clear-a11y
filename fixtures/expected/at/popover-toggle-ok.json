@@ -1,0 +1,6 @@
+{
+  "page": "at/popover-toggle-ok.html",
+  "title": "Correct pattern: navigation popover opened with popovertarget (no aria-expanded needed)",
+  "correctPattern": true,
+  "issues": []
+}

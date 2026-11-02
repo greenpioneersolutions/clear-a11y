@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/overlay-focus-not-moved.html",
+  "title": "Help: dialog opens without taking focus",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/overlay-focus-not-moved#1",
+      "wcag": ["2.4.3"],
+      "selector": "#help-dialog | #open-help",
+      "layer": "keyboard",
+      "description": "Opening the Get help dialog leaves focus on the trigger behind it; focus is not moved into the dialog.",
+      "ruleId": "keyboard/overlay-focus-not-moved"
+    }
+  ]
+}

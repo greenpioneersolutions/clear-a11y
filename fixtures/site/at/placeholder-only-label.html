@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop: search field labelled only by its placeholder</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      input, button { font: inherit; padding: 6px 8px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <form role="search" action="#">
+        <!-- Seeded barrier: the placeholder is the only label; it disappears once you type (3.3.2). -->
+        <input id="site-search" type="search" name="q" placeholder="Search products" />
+        <button type="submit">Go</button>
+      </form>
+    </header>
+    <main>
+      <h1>Trail running shoes</h1>
+    </main>
+  </body>
+</html>

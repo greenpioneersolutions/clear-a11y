@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Help article with vague headings</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Help</h1>
+      <!-- Seeded barrier: the headings don't describe their sections, so people scanning the page or
+           listing headings with a screen reader can't find the topic they need. WCAG 2.4.6. -->
+      <h2 id="heading-1">Section 1</h2>
+      <p>Orders usually arrive in 3 to 5 working days. You can track them from your account.</p>
+      <h2 id="heading-2">Section 2</h2>
+      <p>You can return unused items within 30 days for a full refund.</p>
+      <h2 id="heading-3">More</h2>
+      <p>Our support team answers emails within one working day.</p>
+    </main>
+  </body>
+</html>

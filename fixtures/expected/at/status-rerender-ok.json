@@ -1,0 +1,6 @@
+{
+  "page": "at/status-rerender-ok.html",
+  "title": "Cart: counter re-rendered without changes",
+  "correctPattern": true,
+  "issues": []
+}

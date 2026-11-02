@@ -1,0 +1,15 @@
+{
+  "page": "at/expanded-state-missing.html",
+  "title": "Checkout: delivery options toggle without expanded state",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "at/expanded-state-missing#1",
+      "wcag": ["4.1.2"],
+      "selector": "#delivery-toggle",
+      "layer": "at",
+      "description": "Delivery options button shows and hides the options with a CSS class but never exposes aria-expanded.",
+      "ruleId": "at/expanded-state-missing"
+    }
+  ]
+}

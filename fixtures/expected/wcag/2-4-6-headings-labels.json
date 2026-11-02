@@ -1,0 +1,14 @@
+{
+  "page": "wcag/2-4-6-headings-labels.html",
+  "title": "Help article with vague headings",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-4-6-headings-labels#1",
+      "wcag": ["2.4.6"],
+      "selector": "#heading-1 | #heading-2 | #heading-3",
+      "layer": "ai",
+      "description": "The headings \"Section 1\", \"Section 2\" and \"More\" do not describe the topics of their sections (delivery, returns, contact)."
+    }
+  ]
+}

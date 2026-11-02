@@ -1,0 +1,38 @@
+# @clear-a11y/engine-<%= name %>
+
+<%= description %>
+
+Part of [Clear A11Y](https://github.com/greenpioneersolutions/clear-a11y). Engines are run by `@clear-a11y/runner`; you rarely use them directly.
+
+## Install
+
+```sh
+pnpm add @clear-a11y/engine-<%= name %>
+```
+
+## Usage
+
+```ts
+import { create<%= className %>Engine } from '@clear-a11y/engine-<%= name %>';
+
+const engine = create<%= className %>Engine();
+const findings = await engine.run(pageContext); // PageContext from @clear-a11y/browser
+```
+
+## Rules
+
+See [`src/rules/`](src/rules/) and the rule pages in [`docs/rules/<%= name %>/`](../../../docs/rules/<%= name %>/).
+
+## Documentation
+
+- Docs site: https://greenpioneersolutions.github.io/clear-a11y/ (rules reference, configuration, how coverage is measured)
+- Source: https://github.com/greenpioneersolutions/clear-a11y/tree/main/packages/engines/<%= name %>
+
+## Development
+
+```sh
+pnpm nx test @clear-a11y/engine-<%= name %>              # unit tests (no browser)
+pnpm nx test-integration @clear-a11y/engine-<%= name %>  # Playwright against fixtures/
+```
+
+Add a rule with `pnpm nx g @clear-a11y/workspace-plugin:rule --engine=<%= name %> --name=<rule-name> --wcag=<sc>`.

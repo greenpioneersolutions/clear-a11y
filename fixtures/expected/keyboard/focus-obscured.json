@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/focus-obscured.html",
+  "title": "Article: sticky footer hides the focused link",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/focus-obscured#1",
+      "wcag": ["2.4.11"],
+      "selector": "#terms-link | #privacy-link",
+      "layer": "keyboard",
+      "description": "A tall sticky promo footer covers the bottom of the viewport; the article links at the end of the page are completely hidden under it when they receive keyboard focus.",
+      "ruleId": "keyboard/focus-obscured"
+    }
+  ]
+}

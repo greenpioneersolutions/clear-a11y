@@ -1,0 +1,16 @@
+{
+  "name": "persona/kb-checkout-1-tab",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-keyboard-only",
+    "promptVersion": 1,
+    "match": {
+      "step": 1
+    }
+  },
+  "response": {
+    "action": "press",
+    "key": "Tab",
+    "reason": "Back to basket is not what I need; keep going."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "page": "visual/text-spacing.html",
+  "title": "Plans: text clipped under user text spacing",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/text-spacing#1",
+      "wcag": ["1.4.12"],
+      "selector": "#card-text",
+      "layer": "visual",
+      "description": "With WCAG text-spacing overrides the plan description is clipped by a fixed height.",
+      "ruleId": "visual/text-spacing-clipped"
+    }
+  ]
+}

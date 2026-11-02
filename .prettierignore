@@ -1,0 +1,13 @@
+dist
+coverage
+node_modules
+pnpm-lock.yaml
+.nx/cache
+.nx/workspace-data
+.nx/self-healing
+bench-results
+fixtures/site
+fixtures/repos
+CHANGELOG.md
+AGENTS.md
+CLAUDE.md

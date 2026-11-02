@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/context-change-on-focus-navigation.html",
+  "title": "Account: tabbing onto a section link loads it",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/context-change-on-focus-navigation#1",
+      "wcag": ["3.2.1"],
+      "selector": "#orders-link | #settings-link",
+      "layer": "keyboard",
+      "description": "The Orders and Settings links load their page as soon as they receive keyboard focus, so tabbing through the section navigation leaves the page.",
+      "ruleId": "keyboard/context-change-on-focus"
+    }
+  ]
+}

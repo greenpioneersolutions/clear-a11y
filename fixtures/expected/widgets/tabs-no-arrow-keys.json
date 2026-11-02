@@ -1,0 +1,14 @@
+{
+  "page": "widgets/tabs-no-arrow-keys.html",
+  "title": "Product details: tabs that keyboards cannot reach",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/tabs-no-arrow-keys#1",
+      "wcag": ["2.1.1"],
+      "selector": "#tab-2 | #tab-3 | [role=tablist]",
+      "layer": "widgets",
+      "description": "Inactive tabs have tabindex=-1 and there is no arrow-key handler, so they cannot be reached by keyboard."
+    }
+  ]
+}

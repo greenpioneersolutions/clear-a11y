@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: unnamed sign-up button</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 24px; }
+      .row { display: flex; gap: 8px; align-items: flex-end; }
+      label { display: block; }
+      input { font: inherit; padding: 8px; border: 1px solid #555; border-radius: 4px; }
+      .go { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: #1a5fb4; border: 0; border-radius: 6px; }
+      :focus-visible { outline: 3px solid #1a1a1a; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Stay in the loop</h1>
+      <!-- Seeded barrier (persona/task-blocked, 4.1.2): the sign-up button shows only an arrow
+           icon and has no accessible name. A screen reader user hears "button" with nothing else
+           and can't tell that it is the control that subscribes. -->
+      <p>One email a month about new trails and gear.</p>
+      <div class="row">
+        <div>
+          <label for="email">Email address</label>
+          <input id="email" type="email" autocomplete="email" />
+        </div>
+        <button id="signup" class="go" type="button">
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20">
+            <path d="M3 10h11M10 4l6 6-6 6" stroke="#fff" stroke-width="2.5" fill="none" />
+          </svg>
+        </button>
+      </div>
+      <p id="status" role="status"></p>
+    </main>
+    <script>
+      document.getElementById('signup').addEventListener('click', () => {
+        const email = document.getElementById('email').value.trim();
+        document.getElementById('status').textContent = email
+          ? `Thanks! You are subscribed as ${email}.`
+          : 'Enter your email address to subscribe.';
+      });
+    </script>
+  </body>
+</html>

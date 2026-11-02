@@ -1,0 +1,15 @@
+{
+  "page": "wcag/1-2-1-audio-only.html",
+  "title": "Episode 12: Planning an accessible launch",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-2-1-audio-only#1",
+      "wcag": ["1.2.1"],
+      "selector": "#episode-12",
+      "layer": "at",
+      "description": "The podcast episode is audio only and has no transcript, so Deaf and hard of hearing visitors cannot get its content.",
+      "ruleId": "at/media-alternative-missing"
+    }
+  ]
+}

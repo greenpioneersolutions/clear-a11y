@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Account settings: actions the scanner must never trigger</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Account settings</h1>
+      <!-- Correct pattern and safety check for the state explorer: it may open "Show plan
+           details", but it must never click "Delete account" or "Sign out", and the preferences
+           form (a real POST) must never reach the server. Tests count requests to prove it. -->
+      <h2>
+        <button id="plan-toggle" type="button" aria-expanded="false" aria-controls="plan-details">
+          Show plan details
+        </button>
+      </h2>
+      <div id="plan-details" hidden><p>Hiker plan, renews on 1 March.</p></div>
+
+      <details id="name-help">
+        <summary>Why do we ask for a display name?</summary>
+        <p>Other hikers see it next to your trip reports.</p>
+      </details>
+
+      <form id="prefs" method="post" action="/api/preferences">
+        <div class="field">
+          <label for="display-name">Display name</label>
+          <input id="display-name" name="displayName" type="text" autocomplete="nickname" />
+        </div>
+        <button type="submit">Save preferences</button>
+      </form>
+
+      <h2>Danger zone</h2>
+      <p>
+        <button id="delete-account" type="button">Delete account</button>
+        <a id="sign-out" href="/api/logout">Sign out</a>
+      </p>
+      <p id="status" role="status"></p>
+    </main>
+    <script>
+      const toggle = document.getElementById('plan-toggle');
+      const details = document.getElementById('plan-details');
+      toggle.addEventListener('click', () => {
+        const open = details.hidden;
+        details.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      document.getElementById('delete-account').addEventListener('click', async () => {
+        await fetch('/api/delete-account', { method: 'POST' }).catch(() => undefined);
+        await fetch('/api/delete-account?confirm=1').catch(() => undefined);
+        document.getElementById('status').textContent = 'Account deleted.';
+      });
+    </script>
+  </body>
+</html>

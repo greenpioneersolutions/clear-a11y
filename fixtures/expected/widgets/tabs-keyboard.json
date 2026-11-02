@@ -1,0 +1,15 @@
+{
+  "page": "widgets/tabs-keyboard.html",
+  "title": "Plans: tabs that are not focusable at all",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/tabs-keyboard#1",
+      "wcag": ["2.1.1"],
+      "selector": "#plan-tabs | #tab-monthly | #tab-yearly | #tab-team",
+      "layer": "widgets",
+      "description": "The tabs are divs with role=\"tab\" and no tabindex: none of them is in the Tab sequence, so keyboard users cannot reach the tab list or open the other plans.",
+      "ruleId": "widgets/tabs-keyboard"
+    }
+  ]
+}

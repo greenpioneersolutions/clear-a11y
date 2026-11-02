@@ -1,0 +1,6 @@
+{
+  "page": "wcag/1-2-5-audio-description-ok.html",
+  "title": "Assembly video with an audio-described version",
+  "correctPattern": true,
+  "issues": []
+}

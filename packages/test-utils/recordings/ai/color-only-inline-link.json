@@ -1,0 +1,15 @@
+{
+  "name": "ai/color-only-inline-link",
+  "source": "synthetic",
+  "request": {
+    "judge": "color-only",
+    "promptVersion": 1,
+    "match": { "kind": "inline-link", "text": "terms of sale" }
+  },
+  "response": {
+    "verdict": "fail",
+    "confidence": 0.85,
+    "reason": "The link has no underline and its color differs from the body text by less than 3:1, so only color marks it.",
+    "suggestion": "Underline links inside paragraphs."
+  }
+}

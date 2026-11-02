@@ -1,0 +1,15 @@
+{
+  "page": "states/expanded-state-mismatch.html",
+  "title": "Help centre: accordion that never updates aria-expanded",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "states/expanded-state-mismatch#1",
+      "wcag": ["4.1.2"],
+      "selector": "#acc-returns | #acc-delivery",
+      "layer": "states",
+      "description": "The accordion buttons keep aria-expanded=\"false\" after their panel opens, so screen readers announce \"collapsed\" while the content is shown.",
+      "ruleId": "states/expanded-state-mismatch"
+    }
+  ]
+}

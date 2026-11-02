@@ -1,0 +1,6 @@
+{
+  "page": "wcag/3-3-4-error-prevention-ok/checkout.html",
+  "title": "Checkout with a review step",
+  "correctPattern": true,
+  "issues": []
+}

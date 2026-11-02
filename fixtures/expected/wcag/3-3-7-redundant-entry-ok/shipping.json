@@ -1,0 +1,6 @@
+{
+  "page": "wcag/3-3-7-redundant-entry-ok/shipping.html",
+  "title": "Checkout step 1 of a flow that reuses the address",
+  "correctPattern": true,
+  "issues": []
+}

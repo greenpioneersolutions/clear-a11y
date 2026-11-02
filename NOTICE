@@ -1,0 +1,171 @@
+Clear A11Y
+Copyright 2026 The Clear A11Y Authors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party software
+--------------------
+
+Clear A11Y uses the third-party packages below. They are installed from npm
+as dependencies, not copied into this repository, and remain under their own
+licenses; each package's license file is in its npm tarball. Packages they
+depend on in turn carry their own license files.
+
+Two release artifacts redistribute third-party code:
+- The GitHub Action bundle (action-v* branch and tags) inlines its JavaScript
+  dependencies into dist/index.js, whose license comments are collected in
+  dist/index.js.LEGAL.txt, and ships playwright-core unmodified (with its
+  LICENSE, NOTICE and ThirdPartyNotices.txt) in dist/node_modules.
+- The desktop app installers contain Electron, which includes Chromium and
+  Node.js; Electron's bundled license files list their third-party notices.
+
+The versions and licenses below were checked against the installed packages.
+
+Runtime dependencies of the published npm packages
+...................................................
+
+axe-core (used by @clear-a11y/engine-static)
+  Copyright (c) Deque Systems, Inc.
+  Licensed under the Mozilla Public License 2.0 (MPL-2.0).
+  Used unmodified as a dependency; its source is available at
+  https://github.com/dequelabs/axe-core. axe-core's own third-party notices
+  (MIT: colorjs.io, core-js-pure and others) are in its LICENSE-3RD-PARTY.txt.
+
+Playwright and playwright-core (used by @clear-a11y/browser and the apps)
+  Copyright (c) Microsoft Corporation.
+  Licensed under the Apache License, Version 2.0.
+  Playwright's NOTICE: "This software contains code derived from the
+  Puppeteer project (https://github.com/puppeteer/puppeteer), available under
+  the Apache 2.0 license."
+  Source: https://github.com/microsoft/playwright
+
+zod
+  Copyright (c) 2025 Colin McDonnell.
+  Licensed under the MIT License.
+  Source: https://github.com/colinhacks/zod
+
+tslib
+  Copyright (c) Microsoft Corporation.
+  Licensed under the 0BSD License.
+  Source: https://github.com/microsoft/tslib
+
+commander (used by the clear-a11y CLI)
+  Copyright (c) 2011 TJ Holowaychuk.
+  Licensed under the MIT License.
+  Source: https://github.com/tj/commander.js
+
+Model Context Protocol TypeScript SDK, @modelcontextprotocol/sdk
+(used by @clear-a11y/mcp)
+  Copyright (c) 2024 Anthropic, PBC.
+  Licensed under the MIT License.
+  Source: https://github.com/modelcontextprotocol/typescript-sdk
+
+ESLint (used by @clear-a11y/repo to lint scanned source)
+  Copyright OpenJS Foundation and other contributors.
+  Licensed under the MIT License.
+  Source: https://github.com/eslint/eslint
+
+eslint-plugin-jsx-a11y (used by @clear-a11y/repo)
+  Copyright (c) 2016 Ethan Cohen.
+  Licensed under the MIT License.
+  Source: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
+
+eslint-plugin-vuejs-accessibility (used by @clear-a11y/repo)
+  Copyright (c) 2020-present Kevin Newton.
+  Licensed under the MIT License.
+  Source: https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility
+
+vue-eslint-parser (used by @clear-a11y/repo)
+  Copyright (c) 2016 Toru Nagashima.
+  Licensed under the MIT License.
+  Source: https://github.com/vuejs/vue-eslint-parser
+
+typescript-eslint (used by @clear-a11y/repo)
+  Copyright (c) 2019 typescript-eslint and other contributors.
+  Licensed under the MIT License (including @typescript-eslint/parser and
+  @typescript-eslint/typescript-estree).
+  Source: https://github.com/typescript-eslint/typescript-eslint
+
+TypeScript (peer dependency of typescript-eslint; also a build tool)
+  Copyright (c) Microsoft Corporation.
+  Licensed under the Apache License, Version 2.0. Its third-party notices are
+  in ThirdPartyNoticeText.txt in the typescript package.
+  Source: https://github.com/microsoft/TypeScript
+
+Applications (private: Docker image, desktop installers, GitHub Action)
+.......................................................................
+
+@actions/core (GitHub Action)
+  Copyright 2019 GitHub.
+  Licensed under the MIT License.
+  Source: https://github.com/actions/toolkit
+
+NestJS: @nestjs/common, @nestjs/core, @nestjs/platform-express (server)
+  Copyright (c) 2017-present Kamil Mysliwiec.
+  Licensed under the MIT License.
+  Source: https://github.com/nestjs/nest
+
+BullMQ (server, optional Redis-backed queue in @clear-a11y/queue)
+  Copyright (c) 2018 BullForce Labs AB and contributors.
+  Licensed under the MIT License.
+  Source: https://github.com/taskforcesh/bullmq
+
+ioredis (server)
+  Copyright (c) 2015-2022 Zihua Li.
+  Licensed under the MIT License.
+  Source: https://github.com/luin/ioredis
+
+reflect-metadata (server)
+  Copyright (c) Microsoft Corporation.
+  Licensed under the Apache License, Version 2.0.
+  Source: https://github.com/rbuckton/reflect-metadata
+
+RxJS (server)
+  Copyright (c) 2015-2018 Google, Inc., Netflix, Inc., Microsoft Corp. and
+  contributors.
+  Licensed under the Apache License, Version 2.0.
+  Source: https://github.com/reactivex/rxjs
+
+Electron (desktop app)
+  Copyright (c) Electron contributors. Copyright (c) 2013-2020 GitHub Inc.
+  Licensed under the MIT License.
+  Source: https://github.com/electron/electron
+
+Preact (desktop app renderer)
+  Copyright (c) 2015-present Jason Miller.
+  Licensed under the MIT License.
+  Source: https://github.com/preactjs/preact
+
+Build and documentation tools (not shipped in the npm packages)
+...............................................................
+
+Nx
+  Copyright (c) 2017-2026 Narwhal Technologies Inc.
+  Licensed under the MIT License.
+  Source: https://github.com/nrwl/nx
+
+esbuild (bundles the GitHub Action and the desktop app's main process)
+  Copyright (c) 2020 Evan Wallace.
+  Licensed under the MIT License.
+  Source: https://github.com/evanw/esbuild
+
+electron-builder (packages the desktop app)
+  Copyright (c) 2015 Loopline Systems.
+  Licensed under the MIT License.
+  Source: https://github.com/electron-userland/electron-builder
+
+Vite (builds the desktop app renderer) and Vitest (tests)
+  Copyright (c) 2019-present, VoidZero Inc. and Vite contributors;
+  Copyright (c) 2021-present VoidZero Inc. and Vitest contributors.
+  Licensed under the MIT License.
+  Source: https://github.com/vitejs/vite, https://github.com/vitest-dev/vitest
+
+Astro and Starlight (build the documentation site; the published site
+contains Starlight's client scripts and styles)
+  Copyright (c) 2021 Fred K. Schott (Astro);
+  Copyright (c) 2023 Astro contributors (Starlight).
+  Licensed under the MIT License.
+  Source: https://github.com/withastro/astro, https://github.com/withastro/starlight
+
+New runtime dependencies whose licenses require attribution must be added to
+this file in the same change that adds them.

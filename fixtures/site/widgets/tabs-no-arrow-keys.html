@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product details: tabs that keyboards can't reach</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      [role='tablist'] { display: flex; gap: 4px; }
+      [role='tab'] { padding: 8px 16px; border: 1px solid #555; cursor: pointer; }
+      [role='tab'][aria-selected='true'] { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe</h1>
+      <!-- Seeded barrier: roving tabindex without the arrow-key handler. Only the selected tab
+           is focusable, so keyboard users can never reach the other tabs (2.1.1, APG tabs pattern). -->
+      <div role="tablist" aria-label="Product details">
+        <div role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1" tabindex="0">Description</div>
+        <div role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1">Sizing</div>
+        <div role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1">Reviews</div>
+      </div>
+      <div role="tabpanel" id="panel-1" aria-labelledby="tab-1"><p>Lightweight shoe with a grippy sole.</p></div>
+      <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden><p>Runs half a size small.</p></div>
+      <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden><p>4.6 out of 5 from 120 reviews.</p></div>
+    </main>
+    <script>
+      for (const tab of document.querySelectorAll('[role=tab]')) {
+        tab.addEventListener('click', () => {
+          for (const t of document.querySelectorAll('[role=tab]')) {
+            const selected = t === tab;
+            t.setAttribute('aria-selected', String(selected));
+            t.tabIndex = selected ? 0 : -1;
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

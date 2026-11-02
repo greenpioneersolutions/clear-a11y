@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/click-not-focusable-ok.html",
+  "title": "Product page: keyboard-operable controls",
+  "correctPattern": true,
+  "issues": []
+}

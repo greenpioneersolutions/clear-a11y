@@ -1,0 +1,15 @@
+{
+  "page": "states/error-not-associated.html",
+  "title": "Newsletter: error messages not tied to their fields",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "states/error-not-associated#1",
+      "wcag": ["3.3.1", "1.3.1"],
+      "selector": "#news-email | #news-phone",
+      "layer": "states",
+      "description": "After submitting (empty, or with a malformed phone number) the error text appears under the field, but the field has no aria-invalid and the message is not linked with aria-describedby or aria-errormessage.",
+      "ruleId": "states/error-not-associated"
+    }
+  ]
+}

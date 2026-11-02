@@ -1,0 +1,62 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+  - 'packages/engines/*'
+  - 'tools/*'
+  - 'fixtures'
+
+# Single version policy: every third-party dependency is declared here once
+# and referenced from package.json files as "catalog:".
+catalog:
+  '@eslint/js': ^9.39.0
+  '@nx/devkit': 24.0.3
+  '@nx/eslint': 24.0.3
+  '@nx/eslint-plugin': 24.0.3
+  '@nx/js': 24.0.3
+  '@nx/nest': 24.0.3
+  '@nx/playwright': 24.0.3
+  '@nx/plugin': 24.0.3
+  '@nx/vitest': 24.0.3
+  '@playwright/test': 1.61.1
+  '@swc-node/register': 1.11.1
+  '@swc/core': 1.15.8
+  '@swc/helpers': 0.5.18
+  '@types/node': ^24.0.0
+  '@vitest/coverage-v8': ~5.0.5
+  eslint: ^9.39.0
+  eslint-config-prettier: ^10.1.8
+  jsonc-eslint-parser: ^2.4.0
+  nx: 24.0.3
+  playwright: 1.61.1
+  prettier: ^3.8.1
+  tslib: ^2.8.1
+  typescript: ~6.0.3
+  typescript-eslint: ^8.72.0
+  vite: ^8.3.0
+  vitest: ~5.0.5
+  zod: ^4.6.7
+  axe-core: 4.14.0
+  commander: ^15.0.0
+  '@modelcontextprotocol/sdk': ^1.32.2
+  eslint-plugin-jsx-a11y: ^6.10.2
+  eslint-plugin-vuejs-accessibility: ^2.6.3
+  vue-eslint-parser: ^10.4.1
+  bullmq: ^6.5.0
+  ioredis: ^5.11.1
+  '@nestjs/common': ^11.2.8
+  '@nestjs/core': ^11.2.8
+  '@nestjs/platform-express': ^11.2.8
+  '@nestjs/testing': ^11.2.8
+  reflect-metadata: ^0.2.2
+  rxjs: ^7.8.2
+  supertest: ^7.3.1
+  '@types/supertest': ^7.2.1
+  '@actions/core': ^3.0.1
+  esbuild: ^0.28.2
+  # Desktop app (S14). Electron's binary is never downloaded by `pnpm install` (see the root
+  # package.json `pnpm.neverBuiltDependencies` and apps/desktop/README.md).
+  electron: 45.2.1
+  electron-builder: 26.18.0
+  preact: ^10.29.8
+  astro: ^7.4.4
+  '@astrojs/starlight': ^0.42.8

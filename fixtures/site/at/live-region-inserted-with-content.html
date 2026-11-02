@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basket: live region inserted with its message</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      input, button { font: inherit; padding: 6px 8px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Your basket</h1>
+      <p>1 x Trail running shoe, 120 euros.</p>
+      <label for="coupon">Coupon code</label>
+      <input id="coupon" value="TRAIL10" />
+      <button id="apply-coupon" type="button">Apply coupon</button>
+      <div id="coupon-area"></div>
+    </main>
+    <script>
+      document.getElementById('apply-coupon').addEventListener('click', () => {
+        // Seeded barrier: the role="status" region is created already holding its message.
+        // Screen readers only announce changes to live regions they already know about (4.1.3).
+        const status = document.createElement('div');
+        status.id = 'coupon-status';
+        status.setAttribute('role', 'status');
+        status.textContent = 'Coupon applied: 10% off.';
+        document.getElementById('coupon-area').replaceChildren(status);
+      });
+    </script>
+  </body>
+</html>

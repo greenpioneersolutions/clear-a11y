@@ -1,0 +1,14 @@
+{
+  "page": "wcag/3-2-4-consistent-identification/products.html",
+  "title": "Shop products page that renames the basket",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/3-2-4-consistent-identification/products#1",
+      "wcag": ["3.2.4"],
+      "selector": "#basket-link",
+      "layer": "persona",
+      "description": "The same basket link is labelled \"Basket\" on the home page and \"Your bag\" on the products page; components with the same function are not identified consistently."
+    }
+  ]
+}

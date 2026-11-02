@@ -1,0 +1,218 @@
+name: Release
+
+# Releases the public npm packages (fixed version group, tag:publish:public) and the GitHub Action.
+# Started by hand from the Actions tab, on main only. See docs/release.md.
+#
+#   dry-run (default): builds everything and prints what `nx release` would do (version, changelog,
+#                      tag, packages) without changing anything. No credentials are used.
+#   real release:      bumps versions, writes CHANGELOG.md, commits "chore(release): v<version>",
+#                      tags v<version>, pushes, creates the GitHub release, publishes to npm with
+#                      provenance, then pushes the built action to the action-v<major> branch.
+#
+# The npm token lives only in the "npm" environment of this repository and is only exposed to the
+# publish step of the release job. Contributors and forks never need it: CI, docs and dogfood
+# workflows use no secrets.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: >-
+          Version specifier. Empty: derive it from conventional commits. Or patch, minor, major,
+          prerelease, or an exact version such as 0.1.0.
+        required: false
+        default: ''
+      first-release:
+        description: First release (no previous tag or npm version to compare against).
+        type: boolean
+        default: false
+      dry-run:
+        description: Dry run (change nothing, publish nothing).
+        type: boolean
+        default: true
+      publish-only:
+        description: >-
+          Publish only: publish the version already in package.json without versioning (recovery
+          after a failed publish step).
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  NX_NO_CLOUD: true
+  NX_DAEMON: false
+
+jobs:
+  dry-run:
+    name: Release preview (dry run)
+    if: inputs.dry-run
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # conventional commits and previous tags
+
+      - name: Set up pnpm, Node.js and dependencies
+        uses: ./.github/actions/setup
+
+      - name: Preview the release
+        env:
+          VERSION: ${{ inputs.version }}
+          FIRST_RELEASE: ${{ inputs.first-release }}
+        run: |
+          args=(--dry-run --yes --verbose)
+          [ "$FIRST_RELEASE" = true ] && args+=(--first-release)
+          if [ -n "$VERSION" ]; then
+            [[ "$VERSION" =~ ^(patch|minor|major|prerelease|[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?)$ ]] || { echo "::error::invalid version specifier"; exit 1; }
+            pnpm nx release "$VERSION" "${args[@]}"
+          else
+            pnpm nx release "${args[@]}"
+          fi
+
+      - name: Build the action bundle (not pushed in a dry run)
+        run: |
+          pnpm nx build action
+          du -sh apps/action/dist
+
+  release:
+    name: Version, changelog, tag and publish to npm
+    if: ${{ !inputs.dry-run && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: npm
+    permissions:
+      contents: write # release commit, tag and GitHub release
+      id-token: write # npm provenance
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm, Node.js and dependencies (with the npm registry in .npmrc)
+        uses: ./.github/actions/setup
+        with:
+          registry-url: https://registry.npmjs.org
+
+      - name: Configure the git author for the release commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Check the public packages before releasing
+        run: pnpm nx run-many -t lint typecheck test build -p tag:publish:public
+
+      # nx release runs preVersionCommand (builds every public package), bumps the fixed version,
+      # writes CHANGELOG.md, commits, tags v<version>, pushes, creates the GitHub release, then
+      # publishes each package with `pnpm publish` (workspace:/catalog: ranges become real versions).
+      - name: Release
+        if: ${{ !inputs.publish-only }}
+        env:
+          VERSION: ${{ inputs.version }}
+          FIRST_RELEASE: ${{ inputs.first-release }}
+          GITHUB_TOKEN: ${{ github.token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+        run: |
+          args=(--yes --verbose)
+          [ "$FIRST_RELEASE" = true ] && args+=(--first-release)
+          if [ -n "$VERSION" ]; then
+            [[ "$VERSION" =~ ^(patch|minor|major|prerelease|[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?)$ ]] || { echo "::error::invalid version specifier"; exit 1; }
+            pnpm nx release "$VERSION" "${args[@]}"
+          else
+            pnpm nx release "${args[@]}"
+          fi
+
+      - name: Publish the current version only (recovery)
+        if: ${{ inputs.publish-only }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+        run: pnpm nx release publish --verbose
+
+      - name: Read the released version
+        id: version
+        run: echo "version=$(node -p "require('./packages/core/package.json').version")" >> "$GITHUB_OUTPUT"
+
+  action:
+    name: Release the GitHub Action (action-v<major> branch)
+    needs: release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write # push the action branch and tag
+    env:
+      VERSION: ${{ needs.release.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v${{ needs.release.outputs.version }}
+          fetch-depth: 0
+
+      - name: Set up pnpm, Node.js and dependencies
+        uses: ./.github/actions/setup
+
+      - name: Build the action bundle
+        run: pnpm nx build action
+
+      # The bundle (about 37 MB with playwright-core) is never committed to main. Each release adds
+      # one commit to the action-v<major> branch holding only what GitHub needs to run the action,
+      # and tags it action-v<version>. Users reference @action-v0 (moving) or @action-v<version>.
+      - name: Push the built action to its release branch
+        run: |
+          major="${VERSION%%.*}"
+          branch="action-v${major}"
+          tag="action-v${VERSION}"
+          repo_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
+          # Publish-only runs (the first v0.1.0 publish, or recovery) may find this release done.
+          if git ls-remote --exit-code --tags origin "refs/tags/${tag}" >/dev/null; then
+            echo "${tag} already exists; nothing to push."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          work="$(mktemp -d)"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            git fetch origin "+refs/heads/${branch}:refs/remotes/origin/${branch}"
+            git worktree add -B "$branch" "$work" "origin/$branch"
+          else
+            git worktree add --detach "$work"
+            git -C "$work" checkout --orphan "$branch"
+          fi
+          git -C "$work" rm -rfq --ignore-unmatch .
+          find "$work" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+
+          cp apps/action/action.yml LICENSE NOTICE "$work/"
+          cp -R apps/action/dist "$work/dist"
+          # The bundle reads its version from ../package.json and needs "type": "module".
+          node -e '
+            const fs = require("node:fs");
+            const p = JSON.parse(fs.readFileSync("apps/action/package.json", "utf8"));
+            const out = { name: p.name, version: process.env.VERSION, private: true, type: p.type,
+              description: p.description, license: p.license, repository: p.repository };
+            fs.writeFileSync(process.argv[1], JSON.stringify(out, null, 2) + "\n");
+          ' "$work/package.json"
+          cat > "$work/README.md" <<EOF
+          # Clear A11Y GitHub Action ${VERSION} (built)
+
+          This branch holds the built GitHub Action only. Use it with:
+
+              - uses: ${GITHUB_REPOSITORY}@${branch}      # latest ${major}.x release
+              - uses: ${GITHUB_REPOSITORY}@${tag}  # exactly this release
+
+          Documentation, inputs and source: ${repo_url}/tree/v${VERSION}/apps/action
+          EOF
+
+          git -C "$work" add -A -f
+          git -C "$work" commit -q -m "chore(action): release ${VERSION}" -m "Built from ${GITHUB_SHA} (tag v${VERSION})."
+          git -C "$work" tag -a "$tag" -m "Clear A11Y GitHub Action ${VERSION}"
+          git -C "$work" push origin "HEAD:refs/heads/${branch}" "refs/tags/${tag}"
+          git worktree remove --force "$work"
+          echo "Pushed ${branch} and ${tag}" >> "$GITHUB_STEP_SUMMARY"

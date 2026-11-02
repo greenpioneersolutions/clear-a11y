@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Travel: caption on a solid panel over the photo</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      .banner {
+        padding: 40px 24px;
+        background-color: #1a1a1a;
+        background-image: url('../_assets/pale-photo.png');
+        background-size: cover;
+      }
+      /* Correct pattern: the caption sits on its own solid dark panel, so the photo behind it no
+         longer affects the contrast (white on #1c3d5a is about 11:1). */
+      #banner-caption { display: inline-block; margin: 0; padding: 4px 8px; color: #ffffff; background: #1c3d5a; font-size: 18px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Coastal walks</h1>
+      <div class="banner"><p id="banner-caption">Twelve routes along the northern cliffs, from two to six hours.</p></div>
+      <p>Each route has a map, the walking time and where to park.</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "ai/label-in-name-abbreviation",
+  "source": "synthetic",
+  "request": { "judge": "label-in-name", "promptVersion": 1, "match": { "visibleLabel": "Qty 2" } },
+  "response": {
+    "verdict": "fail",
+    "confidence": 0.8,
+    "reason": "The control shows \"Qty 2\" but its name is \"Quantity 2\"; saying \"Qty 2\" would not match.",
+    "suggestion": "Use aria-label=\"Qty 2\" or show the full word."
+  }
+}

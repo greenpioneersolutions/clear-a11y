@@ -1,0 +1,15 @@
+{
+  "page": "states/tooltip-contrast.html",
+  "title": "Checkout: low-contrast tooltip text",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "states/tooltip-contrast#1",
+      "wcag": ["1.4.3"],
+      "selector": "#ship-tip",
+      "layer": "states",
+      "description": "The shipping-costs tooltip text is light grey on white (about 2.6:1); it only shows on hover or focus.",
+      "state": "tooltip:open"
+    }
+  ]
+}

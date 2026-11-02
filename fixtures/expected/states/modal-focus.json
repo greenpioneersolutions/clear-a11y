@@ -1,0 +1,21 @@
+{
+  "page": "states/modal-focus.html",
+  "title": "Settings: modal without focus management",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "states/modal-focus#1",
+      "wcag": ["2.4.3"],
+      "selector": "#settings-dialog | #open-settings",
+      "layer": "keyboard",
+      "description": "Opening the settings dialog leaves focus on the trigger behind it; focus is not moved into the dialog."
+    },
+    {
+      "id": "states/modal-focus#2",
+      "wcag": ["2.4.3"],
+      "selector": "#close-settings | #open-settings | body",
+      "layer": "keyboard",
+      "description": "Closing the dialog drops focus to the document instead of returning it to Open settings."
+    }
+  ]
+}

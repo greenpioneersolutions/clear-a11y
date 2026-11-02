@@ -1,0 +1,28 @@
+---
+id: <%= ruleId %>
+title: <%= title %>
+engine: engine-<%= engine %>
+wcag: [<%= wcag.join(', ') %>]
+tier: <%= tier %>
+---
+
+# <%= title %>
+
+**Rule:** `<%= ruleId %>` · **WCAG:** <%= wcag.join(', ') %> · **Tier:** `<%= tier %>` · **Engine:** `engine-<%= engine %>`
+
+## What it catches
+
+TODO: describe the barrier in plain words.
+
+## Who it affects
+
+TODO: which people are blocked or slowed down, and how.
+
+## How to fix
+
+TODO: the fix, with a short code example.
+
+## Examples
+
+- Barrier: [`fixtures/site/<%= engine %>/<%= fileName %>.html`](../../../fixtures/site/<%= engine %>/<%= fileName %>.html)
+- Correct pattern: [`fixtures/site/<%= engine %>/<%= fileName %>-ok.html`](../../../fixtures/site/<%= engine %>/<%= fileName %>-ok.html)

@@ -1,0 +1,92 @@
+name: Docs
+
+# Deploys the documentation site (apps/docs) to GitHub Pages from main. Before deploying, the built
+# site is scanned with Clear A11Y itself (zero findings of any tier on the dogfood pages, all
+# internal links valid). Pull requests get the same build and scan from dogfood.yml. Fork-safe: no
+# secrets and no Nx Cloud; the site URL, base path and repository links come from the repository
+# the workflow runs in.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/docs/**'
+      - 'apps/cli/**'
+      - 'apps/*/README.md'
+      - 'apps/mcp/SKILL.md'
+      - 'docs/**'
+      - 'bench-results/**'
+      - 'packages/**'
+      - 'CONTRIBUTING.md'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.nvmrc'
+      - '.github/actions/setup/**'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  NX_NO_CLOUD: true
+  NX_DAEMON: false
+  ASTRO_TELEMETRY_DISABLED: 1
+
+jobs:
+  build:
+    name: Build and dogfood-scan the docs site
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pnpm, Node.js, dependencies and Chromium
+        uses: ./.github/actions/setup
+        with:
+          playwright: 'true'
+
+      - name: Read the Pages configuration (site URL and base path)
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Set the site URL, base path and repository URL
+        run: |
+          {
+            echo "DOCS_SITE=${{ steps.pages.outputs.origin }}"
+            echo "DOCS_BASE=${{ steps.pages.outputs.base_path || '/' }}"
+            echo "DOCS_REPO_URL=${{ github.server_url }}/${{ github.repository }}"
+          } >> "$GITHUB_ENV"
+
+      - name: Build the site (generates rules, CLI, config and benchmark pages first)
+        run: pnpm nx run docs:build
+
+      - name: Practice what we test (scan the built site with Clear A11Y, check links)
+        run: pnpm nx run docs:test-integration
+
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/docs/dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

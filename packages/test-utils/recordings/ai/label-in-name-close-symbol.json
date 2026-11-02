@@ -1,0 +1,10 @@
+{
+  "name": "ai/label-in-name-close-symbol",
+  "source": "synthetic",
+  "request": { "judge": "label-in-name", "promptVersion": 1, "match": { "visibleLabel": "×" } },
+  "response": {
+    "verdict": "pass",
+    "confidence": 0.85,
+    "reason": "The visible label is the multiplication sign, usually spoken as \"close\", which starts the name \"Close dialog\"."
+  }
+}

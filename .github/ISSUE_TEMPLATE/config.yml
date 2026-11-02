@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and discussion
+    url: https://github.com/greenpioneersolutions/clear-a11y/discussions
+    about: Ask how to use Clear A11Y, why it reported something, or talk through an idea before opening an issue.
+  - name: Report a security vulnerability
+    url: https://github.com/greenpioneersolutions/clear-a11y/security/advisories/new
+    about: Report security issues privately. Never open a public issue for a vulnerability.

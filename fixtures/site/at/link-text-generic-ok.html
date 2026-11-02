@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: "Read more" links with context</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      article { border-top: 1px solid #ccc; padding: 8px 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Latest news</h1>
+      <!-- Correct pattern: each "Read more" link is told apart by its card heading, by text in
+           the same list item, by aria-describedby, or by a specific aria-label. -->
+      <article>
+        <h2>We opened a new office</h2>
+        <p>Our Ghent team moved into a bigger space.</p>
+        <a href="#new-office">Read more</a>
+      </article>
+      <article>
+        <h2>We won a design award</h2>
+        <p>The checkout redesign was recognised this year.</p>
+        <a href="#award">Read more</a>
+      </article>
+      <h2>Policies</h2>
+      <ul>
+        <li>Shipping policy: <a href="#shipping">read more</a></li>
+        <li>Returns policy: <a href="#returns">read more</a></li>
+      </ul>
+      <h2>Events</h2>
+      <p id="meetup-desc">Accessibility meetup, 12 November</p>
+      <a href="#meetup" aria-describedby="meetup-desc">Details</a>
+      <p id="workshop-desc">Screen reader workshop, 3 December</p>
+      <a href="#workshop" aria-describedby="workshop-desc">Details</a>
+      <h2>Downloads</h2>
+      <a href="#report" aria-label="Read more about the 2025 annual report">Read more</a>
+      <a href="#roadmap" aria-label="Read more about the product roadmap">Read more</a>
+    </main>
+  </body>
+</html>

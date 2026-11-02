@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "ClearA11yRule",
+  "title": "Create a Clear A11Y rule",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Rule name, e.g. \"focus-order-backward\". The rule id becomes <engine>/<name>.",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "$default": { "$source": "argv", "index": 0 },
+      "x-prompt": "Rule name (e.g. focus-order-backward)?"
+    },
+    "engine": {
+      "type": "string",
+      "description": "Engine the rule belongs to, e.g. \"keyboard\" (packages/engines/keyboard).",
+      "x-prompt": "Engine (e.g. keyboard)?"
+    },
+    "wcag": {
+      "type": "string",
+      "description": "Comma-separated WCAG success criteria, e.g. \"2.4.3\".",
+      "x-prompt": "WCAG success criteria (e.g. 2.4.3)?"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["violation", "likely", "needs-review"],
+      "default": "violation",
+      "description": "Default tier. Use needs-review when the WCAG interpretation is ambiguous."
+    },
+    "title": { "type": "string", "description": "Human title for the rule." }
+  },
+  "required": ["name", "engine", "wcag"]
+}

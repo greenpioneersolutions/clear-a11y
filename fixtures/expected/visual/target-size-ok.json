@@ -1,0 +1,6 @@
+{
+  "page": "visual/target-size-ok.html",
+  "title": "Editor toolbar: small icons with enough spacing",
+  "correctPattern": true,
+  "issues": []
+}

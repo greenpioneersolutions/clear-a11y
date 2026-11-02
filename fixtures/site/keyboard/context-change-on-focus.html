@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: focusing the email field opens a window</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      form { display: grid; gap: 12px; }
+      label { display: block; font-weight: 600; }
+      input { font: inherit; padding: 8px; border: 1px solid #595959; width: 100%; box-sizing: border-box; }
+      button { font: inherit; padding: 8px 16px; min-height: 44px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Get the weekly newsletter</h1>
+      <p>One email a week with new trails, gear reviews and race dates.</p>
+      <!-- Seeded barrier (SC 3.2.1): just tabbing onto the Email field opens the privacy policy
+           in a new window. Nothing was activated, yet the user is taken to another window. -->
+      <form action="#" id="newsletter">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" autocomplete="name" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" />
+        </div>
+        <button type="submit">Subscribe</button>
+      </form>
+    </main>
+    <script>
+      document.getElementById('email').addEventListener('focus', () => {
+        window.open('../index.html', 'privacy', 'width=480,height=600');
+      });
+      document.getElementById('newsletter').addEventListener('submit', (e) => e.preventDefault());
+    </script>
+  </body>
+</html>

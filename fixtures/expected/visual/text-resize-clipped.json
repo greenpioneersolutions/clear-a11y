@@ -1,0 +1,15 @@
+{
+  "page": "visual/text-resize-clipped.html",
+  "title": "Newsletter: button label cut off when zoomed",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/text-resize-clipped#1",
+      "wcag": ["1.4.4"],
+      "selector": "#subscribe-button",
+      "layer": "visual",
+      "description": "At 200% zoom the button keeps its viewport-based width, cannot wrap and hides overflow, so \"Subscribe to the newsletter\" is cut off.",
+      "ruleId": "visual/text-resize-clipped"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: combobox with list autocomplete</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .combo { position: relative; max-width: 320px; }
+      .combo input { width: 100%; font: inherit; padding: 6px 8px; box-sizing: border-box; }
+      [role='listbox'] { position: absolute; left: 0; right: 0; margin: 2px 0 0; padding: 0; list-style: none; background: #fff; border: 1px solid #555; }
+      [role='option'] { padding: 6px 8px; cursor: pointer; }
+      [role='option'][aria-selected='true'] { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Delivery address</h1>
+      <!-- Correct pattern, rewritten from the ARIA Authoring Practices Guide "Editable Combobox With
+           List Autocomplete" example (https://www.w3.org/WAI/ARIA/apg/patterns/combobox/): typing or
+           Down Arrow opens the list and sets aria-expanded, Down/Up Arrow move the active option via
+           aria-activedescendant, Enter accepts it, Escape closes the list. -->
+      <label for="country-combobox">Country</label>
+      <div class="combo">
+        <input id="country-combobox" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="country-list" autocomplete="off" />
+        <ul role="listbox" id="country-list" aria-label="Countries" hidden>
+          <li role="option" id="country-be" aria-selected="false">Belgium</li>
+          <li role="option" id="country-de" aria-selected="false">Germany</li>
+          <li role="option" id="country-fr" aria-selected="false">France</li>
+          <li role="option" id="country-nl" aria-selected="false">Netherlands</li>
+        </ul>
+      </div>
+    </main>
+    <script>
+      const input = document.getElementById('country-combobox');
+      const list = document.getElementById('country-list');
+      const options = [...list.querySelectorAll('[role=option]')];
+      let active = -1;
+      const visible = () => options.filter((o) => !o.hidden);
+      function setActive(index) {
+        const shown = visible();
+        active = index < 0 ? -1 : (index + shown.length) % shown.length;
+        for (const o of options) o.setAttribute('aria-selected', String(o === shown[active]));
+        if (active >= 0) input.setAttribute('aria-activedescendant', shown[active].id);
+        else input.removeAttribute('aria-activedescendant');
+      }
+      function openList() {
+        const q = input.value.toLowerCase();
+        for (const o of options) o.hidden = !o.textContent.toLowerCase().startsWith(q);
+        const open = visible().length > 0;
+        list.hidden = !open;
+        input.setAttribute('aria-expanded', String(open));
+        setActive(-1);
+      }
+      function closeList() {
+        list.hidden = true;
+        input.setAttribute('aria-expanded', 'false');
+        setActive(-1);
+      }
+      input.addEventListener('input', openList);
+      input.addEventListener('click', () => (list.hidden ? openList() : closeList()));
+      input.addEventListener('blur', closeList);
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          if (list.hidden) { openList(); if (event.altKey) return; }
+          setActive(active + (event.key === 'ArrowDown' ? 1 : -1));
+        } else if (event.key === 'Enter' && active >= 0) {
+          event.preventDefault();
+          input.value = visible()[active].textContent;
+          closeList();
+        } else if (event.key === 'Escape') {
+          event.preventDefault();
+          if (list.hidden) input.value = '';
+          closeList();
+        }
+      });
+      for (const o of options) {
+        o.addEventListener('mousedown', (event) => event.preventDefault());
+        o.addEventListener('click', () => { input.value = o.textContent; closeList(); });
+      }
+    </script>
+  </body>
+</html>

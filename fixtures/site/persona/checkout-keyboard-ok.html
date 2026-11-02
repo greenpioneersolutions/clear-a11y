@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout: correct pattern</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 24px; }
+      .terms { display: flex; gap: 8px; align-items: center; margin: 16px 0; }
+      .pay { padding: 10px 20px; background: #1a5fb4; color: #fff; border: 0; border-radius: 6px; font: inherit; font-weight: 600; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Checkout</h1>
+      <!-- Correct pattern: this page must produce zero findings. "Pay now" is a native button,
+           so a keyboard-only user can tick the terms box, Tab to Pay now and press Enter. -->
+      <p><a href="../index.html">Back to basket</a></p>
+      <h2>Your order</h2>
+      <p>Trail running shoe, size 42: 120 euros.</p>
+      <div class="terms">
+        <input id="terms" type="checkbox" />
+        <label for="terms">I accept the terms and conditions</label>
+      </div>
+      <button id="pay" class="pay" type="button">Pay now</button>
+      <p id="status" role="status"></p>
+    </main>
+    <script>
+      document.getElementById('pay').addEventListener('click', () => {
+        const accepted = document.getElementById('terms').checked;
+        document.getElementById('status').textContent = accepted
+          ? 'Payment complete. Thank you for your order.'
+          : 'Please accept the terms and conditions first.';
+      });
+    </script>
+  </body>
+</html>

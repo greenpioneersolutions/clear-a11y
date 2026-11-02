@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings: view re-rendered without visible changes</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { max-width: 40rem; margin: 0 auto; padding: 16px; }
+      button { font: inherit; min-height: 32px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      [aria-pressed='true'] { background: #1a1a1a; color: #ffffff; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Display settings</h1>
+      <p><button id="compact" type="button" aria-pressed="false">Compact list</button></p>
+      <p>Hidden items: <span id="hidden-count">0</span></p>
+      <p id="notice"></p>
+    </main>
+    <script>
+      // Correct pattern: the toggle exposes its state with aria-pressed, which screen readers
+      // announce. Like Preact or React, the view re-renders on every change and rewrites text
+      // nodes even when their value stays the same ("0", ""). Nothing new appears on screen, so
+      // there is no status message to announce (4.1.3).
+      const button = document.getElementById('compact');
+      const count = document.getElementById('hidden-count');
+      const notice = document.getElementById('notice');
+      let compact = false;
+      function render() {
+        button.setAttribute('aria-pressed', String(compact));
+        count.replaceChildren(document.createTextNode('0'));
+        notice.replaceChildren(document.createTextNode(''));
+        document.body.classList.toggle('compact', compact);
+      }
+      button.addEventListener('click', () => {
+        compact = !compact;
+        render();
+      });
+      render();
+    </script>
+  </body>
+</html>

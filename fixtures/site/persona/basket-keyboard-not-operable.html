@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product: Add to basket ignores the keyboard</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 24px; }
+      .add { display: inline-block; padding: 10px 20px; background: #1a5fb4; color: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; }
+      :focus-visible { outline: 3px solid #1a1a1a; outline-offset: 2px; }
+      label { display: block; margin-top: 16px; }
+      select { font: inherit; padding: 6px; margin: 4px 0 16px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe</h1>
+      <!-- Seeded barrier (persona/task-blocked, 2.1.1): "Add to basket" has role="button" and
+           tabindex="0", so Tab reaches it and a screen reader calls it a button, but it only
+           listens for mouse clicks. Enter and Space do nothing for a keyboard-only user. -->
+      <p>Grippy, light and waterproof. 120 euros.</p>
+      <label for="size">Size</label>
+      <select id="size">
+        <option>41</option>
+        <option selected>42</option>
+        <option>43</option>
+      </select>
+      <div><span id="add" class="add" role="button" tabindex="0">Add to basket</span></div>
+      <p id="status" role="status"></p>
+    </main>
+    <script>
+      document.getElementById('add').addEventListener('click', () => {
+        const size = document.getElementById('size').value;
+        document.getElementById('status').textContent = `Added to basket: trail running shoe, size ${size}.`;
+      });
+    </script>
+  </body>
+</html>

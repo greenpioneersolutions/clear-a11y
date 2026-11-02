@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop home: no way past the navigation</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      nav ul { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; padding: 0; }
+      .title { font-size: 28px; font-weight: 700; margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <!-- Seeded barrier: eight navigation links come before the content on every page, with no
+         skip link, no main landmark and no headings to jump past them (2.4.1, needs review). -->
+    <header id="site-header">
+      <a href="#home">Trail Shop</a>
+      <nav id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#shoes">Shoes</a></li>
+          <li><a href="#clothing">Clothing</a></li>
+          <li><a href="#accessories">Accessories</a></li>
+          <li><a href="#sale">Sale</a></li>
+          <li><a href="#stores">Stores</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#help">Help</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="content">
+      <div class="title">New this week</div>
+      <p><a href="#trail">Trail running shoe</a>, 120 euros.</p>
+    </div>
+  </body>
+</html>

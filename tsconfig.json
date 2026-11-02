@@ -1,0 +1,80 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./tools/workspace-plugin"
+    },
+    {
+      "path": "./packages/test-utils"
+    },
+    {
+      "path": "./packages/runner"
+    },
+    {
+      "path": "./tools/bench"
+    },
+    {
+      "path": "./fixtures"
+    },
+    {
+      "path": "./packages/browser"
+    },
+    {
+      "path": "./packages/crawler"
+    },
+    {
+      "path": "./packages/reporter"
+    },
+    {
+      "path": "./apps/cli"
+    },
+    {
+      "path": "./packages/engines/static"
+    },
+    {
+      "path": "./packages/engines/keyboard"
+    },
+    {
+      "path": "./packages/engines/states"
+    },
+    {
+      "path": "./packages/engines/visual"
+    },
+    {
+      "path": "./packages/engines/at"
+    },
+    {
+      "path": "./packages/engines/widgets"
+    },
+    {
+      "path": "./packages/ai"
+    },
+    {
+      "path": "./packages/repo"
+    },
+    {
+      "path": "./packages/queue"
+    },
+    {
+      "path": "./apps/server"
+    },
+    {
+      "path": "./apps/mcp"
+    },
+    {
+      "path": "./apps/action"
+    },
+    {
+      "path": "./apps/desktop"
+    },
+    {
+      "path": "./apps/docs"
+    }
+  ],
+  "compilerOptions": {}
+}

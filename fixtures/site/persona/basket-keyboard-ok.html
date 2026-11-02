@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product: correct pattern</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; margin: 24px; }
+      .add { padding: 10px 20px; background: #1a5fb4; color: #fff; border: 0; border-radius: 6px; font: inherit; font-weight: 600; }
+      :focus-visible { outline: 3px solid #1a1a1a; outline-offset: 2px; }
+      label { display: block; margin-top: 16px; }
+      select { font: inherit; padding: 6px; margin: 4px 0 16px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe</h1>
+      <!-- Correct pattern: this page must produce zero findings. "Add to basket" is a native
+           button, so Enter and Space activate it. -->
+      <p>Grippy, light and waterproof. 120 euros.</p>
+      <label for="size">Size</label>
+      <select id="size">
+        <option>41</option>
+        <option selected>42</option>
+        <option>43</option>
+      </select>
+      <div><button id="add" class="add" type="button">Add to basket</button></div>
+      <p id="status" role="status"></p>
+    </main>
+    <script>
+      document.getElementById('add').addEventListener('click', () => {
+        const size = document.getElementById('size').value;
+        document.getElementById('status').textContent = `Added to basket: trail running shoe, size ${size}.`;
+      });
+    </script>
+  </body>
+</html>

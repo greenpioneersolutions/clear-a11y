@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shoe size: listbox highlight shown only visually</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      [role='listbox'] { max-width: 200px; margin: 0; padding: 0; list-style: none; border: 1px solid #555; }
+      [role='option'] { padding: 6px 8px; cursor: pointer; }
+      [role='option'].is-current { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe</h1>
+      <h2 id="size-label">Size</h2>
+      <!-- Seeded barrier: Up/Down Arrow move a CSS highlight and update a hidden form value, but the
+           listbox never sets aria-activedescendant or aria-selected, so screen reader users cannot
+           tell which size is chosen (4.1.2). -->
+      <ul role="listbox" id="size-list" tabindex="0" aria-labelledby="size-label">
+        <li role="option" id="size-41" class="is-current">EU 41</li>
+        <li role="option" id="size-42">EU 42</li>
+        <li role="option" id="size-43">EU 43</li>
+        <li role="option" id="size-44">EU 44</li>
+      </ul>
+      <input type="hidden" id="size-value" name="size" value="EU 41" />
+    </main>
+    <script>
+      const list = document.getElementById('size-list');
+      const options = [...list.querySelectorAll('[role=option]')];
+      let current = 0;
+      function choose(index) {
+        current = (index + options.length) % options.length;
+        options.forEach((o, i) => o.classList.toggle('is-current', i === current));
+        document.getElementById('size-value').value = options[current].textContent;
+      }
+      list.addEventListener('keydown', (event) => {
+        const next = { ArrowDown: current + 1, ArrowUp: current - 1, Home: 0, End: options.length - 1 }[event.key];
+        if (next === undefined) return;
+        event.preventDefault();
+        choose(next);
+      });
+      options.forEach((o, i) => o.addEventListener('click', () => choose(i)));
+    </script>
+  </body>
+</html>

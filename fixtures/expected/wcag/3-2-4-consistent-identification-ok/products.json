@@ -1,0 +1,6 @@
+{
+  "page": "wcag/3-2-4-consistent-identification-ok/products.html",
+  "title": "Shop products page with a consistently named basket",
+  "correctPattern": true,
+  "issues": []
+}

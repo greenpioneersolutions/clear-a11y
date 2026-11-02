@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pricing: comparison table scrolls in its own region</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      /* Correct pattern: a wide data table needs two dimensions (SC 1.4.10 exception), so it
+         scrolls inside its own labelled, focusable region while the rest of the page reflows. */
+      .table-wrap { overflow-x: auto; }
+      table { border-collapse: collapse; min-width: 640px; }
+      th, td { border: 1px solid #555; padding: 6px 10px; text-align: left; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Compare plans</h1>
+      <p>Every plan includes automated checks and the benchmark report.</p>
+      <div class="table-wrap" role="region" aria-labelledby="cmp-caption" tabindex="0">
+        <table>
+          <caption id="cmp-caption">Plan comparison</caption>
+          <thead><tr><th scope="col">Feature</th><th scope="col">Starter</th><th scope="col">Team</th><th scope="col">Enterprise</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Projects</th><td>1</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Support</th><td>Community</td><td>Email</td><td>Priority, 24 hours</td></tr>
+            <tr><th scope="row">Single sign-on</th><td>No</td><td>No</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

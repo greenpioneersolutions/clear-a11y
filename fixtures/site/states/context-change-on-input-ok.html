@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Store finder: a Go button starts the change</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      label, legend { font-weight: 600; }
+      .field { margin: 0 0 12px; }
+      select, input[type='text'] { font: inherit; padding: 8px; min-height: 44px; border: 1px solid #595959; box-sizing: border-box; }
+      button { font: inherit; padding: 8px 16px; min-height: 44px; }
+      fieldset { border: 1px solid #595959; margin: 0 0 12px; }
+      .option label { font-weight: 400; }
+      [hidden] { display: none !important; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Find a store</h1>
+      <!-- Correct pattern (SC 3.2.2): changing a value never changes the context. The country list
+           only takes effect when the user presses Go; the checkbox, radio buttons and postcode field
+           only filter or annotate content in place. -->
+      <form id="store-finder" action="context-change-on-input-ok.html" method="get">
+        <div class="field">
+          <label for="country">Country</label>
+          <select id="country" name="country" autocomplete="country-name">
+            <option value="be" selected>Belgium</option>
+            <option value="nl">Netherlands</option>
+            <option value="lu">Luxembourg</option>
+          </select>
+          <button type="submit">Go</button>
+        </div>
+        <div class="field">
+          <label for="postcode">Postcode</label>
+          <input id="postcode" name="postcode" type="text" inputmode="numeric" maxlength="4" autocomplete="postal-code" />
+        </div>
+        <fieldset>
+          <legend>How do you want your order?</legend>
+          <div class="option">
+            <input type="radio" id="mode-pickup" name="mode" value="pickup" checked />
+            <label for="mode-pickup">Pick up in store</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="mode-delivery" name="mode" value="delivery" />
+            <label for="mode-delivery">Home delivery</label>
+          </div>
+          <p id="delivery-note" hidden>Delivery takes two working days.</p>
+        </fieldset>
+        <div class="field option">
+          <input type="checkbox" id="sunday" />
+          <label for="sunday">Only stores open on Sunday</label>
+        </div>
+      </form>
+      <h2>Stores in Belgium</h2>
+      <ul id="stores">
+        <li>Antwerp, Meir 12 (open on Sunday)</li>
+        <li class="weekdays">Ghent, Veldstraat 40</li>
+        <li>Bruges, Steenstraat 5 (open on Sunday)</li>
+      </ul>
+    </main>
+    <script>
+      document.getElementById('sunday').addEventListener('change', (e) => {
+        for (const li of document.querySelectorAll('#stores .weekdays')) li.hidden = e.target.checked;
+      });
+      for (const radio of document.querySelectorAll('input[name="mode"]')) {
+        radio.addEventListener('change', () => {
+          document.getElementById('delivery-note').hidden = !document.getElementById('mode-delivery').checked;
+        });
+      }
+    </script>
+  </body>
+</html>

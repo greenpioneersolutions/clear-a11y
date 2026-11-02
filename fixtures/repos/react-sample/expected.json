@@ -1,0 +1,104 @@
+{
+  "repo": "react-sample",
+  "title": "React + TypeScript shop with seeded source-level barriers",
+  "correctFiles": [
+    "src/App.tsx",
+    "src/DocumentOk.tsx",
+    "src/components/IconButtonOk.tsx",
+    "src/components/ProductCardOk.tsx",
+    "src/components/SignupFormOk.tsx",
+    "src/components/ProductCard.test.tsx"
+  ],
+  "issues": [
+    {
+      "id": "react-sample#product-image-no-alt",
+      "file": "src/components/ProductCard.tsx",
+      "line": 14,
+      "rule": "jsx-a11y/alt-text",
+      "wcag": ["1.1.1"],
+      "layer": "repo",
+      "description": "Product image has no alt attribute; screen reader users get no description of the product."
+    },
+    {
+      "id": "react-sample#clickable-div",
+      "file": "src/components/ProductCard.tsx",
+      "line": 16,
+      "rule": "jsx-a11y/click-events-have-key-events",
+      "wcag": ["2.1.1"],
+      "layer": "repo",
+      "description": "\"View details\" is a <div> with onClick only: no keyboard handler, no role, not focusable."
+    },
+    {
+      "id": "react-sample#thumb-spread-no-alt",
+      "file": "src/components/ProductCard.tsx",
+      "line": 25,
+      "rule": "jsx-a11y/alt-text",
+      "wcag": ["1.1.1"],
+      "layer": "repo",
+      "description": "Thumbnail <img> gets all attributes from spread props; nothing guarantees an alt. An auditor would ask for alt to be required (reported as likely, not violation)."
+    },
+    {
+      "id": "react-sample#label-not-associated",
+      "file": "src/components/SignupForm.tsx",
+      "line": 5,
+      "rule": "jsx-a11y/label-has-associated-control",
+      "wcag": ["1.3.1", "4.1.2"],
+      "layer": "repo",
+      "description": "\"Email address\" label has no htmlFor and does not wrap the input, so the field has no programmatic label."
+    },
+    {
+      "id": "react-sample#autofocus",
+      "file": "src/components/SignupForm.tsx",
+      "line": 6,
+      "rule": "jsx-a11y/no-autofocus",
+      "wcag": ["2.4.3"],
+      "layer": "repo",
+      "description": "Email field grabs focus on load, skipping the heading and product content before the form."
+    },
+    {
+      "id": "react-sample#positive-tabindex",
+      "file": "src/components/SignupForm.tsx",
+      "line": 9,
+      "rule": "jsx-a11y/tabindex-no-positive",
+      "wcag": ["2.4.3"],
+      "layer": "repo",
+      "description": "Submit button has tabIndex={3}, pulling it ahead of the form fields in the Tab order."
+    },
+    {
+      "id": "react-sample#anchor-no-href",
+      "file": "src/components/IconButton.tsx",
+      "line": 4,
+      "rule": "jsx-a11y/anchor-is-valid",
+      "wcag": ["2.1.1", "2.4.4"],
+      "layer": "repo",
+      "description": "\"Close\" is an <a> without href used as a button: not focusable, not keyboard operable."
+    },
+    {
+      "id": "react-sample#anchor-hash-href",
+      "file": "src/components/IconButton.tsx",
+      "line": 12,
+      "rule": "jsx-a11y/anchor-is-valid",
+      "wcag": ["2.4.4", "2.1.1"],
+      "layer": "repo",
+      "description": "\"More options\" is <a href=\"#\"> that performs an action; announced as a link that goes nowhere."
+    },
+    {
+      "id": "react-sample#banner-no-alt-disabled-lint",
+      "file": "src/components/Banner.tsx",
+      "line": 7,
+      "rule": "jsx-a11y/alt-text",
+      "wcag": ["1.1.1"],
+      "layer": "repo",
+      "description": "Banner image has no alt; the eslint-disable comment above it must not hide the barrier from an audit."
+    },
+    {
+      "id": "react-sample#html-no-lang",
+      "file": "src/Document.tsx",
+      "line": 6,
+      "rule": "jsx-a11y/html-has-lang",
+      "wcag": ["3.1.1"],
+      "layer": "repo",
+      "description": "Document shell renders <html> without lang."
+    }
+  ]
+}

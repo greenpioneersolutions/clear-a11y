@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: accessible name starts with the visible label</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      input, button { font: inherit; padding: 6px 8px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <form role="search" action="#">
+        <label for="site-search">Product search</label>
+        <input id="site-search" type="search" name="q" />
+        <!-- Correct pattern: the accessible name starts with the visible text. -->
+        <button id="search-button" type="submit" aria-label="Search products">Search</button>
+        <button type="button" aria-label="Close search">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="2" /></svg>
+        </button>
+      </form>
+    </header>
+    <main>
+      <h1>Trail running shoes</h1>
+    </main>
+  </body>
+</html>

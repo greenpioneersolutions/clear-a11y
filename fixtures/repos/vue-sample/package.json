@@ -1,0 +1,13 @@
+{
+  "name": "vue-sample",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Clear A11Y fixture: a tiny Vue 3 app with seeded source-level barriers. Never installed or built.",
+  "type": "module",
+  "dependencies": {
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}

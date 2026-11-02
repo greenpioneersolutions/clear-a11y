@@ -1,0 +1,7 @@
+import { create<%= className %>Engine, ENGINE_NAME } from './engine.js';
+
+describe('create<%= className %>Engine', () => {
+  it('exposes the engine name', () => {
+    expect(create<%= className %>Engine().name).toBe(ENGINE_NAME);
+  });
+});

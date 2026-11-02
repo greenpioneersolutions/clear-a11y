@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: labelled search field</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      input, button { font: inherit; padding: 6px 8px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <form role="search" action="#">
+        <!-- Correct pattern: a visible label; the placeholder only shows an example. -->
+        <label for="site-search">Search products</label>
+        <input id="site-search" type="search" name="q" placeholder="e.g. trail shoes" />
+        <button type="submit">Go</button>
+      </form>
+    </header>
+    <main>
+      <h1>Trail running shoes</h1>
+    </main>
+  </body>
+</html>

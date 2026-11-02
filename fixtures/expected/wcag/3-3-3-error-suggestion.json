@@ -1,0 +1,14 @@
+{
+  "page": "wcag/3-3-3-error-suggestion.html",
+  "title": "Sign-up form with an unhelpful date error",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/3-3-3-error-suggestion#1",
+      "wcag": ["3.3.3", "3.3.2"],
+      "selector": "#dob | #dob-error",
+      "layer": "ai",
+      "description": "When the date of birth is wrong or missing, the error says only \"Invalid date of birth.\" and does not say which format is expected, although the site knows it."
+    }
+  ]
+}

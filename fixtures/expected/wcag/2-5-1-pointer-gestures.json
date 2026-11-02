@@ -1,0 +1,15 @@
+{
+  "page": "wcag/2-5-1-pointer-gestures.html",
+  "title": "Product carousel that only works by swiping",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-5-1-pointer-gestures#1",
+      "wcag": ["2.5.1", "2.5.7", "2.1.1"],
+      "selector": "#gallery",
+      "layer": "at",
+      "description": "The carousel can only be moved by swiping; there is no single-pointer (or keyboard) way to reach the other slides.",
+      "ruleId": "at/drag-without-alternative"
+    }
+  ]
+}

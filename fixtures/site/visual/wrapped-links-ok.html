@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: inline links that wrap onto the next line</title>
+    <style>
+      body { margin: 0; font: 16px/1.6 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 34rem; }
+      a { color: #1a4fa0; }
+      code { font-size: 0.875em; background: #eef1f5; padding: 0 0.2em; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Shipping help</h1>
+      <!--
+        Correct pattern: ordinary inline links in running text. At 320 px wide and at 200% zoom
+        several links wrap from the end of one line onto the next. A wrapped link's bounding box
+        spans both lines, but its text doesn't overlap the words beside it.
+      -->
+      <p>
+        Check the <a href="#zones">delivery zones and estimated delivery times for your country</a>, read the
+        <a href="#rates">shipping rates for heavy and oversized parcels</a> and the
+        <a href="#returns">returns policy for items bought in a sale</a> before you
+        <a href="#order">place an order with express or same-day delivery</a>.
+      </p>
+      <ul>
+        <li>
+          Tracking: <a href="#tracking"><code>track --order &lt;number&gt;</code> in the customer portal</a> or
+          <a href="#app">the mobile app's order history screen</a>.
+        </li>
+      </ul>
+      <h2 id="zones">Delivery zones</h2>
+      <p>We deliver to most countries in Europe.</p>
+      <h2 id="rates">Rates</h2>
+      <p>Parcels over 20 kg cost extra.</p>
+      <h2 id="returns">Returns</h2>
+      <p>Sale items can be returned within 14 days.</p>
+      <h2 id="order">Ordering</h2>
+      <p>Express orders placed before noon ship the same day.</p>
+      <h2 id="tracking">Tracking</h2>
+      <p>Every parcel gets a tracking number.</p>
+      <h2 id="app">Mobile app</h2>
+      <p>The app shows the same order history as the website.</p>
+    </main>
+  </body>
+</html>

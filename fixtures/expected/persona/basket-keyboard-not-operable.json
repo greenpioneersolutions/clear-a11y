@@ -1,0 +1,15 @@
+{
+  "page": "persona/basket-keyboard-not-operable.html",
+  "title": "Product: Add to basket ignores the keyboard",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "persona/basket-keyboard-not-operable#1",
+      "wcag": ["2.1.1"],
+      "selector": "#add",
+      "layer": "persona",
+      "description": "Add to basket is a focusable span with role button that only reacts to mouse clicks: Enter and Space do nothing.",
+      "ruleId": "persona/task-blocked"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "page": "wcag/2-4-5-multiple-ways/index.html",
+  "title": "Help centre with only a chain of Next links",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-4-5-multiple-ways/index#1",
+      "wcag": ["2.4.5"],
+      "selector": "html | body",
+      "layer": "persona",
+      "description": "The help pages (home, delivery, returns) can only be reached by following \"Next\" links in sequence; there is no navigation, search or site map, so there is only one way to find a page."
+    }
+  ]
+}

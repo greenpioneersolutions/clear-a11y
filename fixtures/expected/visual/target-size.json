@@ -1,0 +1,15 @@
+{
+  "page": "visual/target-size.html",
+  "title": "Search results: tiny pagination targets",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/target-size#1",
+      "wcag": ["2.5.8"],
+      "selector": "#page-1 | #page-2 | #page-3 | #page-4",
+      "layer": "visual",
+      "description": "Pagination links are 12px targets packed together, below the 24px minimum with no spacing.",
+      "ruleId": "visual/target-size"
+    }
+  ]
+}

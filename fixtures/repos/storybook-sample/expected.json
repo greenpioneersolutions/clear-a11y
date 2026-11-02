@@ -1,0 +1,71 @@
+{
+  "repo": "storybook-sample",
+  "title": "React component library with Storybook stories and seeded runtime barriers",
+  "correctFiles": [
+    "src/components/Button.tsx",
+    "src/components/TabsOk.tsx",
+    "src/components/ModalOk.tsx"
+  ],
+  "correctStories": [
+    "components-button--primary",
+    "components-tabs--default",
+    "components-modal--default",
+    "components-card--default"
+  ],
+  "issues": [
+    {
+      "id": "storybook-sample#icon-button-no-name",
+      "story": "components-button--icon-only",
+      "selector": "#close-button | .icon-button | [data-testid=\"icon-button\"]",
+      "rule": "static/button-name",
+      "wcag": ["4.1.2"],
+      "layer": "static",
+      "description": "The icon-only close button has no accessible name; screen readers announce just \"button\"."
+    },
+    {
+      "id": "storybook-sample#tabs-no-arrow-keys",
+      "story": "components-tabs--no-arrow-keys",
+      "selector": "#tab-2 | #tab-3 | [role=tablist] | #tab-1",
+      "rule": "widgets/tabs-keyboard",
+      "wcag": ["2.1.1"],
+      "layer": "widgets",
+      "description": "Inactive tabs have tabindex=-1 and there is no arrow-key handler, so keyboard users cannot reach them."
+    },
+    {
+      "id": "storybook-sample#tabs-click-only-source",
+      "file": "src/components/Tabs.tsx",
+      "line": 19,
+      "rule": "jsx-a11y/click-events-have-key-events",
+      "wcag": ["2.1.1"],
+      "layer": "repo",
+      "description": "The tab <div> has an onClick handler and no keyboard handler (the source-level view of the same barrier)."
+    },
+    {
+      "id": "storybook-sample#modal-focus-not-moved",
+      "story": "components-modal--no-focus-management",
+      "selector": "#newsletter-dialog | #open-dialog",
+      "rule": "keyboard/overlay-focus-not-moved",
+      "wcag": ["2.4.3"],
+      "layer": "keyboard",
+      "description": "Opening the newsletter dialog leaves focus on the Subscribe button behind it."
+    },
+    {
+      "id": "storybook-sample#modal-focus-not-returned",
+      "story": "components-modal--no-focus-management",
+      "selector": "#close-dialog | #open-dialog",
+      "rule": "keyboard/focus-not-returned",
+      "wcag": ["2.4.3"],
+      "layer": "keyboard",
+      "description": "Closing the dialog drops focus on the page body instead of returning it to the Subscribe button."
+    },
+    {
+      "id": "storybook-sample#card-low-contrast",
+      "story": "components-card--low-contrast",
+      "selector": ".card-note-muted | .card-note | #storybook-root > article > p:nth-of-type(2)",
+      "rule": "static/color-contrast",
+      "wcag": ["1.4.3"],
+      "layer": "static",
+      "description": "The shipping note is light grey (#aaaaaa) on white, 2.3:1, below the 4.5:1 minimum for body text."
+    }
+  ]
+}

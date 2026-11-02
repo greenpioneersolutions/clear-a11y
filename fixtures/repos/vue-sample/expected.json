@@ -1,0 +1,43 @@
+{
+  "repo": "vue-sample",
+  "title": "Vue 3 single-file components with seeded source-level barriers",
+  "correctFiles": ["src/App.vue", "src/components/ProductTileOk.vue"],
+  "issues": [
+    {
+      "id": "vue-sample#image-no-alt",
+      "file": "src/components/ProductTile.vue",
+      "line": 4,
+      "rule": "vuejs-accessibility/alt-text",
+      "wcag": ["1.1.1"],
+      "layer": "repo",
+      "description": "Product image has no alt attribute."
+    },
+    {
+      "id": "vue-sample#clickable-div",
+      "file": "src/components/ProductTile.vue",
+      "line": 5,
+      "rule": "vuejs-accessibility/click-events-have-key-events",
+      "wcag": ["2.1.1"],
+      "layer": "repo",
+      "description": "\"View details\" is a <div> with @click only: no keyboard handler, no role, not focusable."
+    },
+    {
+      "id": "vue-sample#input-no-label",
+      "file": "src/components/ProductTile.vue",
+      "line": 6,
+      "rule": "vuejs-accessibility/form-control-has-label",
+      "wcag": ["1.3.1"],
+      "layer": "repo",
+      "description": "Quantity input has no label at all."
+    },
+    {
+      "id": "vue-sample#autofocus",
+      "file": "src/components/ProductTile.vue",
+      "line": 6,
+      "rule": "vuejs-accessibility/no-autofocus",
+      "wcag": ["2.4.3"],
+      "layer": "repo",
+      "description": "Quantity input grabs focus on load."
+    }
+  ]
+}

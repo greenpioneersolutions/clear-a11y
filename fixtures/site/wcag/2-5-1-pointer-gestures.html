@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product carousel that only works by swiping</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .carousel { max-width: 420px; }
+      .track { touch-action: pan-y; user-select: none; border: 2px solid #767676; padding: 16px; }
+      .slide h2 { margin: 0 0 8px; }
+      .controls { display: flex; gap: 8px; margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>New this season</h1>
+      <!-- Seeded barrier: the carousel changes slide only with a swipe (a path-based gesture); there
+           are no previous/next buttons. WCAG 2.5.1. -->
+      <p>Swipe to see more.</p>
+      <div class="carousel">
+        <div class="track" id="gallery">
+        <div class="slide"><h2>Trail shoes</h2><p>Grippy soles for wet rock.</p></div>
+        <div class="slide" hidden><h2>Rain jacket</h2><p>Fully taped seams.</p></div>
+        <div class="slide" hidden><h2>Day pack</h2><p>22 litres, with a rain cover.</p></div>
+        </div>
+      </div>
+    </main>
+    <script>
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      let current = 0;
+      const show = (i) => {
+        current = (i + slides.length) % slides.length;
+        slides.forEach((s, n) => (s.hidden = n !== current));
+      };
+      const track = document.getElementById('gallery');
+      let startX = null;
+      track.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), { passive: true });
+      track.addEventListener('touchmove', (e) => {
+        if (startX === null) return;
+        track.style.transform = `translateX(${(e.touches[0].clientX - startX) / 4}px)`;
+      }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        startX = null;
+        track.style.transform = '';
+        if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+      });
+    </script>
+  </body>
+</html>

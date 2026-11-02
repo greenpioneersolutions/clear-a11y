@@ -1,0 +1,7 @@
+{
+  "name": "angular-app",
+  "private": true,
+  "scripts": { "ng": "ng", "start": "ng serve", "build": "ng build" },
+  "dependencies": { "@angular/core": "^18.2.0" },
+  "devDependencies": { "@angular/cli": "^18.2.0", "@angular-devkit/build-angular": "^18.2.0" }
+}

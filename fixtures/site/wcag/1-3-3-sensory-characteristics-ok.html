@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trial sign-up with named instructions</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .actions { display: flex; justify-content: space-between; max-width: 360px; }
+      .actions button { border: 0; padding: 10px 16px; color: #fff; }
+      .back { background: #595959; }
+      .go { background: #146c2e; border-radius: 999px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Start your free trial</h1>
+      <!-- Correct pattern: the instruction names the button. -->
+      <p id="trial-instructions">When you are ready, press Continue.</p>
+      <div class="actions">
+        <button type="button" class="back">Back</button>
+        <button type="button" class="go">Continue</button>
+      </div>
+    </main>
+  </body>
+</html>

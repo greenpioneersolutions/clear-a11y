@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/modal-contained-ok.html",
+  "title": "Newsletter: modal that contains focus and closes on Escape",
+  "correctPattern": true,
+  "issues": []
+}

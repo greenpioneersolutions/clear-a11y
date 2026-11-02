@@ -1,0 +1,65 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+out-tsc/
+*.tsbuildinfo
+coverage/
+.vite/
+.vitest/
+test-output/
+
+# Nx
+.nx/cache/
+.nx/workspace-data/
+.nx/installation/
+.nx/polygraph/
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Docs site: generated pages (nx run docs:generate) and Astro's cache
+apps/docs/src/content/docs/
+apps/docs/.astro/
+
+# Clear A11Y outputs
+.clear-a11y/
+reports/
+bench-results/*.local.*
+
+# Secrets and auth state
+.env
+.env.*
+!.env.example
+*.auth.json
+storageState*.json
+
+# Editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Nx extras
+.nx/self-healing
+.nx/migrate-runs
+.claude/worktrees
+.claude/settings.local.json
+vitest.config.*.timestamp*
+.vitest
+
+# Scratch output from builds
+tmp/

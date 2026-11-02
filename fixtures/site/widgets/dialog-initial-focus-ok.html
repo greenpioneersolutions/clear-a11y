@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: modal dialog</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / 0.5); display: grid; place-items: center; }
+      .backdrop[hidden] { display: none; }
+      [role='dialog'] { background: #fff; padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main id="page">
+      <h1>Trail running shoes</h1>
+      <p><button type="button" id="open-filters" aria-haspopup="dialog">Filters</button></p>
+    </main>
+    <!-- Correct pattern, rewritten from the ARIA Authoring Practices Guide "Modal Dialog" example
+         (https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/): the dialog is named by its
+         heading, focus moves to the first control on open, Tab stays inside, Escape closes, and
+         focus returns to the button that opened it. -->
+    <div class="backdrop" id="filters-backdrop" hidden>
+      <div role="dialog" id="filters-dialog" aria-modal="true" aria-labelledby="filters-title">
+        <h2 id="filters-title">Filters</h2>
+        <label><input type="checkbox" id="filter-waterproof" /> Waterproof</label>
+        <p><button type="button" id="close-filters">Show results</button></p>
+      </div>
+    </div>
+    <script>
+      const opener = document.getElementById('open-filters');
+      const backdrop = document.getElementById('filters-backdrop');
+      const dialog = document.getElementById('filters-dialog');
+      const page = document.getElementById('page');
+      const focusables = () => [...dialog.querySelectorAll('input, button')];
+      function open() {
+        backdrop.hidden = false;
+        page.inert = true;
+        focusables()[0].focus();
+      }
+      function close() {
+        backdrop.hidden = true;
+        page.inert = false;
+        opener.focus();
+      }
+      opener.addEventListener('click', open);
+      document.getElementById('close-filters').addEventListener('click', close);
+      dialog.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') { event.preventDefault(); close(); return; }
+        if (event.key !== 'Tab') return;
+        const list = focusables();
+        const first = list[0];
+        const last = list[list.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      });
+    </script>
+  </body>
+</html>

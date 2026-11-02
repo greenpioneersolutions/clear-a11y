@@ -1,0 +1,6 @@
+{
+  "page": "at/live-region-inserted-with-content-ok.html",
+  "title": "Correct pattern: live region present before the message",
+  "correctPattern": true,
+  "issues": []
+}

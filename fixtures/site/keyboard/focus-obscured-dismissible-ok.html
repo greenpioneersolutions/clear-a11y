@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Docs: shortcuts panel closes with Escape</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { max-width: 40rem; margin: 0 auto; padding: 16px 16px 96px; }
+      button { font: inherit; min-height: 32px; }
+      a { color: #0b4f9c; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      section { min-height: 60vh; }
+      #help-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-height: 50vh;
+        overflow: auto;
+        margin: 0;
+        padding: 12px 16px;
+        background: #ffffff;
+        border-top: 2px solid #1a1a1a;
+      }
+      #help-panel[hidden] { display: none; }
+      #help-panel h2 { margin: 0; font-size: 1rem; }
+      #help-panel p { margin: 4px 0 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Getting started</h1>
+      <button id="help-toggle" type="button" aria-expanded="false" aria-controls="help-panel">
+        Keyboard shortcuts
+      </button>
+      <div id="help-panel" hidden>
+        <h2>Keyboard shortcuts</h2>
+        <p>Press <kbd>/</kbd> to search. Press <kbd>Escape</kbd> to close this panel.</p>
+      </div>
+      <section id="install">
+        <h2>Install</h2>
+        <p>Install the command line tool with your package manager, then check the version.</p>
+        <p><a id="install-guide" href="#install">Read the full install guide</a></p>
+      </section>
+      <section id="scan">
+        <h2>Scan a page</h2>
+        <p>Point the tool at a page you own and open the report it writes.</p>
+        <p><a id="scan-guide" href="#scan">Read the scanning guide</a></p>
+      </section>
+    </main>
+    <script>
+      // Correct pattern (2.4.11 exception for content opened by the user): the shortcuts panel is
+      // opened by the user and sits over the page, so it can cover links further down while it is
+      // open. Escape closes it without moving keyboard focus, which reveals the focused link.
+      const toggle = document.getElementById('help-toggle');
+      const panel = document.getElementById('help-panel');
+      const setOpen = (open) => {
+        panel.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+      };
+      toggle.addEventListener('click', () => setOpen(panel.hidden));
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape' || panel.hidden) return;
+        const focusInside = panel.contains(document.activeElement);
+        setOpen(false);
+        if (focusInside) toggle.focus();
+      });
+    </script>
+  </body>
+</html>

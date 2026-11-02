@@ -1,0 +1,14 @@
+{
+  "page": "wcag/3-3-4-error-prevention/checkout.html",
+  "title": "Checkout that charges the card without review or undo",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/3-3-4-error-prevention/checkout#1",
+      "wcag": ["3.3.4"],
+      "selector": "#pay-now",
+      "layer": "persona",
+      "description": "Pressing \"Pay £184.00 now\" places a financial commitment immediately: no review or confirmation step, and the confirmation page says the order cannot be cancelled."
+    }
+  ]
+}

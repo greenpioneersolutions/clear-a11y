@@ -1,0 +1,52 @@
+{
+  "name": "@clear-a11y/source",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "description": "Clear A11Y monorepo: an accessibility testing engine that tests like a human expert.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git"
+  },
+  "engines": {
+    "node": "^22.23.4 || ^24.0.0 || >=26.0.0"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "catalog:",
+    "@nx/devkit": "catalog:",
+    "@nx/eslint": "catalog:",
+    "@nx/eslint-plugin": "catalog:",
+    "@nx/js": "catalog:",
+    "@nx/nest": "catalog:",
+    "@nx/playwright": "catalog:",
+    "@nx/plugin": "catalog:",
+    "@nx/vitest": "catalog:",
+    "@playwright/test": "catalog:",
+    "@swc-node/register": "catalog:",
+    "@swc/core": "catalog:",
+    "@swc/helpers": "catalog:",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "jsonc-eslint-parser": "catalog:",
+    "nx": "catalog:",
+    "prettier": "catalog:",
+    "tslib": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "pnpm": {
+    "neverBuiltDependencies": [
+      "electron"
+    ]
+  }
+}

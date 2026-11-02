@@ -1,0 +1,16 @@
+{
+  "name": "persona/kb-checkout-3-tab",
+  "source": "synthetic",
+  "request": {
+    "judge": "persona-keyboard-only",
+    "promptVersion": 1,
+    "match": {
+      "step": 3
+    }
+  },
+  "response": {
+    "action": "press",
+    "key": "Tab",
+    "reason": "Move on to the Pay now button."
+  }
+}

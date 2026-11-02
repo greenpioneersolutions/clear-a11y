@@ -1,0 +1,15 @@
+{
+  "page": "persona/signup-screen-reader-blocked.html",
+  "title": "Newsletter: unnamed sign-up button",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "persona/signup-screen-reader-blocked#1",
+      "wcag": ["4.1.2"],
+      "selector": "#signup",
+      "layer": "persona",
+      "description": "The sign-up button shows only an arrow icon and has no accessible name: a screen reader user can't find the control to subscribe.",
+      "ruleId": "persona/task-blocked"
+    }
+  ]
+}

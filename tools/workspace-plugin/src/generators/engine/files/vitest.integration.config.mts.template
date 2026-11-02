@@ -1,0 +1,17 @@
+import { defineConfig } from 'vitest/config';
+
+// Browser tests against fixtures/. Run with `nx test-integration @clear-a11y/engine-<%= name %>`.
+export default defineConfig(() => ({
+  root: import.meta.dirname,
+  cacheDir: '<%= offset %>node_modules/.vite/packages/engines/<%= name %>-integration',
+  test: {
+    name: '@clear-a11y/engine-<%= name %>:integration',
+    watch: false,
+    globals: true,
+    environment: 'node',
+    include: ['test/**/*.integration.test.ts'],
+    testTimeout: 60_000,
+    hookTimeout: 60_000,
+    reporters: ['default'],
+  },
+}));

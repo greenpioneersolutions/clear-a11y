@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter: help appears inline on focus</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      form { display: grid; gap: 12px; }
+      label { display: block; font-weight: 600; }
+      input { font: inherit; padding: 8px; border: 1px solid #595959; width: 100%; box-sizing: border-box; }
+      button { font: inherit; padding: 8px 16px; min-height: 44px; }
+      .hint { margin: 4px 0 0; color: #3d3d3d; }
+      .hint[hidden] { display: none; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Get the weekly newsletter</h1>
+      <p>One email a week with new trails, gear reviews and race dates.</p>
+      <!-- Correct pattern (SC 3.2.1): focusing the Email field only shows a hint below it (a change
+           of content, not of context). The privacy policy opens in a new window only when the user
+           activates the link, and the link says so. -->
+      <form action="#" id="newsletter">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" autocomplete="name" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" aria-describedby="email-hint" />
+          <p class="hint" id="email-hint" hidden>We only use it for the newsletter.</p>
+        </div>
+        <p>
+          <a id="privacy" href="../index.html" target="_blank" rel="noopener">Privacy policy (opens in a new window)</a>
+        </p>
+        <button type="submit">Subscribe</button>
+      </form>
+    </main>
+    <script>
+      const email = document.getElementById('email');
+      const hint = document.getElementById('email-hint');
+      email.addEventListener('focus', () => { hint.hidden = false; });
+      email.addEventListener('blur', () => { hint.hidden = true; });
+      document.getElementById('newsletter').addEventListener('submit', (e) => e.preventDefault());
+    </script>
+  </body>
+</html>

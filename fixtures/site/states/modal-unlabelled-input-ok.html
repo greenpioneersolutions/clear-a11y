@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog: labelled field inside the subscribe dialog</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      dialog { padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      dialog::backdrop { background: rgb(0 0 0 / 0.5); }
+      input { font: inherit; padding: 4px; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Notes from the trail</h1>
+      <p>Weekly stories from long-distance hikers.</p>
+      <button id="open-subscribe" type="button">Subscribe</button>
+      <!-- Correct pattern: the field in the dialog has a visible, programmatic label. -->
+      <dialog id="subscribe-dialog" aria-labelledby="subscribe-title">
+        <h2 id="subscribe-title">Get the weekly email</h2>
+        <form method="dialog">
+          <p><label for="subscribe-email">Your email address</label></p>
+          <p><input id="subscribe-email" type="email" autocomplete="email" /></p>
+          <p>
+            <button id="subscribe-send" type="submit" value="send">Send me stories</button>
+            <button id="subscribe-close" type="submit" value="cancel">Close</button>
+          </p>
+        </form>
+      </dialog>
+    </main>
+    <script>
+      const dialog = document.getElementById('subscribe-dialog');
+      const opener = document.getElementById('open-subscribe');
+      opener.addEventListener('click', () => dialog.showModal());
+      dialog.addEventListener('close', () => opener.focus());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "page": "wcag/2-4-2-page-titled.html",
+  "title": "Order history page without a title",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-4-2-page-titled#1",
+      "wcag": ["2.4.2"],
+      "selector": "html",
+      "layer": "static",
+      "description": "The page has no title element, so its purpose is not identified in the browser tab, history or by screen readers."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+# Repository labels. Issue forms apply some of these automatically, so every
+# label they use must be listed here. Colors are hex without the leading #.
+
+- name: good first issue
+  color: '7057ff'
+  description: A well-scoped task for a first contribution.
+- name: help wanted
+  color: '008672'
+  description: Maintainers would welcome a contribution here.
+- name: rule-proposal
+  color: '5319e7'
+  description: A proposed new check, to be agreed before code is written.
+- name: false-positive
+  color: 'd93f0b'
+  description: Clear A11Y reported something that is not a barrier.
+- name: false-negative
+  color: 'b60205'
+  description: Clear A11Y missed a barrier a human found.
+- name: needs-repro
+  color: 'fbca04'
+  description: Needs a minimal HTML reproduction before it can become a fixture.
+- name: bug
+  color: 'd73a4a'
+  description: Something crashes or behaves wrongly.
+- name: enhancement
+  color: 'a2eeef'
+  description: A new feature or improvement.
+- name: documentation
+  color: '0075ca'
+  description: Docs, rule pages, guides or the README.
+- name: dependencies
+  color: '0366d6'
+  description: Dependency updates.
+- name: security
+  color: 'ee0701'
+  description: Security hardening. Report vulnerabilities privately, not in issues.
+- name: benchmark
+  color: 'c5def5'
+  description: Fixtures, expected findings or the benchmark harness.
+- name: 'engine:static'
+  color: 'bfd4f2'
+  description: axe-core static rules layer.
+- name: 'engine:keyboard'
+  color: 'bfd4f2'
+  description: Focus order, focus visible, traps and focus return.
+- name: 'engine:states'
+  color: 'bfd4f2'
+  description: State explorer (menus, modals, accordions, form errors).
+- name: 'engine:visual'
+  color: 'bfd4f2'
+  description: Reflow, text resize and spacing, real-pixel contrast, target size.
+- name: 'engine:at'
+  color: 'bfd4f2'
+  description: Accessibility tree, announcements and live regions.
+- name: 'engine:widgets'
+  color: 'bfd4f2'
+  description: ARIA Authoring Practices keyboard contracts.
+- name: 'engine:ai'
+  color: 'bfd4f2'
+  description: AI providers, judges and persona agents.

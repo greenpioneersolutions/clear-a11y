@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sale banner as an image of text</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Lakeside Outdoor</h1>
+      <!-- Seeded barrier: the promotion is an image of text (an SVG picture of the words), so it
+           can't be resized, recoloured or restyled. WCAG 1.4.5. -->
+      <img id="sale-banner" src="../_assets/sale-banner.svg" width="600" height="150"
+        alt="Summer sale: 50% off all jackets, this weekend only" />
+      <p>Free delivery on orders over £50.</p>
+    </main>
+  </body>
+</html>

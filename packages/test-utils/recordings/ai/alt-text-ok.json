@@ -1,0 +1,14 @@
+{
+  "name": "ai/alt-text-ok",
+  "source": "synthetic",
+  "request": {
+    "judge": "alt-text",
+    "promptVersion": 1,
+    "match": { "alt": "Five team members standing in front of the Ghent office" }
+  },
+  "response": {
+    "verdict": "pass",
+    "confidence": 0.9,
+    "reason": "The alt text describes who is in the photo and where, which matches the \"Meet the team\" heading."
+  }
+}

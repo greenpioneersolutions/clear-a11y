@@ -1,0 +1,14 @@
+{
+  "page": "static/img-missing-alt.html",
+  "title": "Product page: image without alt",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "static/img-missing-alt#1",
+      "wcag": ["1.1.1"],
+      "selector": "#hero",
+      "layer": "static",
+      "description": "Informative product image has no text alternative."
+    }
+  ]
+}

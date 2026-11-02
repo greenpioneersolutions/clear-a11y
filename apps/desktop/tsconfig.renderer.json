@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "out-tsc/renderer",
+    "tsBuildInfoFile": "out-tsc/renderer/tsconfig.renderer.tsbuildinfo",
+    "forceConsistentCasingInFileNames": true,
+    "types": [],
+    "lib": ["es2023", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "include": ["src/renderer/**/*.ts", "src/renderer/**/*.tsx", "src/shared/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+  "references": [
+    {
+      "path": "../../packages/core/tsconfig.lib.json"
+    }
+  ]
+}

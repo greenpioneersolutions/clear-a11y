@@ -1,0 +1,15 @@
+{
+  "page": "widgets/combobox-keyboard.html",
+  "title": "Delivery country: combobox state shown only visually",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "widgets/combobox-keyboard#1",
+      "wcag": ["4.1.2"],
+      "selector": "#country-combobox",
+      "layer": "widgets",
+      "description": "The country list opens and Down Arrow highlights options, but aria-expanded stays \"false\" and the highlight is only a CSS class (no aria-activedescendant), so screen readers announce neither the list nor the active option.",
+      "ruleId": "widgets/combobox-keyboard"
+    }
+  ]
+}

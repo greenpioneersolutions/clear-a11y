@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Editor toolbar: small icons with enough spacing</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; }
+      /* Correct pattern: 16px icon buttons, 12px apart. Centers are 28px apart, so 24px circles
+         around them don't intersect each other or the neighboring button (2.5.8 spacing). */
+      .toolbar { display: flex; gap: 12px; padding: 8px 0; }
+      .toolbar button { width: 16px; height: 16px; padding: 0; border: 0; background: none; }
+      .toolbar svg { display: block; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Draft</h1>
+      <div class="toolbar" role="toolbar" aria-label="Formatting">
+        <button type="button" aria-label="Bold"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="2" y="2" width="12" height="12" fill="#1a1a1a" /></svg></button>
+        <button type="button" aria-label="Italic"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6" fill="#1a1a1a" /></svg></button>
+        <button type="button" aria-label="Underline"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 14 H14" stroke="#1a1a1a" stroke-width="3" /></svg></button>
+      </div>
+      <p>Write your post here.</p>
+    </main>
+  </body>
+</html>

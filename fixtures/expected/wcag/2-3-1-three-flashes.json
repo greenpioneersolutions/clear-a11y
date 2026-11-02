@@ -1,0 +1,14 @@
+{
+  "page": "wcag/2-3-1-three-flashes.html",
+  "title": "Flash sale animation that flashes six times a second",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-3-1-three-flashes#1",
+      "wcag": ["2.3.1"],
+      "selector": "#sale-flash",
+      "layer": "visual",
+      "description": "The sale animation flashes a large red and white area about six times per second, above the general and red flash thresholds."
+    }
+  ]
+}

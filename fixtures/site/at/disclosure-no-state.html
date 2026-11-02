@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FAQ: disclosure without expanded state</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Frequently asked questions</h1>
+      <h2>
+        <!-- Seeded barrier: toggles content but never exposes aria-expanded (4.1.2). -->
+        <button id="faq-shipping" type="button">How long does shipping take?</button>
+      </h2>
+      <div id="faq-shipping-panel" hidden><p>Two to four working days in the EU.</p></div>
+    </main>
+    <script>
+      document.getElementById('faq-shipping').addEventListener('click', () => {
+        const panel = document.getElementById('faq-shipping-panel');
+        panel.hidden = !panel.hidden;
+      });
+    </script>
+  </body>
+</html>

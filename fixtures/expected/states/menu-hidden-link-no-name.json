@@ -1,0 +1,15 @@
+{
+  "page": "states/menu-hidden-link-no-name.html",
+  "title": "Outdoor shop: icon link without a name inside the menu",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "states/menu-hidden-link-no-name#1",
+      "wcag": ["2.4.4", "4.1.2"],
+      "selector": "#menu-account",
+      "layer": "states",
+      "description": "The account link inside the collapsed main menu is an icon with no accessible name. It is only reachable after opening the menu.",
+      "state": "menu:open"
+    }
+  ]
+}

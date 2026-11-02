@@ -1,0 +1,6 @@
+{
+  "page": "widgets/tabs-keyboard-ok.html",
+  "title": "Correct pattern: vertical tabs with arrow keys",
+  "correctPattern": true,
+  "issues": []
+}

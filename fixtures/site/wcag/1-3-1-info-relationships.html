@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delivery options table without headers</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; background: #fff; margin: 0 16px; }
+      a { color: #1a4f8b; }
+      button { font: inherit; }
+      img, video, audio { max-width: 100%; }
+      img, video { height: auto; }
+      figure { margin: 16px 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      table { border-collapse: collapse; }
+      td, th { border: 1px solid #767676; padding: 4px 8px; text-align: left; }
+      .head { font-weight: bold; background: #f0f0f0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Delivery options</h1>
+      <!-- Seeded barrier: the header row is styled bold but made of <td> cells, so screen readers
+           announce prices without the column they belong to. WCAG 1.3.1. -->
+      <table id="delivery-table">
+        <tr class="head"><td>Option</td><td>Delivery time</td><td>Price</td></tr>
+        <tr><td>Standard</td><td>3 to 5 working days</td><td>£3.95</td></tr>
+        <tr><td>Express</td><td>Next working day</td><td>£6.95</td></tr>
+        <tr><td>Collect in store</td><td>2 working days</td><td>Free</td></tr>
+      </table>
+    </main>
+  </body>
+</html>

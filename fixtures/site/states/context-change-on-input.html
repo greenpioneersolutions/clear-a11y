@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Store finder: choosing a country loads another page</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      label { display: block; font-weight: 600; }
+      select { font: inherit; padding: 8px; min-height: 44px; border: 1px solid #595959; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Find a store</h1>
+      <!-- Seeded barrier (SC 3.2.2): choosing an option loads that country's store page right away.
+           There is no Go button and no text saying so. Keyboard users who arrow through the list
+           to read the options are sent to the first country they pass. -->
+      <form id="store-finder" action="#">
+        <label for="country">Country</label>
+        <select id="country" name="country">
+          <option value="be" selected>Belgium</option>
+          <option value="nl">Netherlands</option>
+          <option value="lu">Luxembourg</option>
+        </select>
+      </form>
+      <h2>Stores in Belgium</h2>
+      <ul>
+        <li>Antwerp, Meir 12</li>
+        <li>Ghent, Veldstraat 40</li>
+      </ul>
+    </main>
+    <script>
+      document.getElementById('country').addEventListener('change', (e) => {
+        window.location.href = 'context-change-on-input.html?country=' + e.target.value;
+      });
+    </script>
+  </body>
+</html>

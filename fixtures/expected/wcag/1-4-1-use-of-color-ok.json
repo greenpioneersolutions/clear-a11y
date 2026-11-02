@@ -1,0 +1,6 @@
+{
+  "page": "wcag/1-4-1-use-of-color-ok.html",
+  "title": "Returns policy with underlined links",
+  "correctPattern": true,
+  "issues": []
+}

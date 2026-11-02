@@ -1,0 +1,15 @@
+{
+  "page": "visual/text-overlap.html",
+  "title": "Promotion: heading runs into the text when enlarged",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/text-overlap#1",
+      "wcag": ["1.4.4", "1.4.10"],
+      "selector": "#promo-heading | #promo-copy",
+      "layer": "visual",
+      "description": "With text enlarged to 200%, the heading spills out of its fixed 24px box and its letters overlap the paragraph below.",
+      "ruleId": "visual/text-overlap"
+    }
+  ]
+}

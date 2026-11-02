@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/overlay-focus-not-moved-ok.html",
+  "title": "Help: dialog moves focus inside",
+  "correctPattern": true,
+  "issues": []
+}

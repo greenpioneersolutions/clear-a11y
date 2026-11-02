@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop home: working skip link</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      nav ul { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; padding: 0; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+      .skip { position: absolute; left: -9999px; }
+      .skip:focus { left: 8px; top: 8px; background: #fff; padding: 8px; }
+    </style>
+  </head>
+  <body>
+    <!-- Correct pattern: the skip link targets the main element, which exists and can take
+         focus, so the next Tab goes to the first link in the content. -->
+    <a id="skip-link" class="skip" href="#content">Skip to main content</a>
+    <header>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#shoes">Shoes</a></li>
+          <li><a href="#clothing">Clothing</a></li>
+          <li><a href="#accessories">Accessories</a></li>
+          <li><a href="#sale">Sale</a></li>
+          <li><a href="#stores">Stores</a></li>
+          <li><a href="#help">Help</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="content" tabindex="-1">
+      <h1>New this week</h1>
+      <p><a href="#trail">Trail running shoe</a>, 120 euros.</p>
+    </main>
+  </body>
+</html>

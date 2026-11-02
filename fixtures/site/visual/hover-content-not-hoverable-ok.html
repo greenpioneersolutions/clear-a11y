@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product page: shipping tooltip can be hovered</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      main { padding: 16px; max-width: 40rem; }
+      .info { position: relative; display: inline-block; }
+      #shipping-info { min-height: 32px; font: inherit; }
+      #shipping-tip {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 300px;
+        max-width: calc(100vw - 48px);
+        padding: 8px;
+        color: #ffffff;
+        background: #1a1a1a;
+      }
+      #shipping-tip[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Ridge 3 trail shoes</h1>
+      <div class="info" id="shipping">
+        <button id="shipping-info" type="button" aria-describedby="shipping-tip">Shipping details</button>
+        <div id="shipping-tip" role="tooltip" hidden>Ships in 2 working days. Free returns within 30 days.</div>
+      </div>
+      <p>Grippy outsole, rock plate and a roomy toe box for long days on technical trails.</p>
+    </main>
+    <script>
+      // Correct pattern (1.4.13): the button and the tooltip share one hover area with no gap, so
+      // the pointer can move onto the tooltip. Escape closes it; there is no timer.
+      const wrap = document.getElementById('shipping');
+      const tip = document.getElementById('shipping-tip');
+      wrap.addEventListener('mouseenter', () => { tip.hidden = false; });
+      wrap.addEventListener('mouseleave', () => { tip.hidden = true; });
+      wrap.addEventListener('focusin', () => { tip.hidden = false; });
+      wrap.addEventListener('focusout', () => { tip.hidden = true; });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') tip.hidden = true; });
+    </script>
+  </body>
+</html>

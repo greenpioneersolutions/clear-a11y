@@ -1,0 +1,19 @@
+{
+  "action": "synchronize",
+  "number": 42,
+  "pull_request": {
+    "number": 42,
+    "title": "Checkout: new form step",
+    "base": {
+      "ref": "main",
+      "sha": "1111111111111111111111111111111111111111"
+    },
+    "head": {
+      "ref": "feature/checkout",
+      "sha": "2222222222222222222222222222222222222222"
+    }
+  },
+  "repository": {
+    "full_name": "example/shop"
+  }
+}

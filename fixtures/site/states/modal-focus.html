@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings: modal without focus management</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / 0.5); display: grid; place-items: center; }
+      .backdrop[hidden] { display: none; }
+      [role='dialog'] { background: #fff; padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Account</h1>
+      <button id="open-settings" type="button">Open settings</button>
+      <p><a href="#help">Help</a></p>
+    </main>
+    <!-- Seeded barriers: focus stays behind the dialog when it opens (2.4.3), Tab escapes the
+         modal into the page behind it, Escape doesn't close it, and closing drops focus to <body>. -->
+    <div class="backdrop" id="backdrop" hidden>
+      <div id="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <h2 id="settings-title">Settings</h2>
+        <label><input id="dark-mode" type="checkbox" /> Dark mode</label>
+        <p><button id="close-settings" type="button">Close</button></p>
+      </div>
+    </div>
+    <script>
+      const backdrop = document.getElementById('backdrop');
+      document.getElementById('open-settings').addEventListener('click', () => { backdrop.hidden = false; });
+      document.getElementById('close-settings').addEventListener('click', () => { backdrop.hidden = true; });
+    </script>
+  </body>
+</html>

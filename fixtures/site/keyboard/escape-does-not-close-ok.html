@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search filters: dialog closes on Escape</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / 0.5); display: grid; place-items: center; }
+      .backdrop[hidden] { display: none; }
+      [role='dialog'] { background: #fff; padding: 24px; border-radius: 8px; width: min(420px, 90vw); }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Search results</h1>
+      <button id="open-filters" type="button" aria-haspopup="dialog">Filters</button>
+      <p>12 trail running shoes.</p>
+    </main>
+    <!-- Correct pattern: focus moves into the dialog, Escape and Close both close it, and focus
+         returns to the Filters button. -->
+    <div class="backdrop" id="backdrop" hidden>
+      <div id="filters-dialog" role="dialog" aria-modal="true" aria-labelledby="filters-title">
+        <h2 id="filters-title">Filters</h2>
+        <label><input id="waterproof" type="checkbox" /> Waterproof only</label>
+        <p><button id="close-filters" type="button">Close</button></p>
+      </div>
+    </div>
+    <script>
+      const backdrop = document.getElementById('backdrop');
+      const opener = document.getElementById('open-filters');
+      const close = () => {
+        backdrop.hidden = true;
+        opener.focus();
+      };
+      opener.addEventListener('click', () => {
+        backdrop.hidden = false;
+        document.getElementById('waterproof').focus();
+      });
+      document.getElementById('close-filters').addEventListener('click', close);
+      backdrop.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') close();
+      });
+    </script>
+  </body>
+</html>

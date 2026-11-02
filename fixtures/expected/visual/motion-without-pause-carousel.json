@@ -1,0 +1,15 @@
+{
+  "page": "visual/motion-without-pause-carousel.html",
+  "title": "Home: promo carousel advances on its own",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "visual/motion-without-pause-carousel#1",
+      "wcag": ["2.2.2"],
+      "selector": "#promo-carousel",
+      "layer": "visual",
+      "description": "The promotions carousel rotates every two seconds, forever, next to the rest of the page, and has no pause or stop button.",
+      "ruleId": "visual/motion-without-pause"
+    }
+  ]
+}

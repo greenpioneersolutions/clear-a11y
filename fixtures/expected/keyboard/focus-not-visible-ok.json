@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/focus-not-visible-ok.html",
+  "title": "Site header: custom focus indicator",
+  "correctPattern": true,
+  "issues": []
+}

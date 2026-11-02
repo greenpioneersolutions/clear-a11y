@@ -1,0 +1,21 @@
+{
+  "page": "states/form-errors.html",
+  "title": "Sign up: errors not identified or announced",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "states/form-errors#1",
+      "wcag": ["3.3.1"],
+      "selector": "#email | #password",
+      "layer": "states",
+      "description": "After submitting empty, the error text is not associated with the fields (no aria-invalid or aria-describedby)."
+    },
+    {
+      "id": "states/form-errors#2",
+      "wcag": ["4.1.3"],
+      "selector": "#email-error | #password-error | #signup",
+      "layer": "at",
+      "description": "Error messages are injected silently: no live region and focus does not move, so screen reader users are not told."
+    }
+  ]
+}

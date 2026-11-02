@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: filter toggle button</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .chip { font: inherit; padding: 6px 12px; border: 1px solid #555; border-radius: 16px; background: #fff; color: #1a1a1a; }
+      .chip[aria-pressed='true'] { background: #1a5fb4; color: #fff; }
+      .scroller { max-height: 4em; overflow: auto; border: 1px solid #555; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoes</h1>
+      <!-- Correct pattern: a real button with aria-pressed (APG button pattern, toggle variant). -->
+      <button id="in-stock-filter" class="chip" type="button" aria-pressed="false">In stock only</button>
+      <!-- A focusable scroll region with a key handler only is not a control. -->
+      <div class="scroller" tabindex="0" role="region" aria-label="Size guide">
+        <p>EU 38 = UK 5. EU 39 = UK 6. EU 40 = UK 6.5. EU 41 = UK 7.5. EU 42 = UK 8.</p>
+      </div>
+    </main>
+    <script>
+      const chip = document.getElementById('in-stock-filter');
+      chip.addEventListener('click', () => {
+        chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
+      });
+      document.querySelector('.scroller').addEventListener('keydown', () => {});
+    </script>
+  </body>
+</html>

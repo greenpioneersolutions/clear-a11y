@@ -1,0 +1,6 @@
+{
+  "page": "visual/hover-content-not-dismissible-ok.html",
+  "title": "Checkout: help tooltip closes with Escape",
+  "correctPattern": true,
+  "issues": []
+}

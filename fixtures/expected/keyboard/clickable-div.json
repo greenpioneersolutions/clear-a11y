@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/clickable-div.html",
+  "title": "Checkout: clickable div instead of a button",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/clickable-div#1",
+      "wcag": ["2.1.1", "4.1.2"],
+      "selector": "#pay-now",
+      "layer": "keyboard",
+      "description": "Pay now is a div with a click handler: it cannot be reached or activated with a keyboard.",
+      "ruleId": "keyboard/click-not-focusable"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "page": "wcag/1-3-5-input-purpose-ok.html",
+  "title": "Account details form with autocomplete",
+  "correctPattern": true,
+  "issues": []
+}

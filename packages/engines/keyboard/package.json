@@ -1,0 +1,67 @@
+{
+  "name": "@clear-a11y/engine-keyboard",
+  "version": "0.1.0",
+  "description": "Keyboard-only testing: focus order vs visual order, visible focus, traps, mouse-only controls, overlays and skip links.",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "keyboard",
+    "focus",
+    "testing"
+  ],
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "packages/engines/keyboard"
+  },
+  "homepage": "https://greenpioneersolutions.github.io/clear-a11y/",
+  "bugs": {
+    "url": "https://github.com/greenpioneersolutions/clear-a11y/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@clear-a11y/browser": "workspace:*",
+    "@clear-a11y/core": "workspace:*",
+    "tslib": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@clear-a11y/test-utils": "workspace:*"
+  },
+  "nx": {
+    "tags": [
+      "type:engine",
+      "scope:keyboard",
+      "publish:public"
+    ],
+    "targets": {
+      "test-integration": {}
+    }
+  }
+}

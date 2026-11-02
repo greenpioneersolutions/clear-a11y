@@ -1,0 +1,15 @@
+{
+  "page": "wcag/1-2-4-live-captions.html",
+  "title": "Live keynote stream without captions",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-2-4-live-captions#1",
+      "wcag": ["1.2.4", "1.2.2"],
+      "selector": "#live-keynote",
+      "layer": "at",
+      "description": "The live keynote stream has speakers but no live captions.",
+      "ruleId": "at/media-captions-missing"
+    }
+  ]
+}

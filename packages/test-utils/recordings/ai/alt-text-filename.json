@@ -1,0 +1,11 @@
+{
+  "name": "ai/alt-text-filename",
+  "source": "synthetic",
+  "request": { "judge": "alt-text", "promptVersion": 1, "match": { "alt": "IMG_2041.jpg" } },
+  "response": {
+    "verdict": "fail",
+    "confidence": 0.95,
+    "reason": "The alt text \"IMG_2041.jpg\" is a camera file name; it says nothing about the team photo it replaces.",
+    "suggestion": "Describe the photo, e.g. \"The five members of the team in the office\"."
+  }
+}

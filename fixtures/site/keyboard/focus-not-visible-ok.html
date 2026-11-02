@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Site header: custom focus indicator</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      nav ul { display: flex; gap: 24px; list-style: none; padding: 0; }
+      nav a { color: #1a1a1a; text-decoration: none; padding: 8px; border-radius: 4px; }
+      /* Correct pattern: the default outline is replaced, not just removed.
+         Each link shows a different, strong focus style (box-shadow, outline, background). */
+      nav a:focus { outline: none; }
+      #link-home:focus-visible { box-shadow: 0 0 0 3px #1a5fb4; }
+      #link-pricing:focus-visible { outline: 2px solid #1a1a1a; outline-offset: 2px; }
+      #link-contact:focus-visible { background: #1a5fb4; color: #fff; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main">
+        <ul>
+          <li><a id="link-home" href="#home">Home</a></li>
+          <li><a id="link-pricing" href="#pricing">Pricing</a></li>
+          <li><a id="link-contact" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Welcome</h1>
+      <p>Use Tab to move through the navigation. The focused link is always clearly marked.</p>
+    </main>
+  </body>
+</html>

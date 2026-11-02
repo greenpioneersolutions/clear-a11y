@@ -1,0 +1,15 @@
+{
+  "page": "persona/checkout-keyboard-blocked.html",
+  "title": "Checkout: Pay now works with a mouse only",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "persona/checkout-keyboard-blocked#1",
+      "wcag": ["2.1.1", "4.1.2"],
+      "selector": "#pay",
+      "layer": "persona",
+      "description": "Pay now is a div with a click handler: a keyboard-only user can't reach it, so they can't pay.",
+      "ruleId": "persona/task-blocked"
+    }
+  ]
+}

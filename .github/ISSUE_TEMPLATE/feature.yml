@@ -1,0 +1,51 @@
+name: Feature request
+description: Suggest an improvement that isn't a new rule (CLI, reports, integrations, docs, and so on).
+title: 'feature: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a new check, use the **Rule proposal** form. Large new capabilities (a new engine, app or provider type) will need an RFC in `docs/rfcs/` once the idea is agreed here.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the situation and why the current behavior falls short.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like to happen?
+      description: Describe the change. Examples of commands, config or output help.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - CLI
+        - Reports (JSON, SARIF, HTML)
+        - GitHub Action
+        - MCP server
+        - Server / API
+        - Desktop app
+        - AI providers
+        - Repo scanning
+        - Benchmark and fixtures
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Contributing
+      options:
+        - label: I'd like to help build this.

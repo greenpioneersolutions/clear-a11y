@@ -1,0 +1,15 @@
+{
+  "page": "wcag/2-1-4-character-key-shortcuts.html",
+  "title": "News page with single-key shortcuts",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/2-1-4-character-key-shortcuts#1",
+      "wcag": ["2.1.4"],
+      "selector": "html | body",
+      "layer": "at",
+      "description": "Single-letter shortcuts (J, K, S) are active on the whole page, with no modifier key and no way to turn them off or remap them.",
+      "ruleId": "at/character-key-shortcut"
+    }
+  ]
+}

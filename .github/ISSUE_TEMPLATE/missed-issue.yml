@@ -1,0 +1,59 @@
+name: Missed issue
+description: A person found an accessibility barrier that Clear A11Y did not report.
+title: 'missed: '
+labels: ['false-negative', 'needs-repro']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Missed issues show us where to grow. The **minimal HTML reproduction** becomes a seeded-barrier fixture in `fixtures/site/`, and the benchmark then tracks whether we catch it.
+
+        Please remove anything private (names, real URLs, credentials, screenshots of internal sites).
+  - type: input
+    id: wcag
+    attributes:
+      label: WCAG success criterion
+      description: The success criterion the barrier fails. List the main one first.
+      placeholder: '2.4.7 Focus Visible'
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal HTML reproduction
+      description: The smallest self-contained HTML page that shows the barrier. Inline the CSS and JavaScript it needs.
+      render: html
+      placeholder: |
+        <!doctype html>
+        <html lang="en">
+          <head><meta charset="utf-8"><title>Repro</title></head>
+          <body>
+            ...
+          </body>
+        </html>
+    validations:
+      required: true
+  - type: textarea
+    id: who-affected
+    attributes:
+      label: Who is affected, and how?
+      description: For example, "Keyboard users can't see which link has focus, so they get lost in the main menu."
+    validations:
+      required: true
+  - type: textarea
+    id: how-found
+    attributes:
+      label: How did a human auditor find it?
+      description: The steps and tools used (keyboard only, screen reader and browser, zoom to 400%, contrast checker, and so on). This tells us which engine layer should catch it.
+    validations:
+      required: true
+  - type: textarea
+    id: clear-a11y-output
+    attributes:
+      label: What did Clear A11Y report?
+      description: The command you ran and any findings near the barrier (or "nothing").
+  - type: input
+    id: version
+    attributes:
+      label: Clear A11Y version
+      description: Output of `clear-a11y --version`, or the commit SHA.

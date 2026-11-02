@@ -1,0 +1,15 @@
+{
+  "page": "wcag/1-2-2-captions.html",
+  "title": "Product tour video without captions",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-2-2-captions#1",
+      "wcag": ["1.2.2"],
+      "selector": "#product-tour",
+      "layer": "at",
+      "description": "The product tour video has speech but no captions; a transcript does not replace synchronized captions.",
+      "ruleId": "at/media-captions-missing"
+    }
+  ]
+}

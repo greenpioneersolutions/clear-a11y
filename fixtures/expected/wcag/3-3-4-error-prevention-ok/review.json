@@ -1,0 +1,6 @@
+{
+  "page": "wcag/3-3-4-error-prevention-ok/review.html",
+  "title": "Order review page with edit link and explicit confirmation",
+  "correctPattern": true,
+  "issues": []
+}

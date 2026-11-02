@@ -1,0 +1,72 @@
+{
+  "name": "@clear-a11y/repo",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@clear-a11y/core": "workspace:*",
+    "eslint": "catalog:",
+    "eslint-plugin-jsx-a11y": "catalog:",
+    "eslint-plugin-vuejs-accessibility": "catalog:",
+    "tslib": "catalog:",
+    "typescript-eslint": "catalog:",
+    "vue-eslint-parser": "catalog:",
+    "zod": "catalog:"
+  },
+  "description": "Clear A11Y repo scanning: framework detection, safe accessibility lint of source files, and runtime-to-source mapping.",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "eslint",
+    "jsx-a11y",
+    "vue"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "packages/repo"
+  },
+  "homepage": "https://greenpioneersolutions.github.io/clear-a11y/",
+  "bugs": {
+    "url": "https://github.com/greenpioneersolutions/clear-a11y/issues"
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "README.md",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@clear-a11y/test-utils": "workspace:*"
+  },
+  "nx": {
+    "tags": [
+      "type:feature",
+      "scope:repo",
+      "publish:public"
+    ],
+    "targets": {
+      "test-integration": {}
+    }
+  },
+  "license": "Apache-2.0"
+}

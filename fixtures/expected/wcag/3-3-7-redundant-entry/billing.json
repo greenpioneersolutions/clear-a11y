@@ -1,0 +1,14 @@
+{
+  "page": "wcag/3-3-7-redundant-entry/billing.html",
+  "title": "Checkout step 2 that asks for the address again",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/3-3-7-redundant-entry/billing#1",
+      "wcag": ["3.3.7"],
+      "selector": "#billing-form | #bill-line1",
+      "layer": "persona",
+      "description": "The billing step asks for the address entered in step 1 again, with no option to reuse it (no \"same as delivery address\" and no prefill)."
+    }
+  ]
+}

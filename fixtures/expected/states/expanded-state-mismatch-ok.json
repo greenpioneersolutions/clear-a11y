@@ -1,0 +1,6 @@
+{
+  "page": "states/expanded-state-mismatch-ok.html",
+  "title": "Help centre: accordion with correct expanded state",
+  "correctPattern": true,
+  "issues": []
+}

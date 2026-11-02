@@ -1,0 +1,45 @@
+{
+  "name": "@clear-a11y/engine-<%= name %>",
+  "version": "0.0.0",
+  "description": "<%= description %>",
+  "keywords": ["accessibility", "a11y", "wcag", "<%= name %>", "testing"],
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "!**/*.tsbuildinfo", "README.md"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greenpioneersolutions/clear-a11y.git",
+    "directory": "packages/engines/<%= name %>"
+  },
+  "homepage": "https://greenpioneersolutions.github.io/clear-a11y/",
+  "bugs": { "url": "https://github.com/greenpioneersolutions/clear-a11y/issues" },
+  "engines": { "node": ">=22.13.0" },
+  "sideEffects": false,
+  "publishConfig": { "access": "public" },
+  "dependencies": {
+    "@clear-a11y/browser": "workspace:*",
+    "@clear-a11y/core": "workspace:*",
+    "tslib": "catalog:"
+  },
+  "devDependencies": {
+    "@clear-a11y/test-utils": "workspace:*"
+  },
+  "nx": {
+    "tags": ["type:engine", "scope:<%= name %>", "publish:public"],
+    "targets": {
+      "test-integration": {}
+    }
+  }
+}

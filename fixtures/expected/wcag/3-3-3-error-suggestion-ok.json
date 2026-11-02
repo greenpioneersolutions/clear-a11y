@@ -1,0 +1,6 @@
+{
+  "page": "wcag/3-3-3-error-suggestion-ok.html",
+  "title": "Sign-up form with a date error that suggests a fix",
+  "correctPattern": true,
+  "issues": []
+}

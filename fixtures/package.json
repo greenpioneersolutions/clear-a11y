@@ -1,0 +1,39 @@
+{
+  "name": "@clear-a11y/fixtures",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "@clear-a11y/source": "./src/index.ts",
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "description": "Seeded-barrier fixture site, correct-pattern pages and expected findings.",
+  "devDependencies": {
+    "@clear-a11y/core": "workspace:*"
+  },
+  "nx": {
+    "name": "fixtures",
+    "tags": [
+      "type:test",
+      "scope:fixtures",
+      "publish:private"
+    ],
+    "targets": {
+      "serve": {
+        "executor": "nx:run-commands",
+        "continuous": true,
+        "options": {
+          "command": "node fixtures/scripts/serve.mjs"
+        }
+      }
+    }
+  },
+  "license": "Apache-2.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts"
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pricing: tabs without a selected state</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      [role='tablist'] { display: flex; gap: 4px; }
+      [role='tab'] { padding: 8px 16px; border: 1px solid #555; background: #fff; color: #1a1a1a; font: inherit; }
+      [role='tab'].is-active { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Pricing</h1>
+      <!-- Seeded barrier: the active tab is shown only with a CSS class. No tab ever has
+           aria-selected="true", so screen readers announce every tab as not selected (4.1.2).
+           Keyboard support follows the APG tabs pattern, so the only problem is the state. -->
+      <div id="plan-tabs" role="tablist" aria-label="Billing period">
+        <button role="tab" id="tab-monthly" class="is-active" aria-controls="panel-monthly" tabindex="0">Monthly</button>
+        <button role="tab" id="tab-yearly" aria-controls="panel-yearly" tabindex="-1">Yearly</button>
+      </div>
+      <div role="tabpanel" id="panel-monthly" aria-labelledby="tab-monthly" tabindex="0"><p>12 euros per month.</p></div>
+      <div role="tabpanel" id="panel-yearly" aria-labelledby="tab-yearly" tabindex="0" hidden><p>120 euros per year.</p></div>
+    </main>
+    <script>
+      const tabs = [...document.querySelectorAll('[role=tab]')];
+      function select(tab) {
+        for (const t of tabs) {
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.tabIndex = active ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !active;
+        }
+        tab.focus();
+      }
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab));
+        tab.addEventListener('keydown', (event) => {
+          const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[event.key];
+          if (next === undefined) return;
+          event.preventDefault();
+          select(tabs[(next + tabs.length) % tabs.length]);
+        });
+      });
+    </script>
+  </body>
+</html>

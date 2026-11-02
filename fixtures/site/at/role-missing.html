@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop: focusable filter chip without a role</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .chip { display: inline-block; padding: 6px 12px; border: 1px solid #555; border-radius: 16px; cursor: pointer; }
+      .chip.active { background: #1a5fb4; color: #fff; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoes</h1>
+      <!-- Seeded barrier: a span made focusable and clickable (Enter works too), but with no role.
+           Screen readers read it as plain text, not as a control you can press (4.1.2). -->
+      <span id="in-stock-filter" class="chip" tabindex="0">In stock only</span>
+      <ul id="results">
+        <li>Ridge runner</li>
+        <li>Mud king</li>
+      </ul>
+    </main>
+    <script>
+      const chip = document.getElementById('in-stock-filter');
+      const toggle = () => chip.classList.toggle('active');
+      chip.addEventListener('click', toggle);
+      chip.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') toggle();
+      });
+    </script>
+  </body>
+</html>

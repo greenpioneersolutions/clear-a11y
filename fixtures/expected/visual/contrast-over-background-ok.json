@@ -1,0 +1,6 @@
+{
+  "page": "visual/contrast-over-background-ok.html",
+  "title": "Travel: caption on a solid panel over the photo",
+  "correctPattern": true,
+  "issues": []
+}

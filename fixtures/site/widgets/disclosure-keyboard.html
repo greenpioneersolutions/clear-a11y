@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product FAQ: disclosures that ignore the keyboard or misreport state</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .toggle { display: inline-block; padding: 6px 0; font: inherit; font-weight: 600; background: none; border: 0; color: #1a4f8b; cursor: pointer; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Trail running shoe: questions</h1>
+      <!-- Seeded barrier 1: a div "button" that is focusable but only listens for clicks, so Enter
+           and Space do nothing and keyboard users cannot open the answer (2.1.1). -->
+      <h2>
+        <div class="toggle" id="returns-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="returns-panel">Can I return worn shoes?</div>
+      </h2>
+      <div id="returns-panel" hidden><p>Yes, within 30 days if they were only worn indoors.</p></div>
+      <!-- Seeded barrier 2: a native button that shows the answer but never updates aria-expanded,
+           so screen readers keep announcing "collapsed" while the answer is shown (4.1.2). -->
+      <h2>
+        <button class="toggle" type="button" id="warranty-toggle" aria-expanded="false" aria-controls="warranty-panel">How long is the warranty?</button>
+      </h2>
+      <div id="warranty-panel" hidden><p>Two years on the sole and stitching.</p></div>
+    </main>
+    <script>
+      const toggle = (id, panelId, updateState) => {
+        const button = document.getElementById(id);
+        button.addEventListener('click', () => {
+          const panel = document.getElementById(panelId);
+          panel.hidden = !panel.hidden;
+          if (updateState) button.setAttribute('aria-expanded', String(!panel.hidden));
+        });
+      };
+      toggle('returns-toggle', 'returns-panel', true);
+      toggle('warranty-toggle', 'warranty-panel', false);
+    </script>
+  </body>
+</html>

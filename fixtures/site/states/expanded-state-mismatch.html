@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Help centre: accordion that never updates aria-expanded</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      h2 { margin: 0; }
+      h2 button { font: inherit; background: none; border: 1px solid #5e5c64; padding: 8px 12px; width: 100%; text-align: left; color: #1a1a1a; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Help centre</h1>
+      <!-- Seeded barrier (4.1.2): each accordion button says aria-expanded="false" and points at
+           its panel with aria-controls, but opening the panel never sets aria-expanded="true".
+           Screen reader users hear "collapsed" while the content is shown.
+           Expected findings: fixtures/expected/states/expanded-state-mismatch.json -->
+      <h2>
+        <button id="acc-returns" type="button" aria-expanded="false" aria-controls="acc-returns-panel">
+          Returns and refunds
+        </button>
+      </h2>
+      <div id="acc-returns-panel" hidden>
+        <p>Return any item within 30 days for a full refund.</p>
+      </div>
+      <h2>
+        <button id="acc-delivery" type="button" aria-expanded="false" aria-controls="acc-delivery-panel">
+          Delivery times
+        </button>
+      </h2>
+      <div id="acc-delivery-panel" hidden>
+        <p>Orders arrive in two to four working days.</p>
+      </div>
+    </main>
+    <script>
+      for (const button of document.querySelectorAll('[aria-controls]')) {
+        button.addEventListener('click', () => {
+          const panel = document.getElementById(button.getAttribute('aria-controls'));
+          panel.hidden = !panel.hidden;
+        });
+      }
+    </script>
+  </body>
+</html>

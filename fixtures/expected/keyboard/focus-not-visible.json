@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/focus-not-visible.html",
+  "title": "Site header: focus indicator removed",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/focus-not-visible#1",
+      "wcag": ["2.4.7"],
+      "selector": "#link-home | #link-pricing | #link-contact",
+      "layer": "keyboard",
+      "description": "Navigation links have outline: none and no replacement, so keyboard focus is invisible.",
+      "ruleId": "keyboard/focus-not-visible"
+    }
+  ]
+}

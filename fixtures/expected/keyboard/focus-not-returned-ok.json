@@ -1,0 +1,6 @@
+{
+  "page": "keyboard/focus-not-returned-ok.html",
+  "title": "Article: share dialog returns focus",
+  "correctPattern": true,
+  "issues": []
+}

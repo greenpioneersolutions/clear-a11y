@@ -1,0 +1,14 @@
+{
+  "page": "wcag/1-4-1-use-of-color.html",
+  "title": "Returns policy with colour-only links",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "wcag/1-4-1-use-of-color#1",
+      "wcag": ["1.4.1"],
+      "selector": "#returns-link",
+      "layer": "static",
+      "description": "The inline link is only distinguished from the body text by colour (less than 3:1 contrast with the text) and has no underline."
+    }
+  ]
+}

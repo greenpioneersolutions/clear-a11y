@@ -1,0 +1,291 @@
+{
+  "generatedAt": "2026-10-31T22:02:59.584Z",
+  "label": "s03-states",
+  "pages": 42,
+  "correctPatternPages": 16,
+  "expectedIssues": 28,
+  "matchedIssues": 13,
+  "recall": 0.464,
+  "violation": {
+    "total": 17,
+    "truePositive": 17,
+    "falsePositive": 0,
+    "precision": 1
+  },
+  "findings": {
+    "total": 21,
+    "byTier": {
+      "violation": 17,
+      "likely": 2,
+      "needs-review": 2
+    }
+  },
+  "bySc": {
+    "1.1.1": {
+      "expected": 2,
+      "matched": 1,
+      "recall": 0.5
+    },
+    "1.4.3": {
+      "expected": 3,
+      "matched": 3,
+      "recall": 1
+    },
+    "1.4.10": {
+      "expected": 1,
+      "matched": 0,
+      "recall": 0
+    },
+    "1.4.12": {
+      "expected": 1,
+      "matched": 0,
+      "recall": 0
+    },
+    "2.1.1": {
+      "expected": 2,
+      "matched": 0,
+      "recall": 0
+    },
+    "2.1.2": {
+      "expected": 1,
+      "matched": 0,
+      "recall": 0
+    },
+    "2.4.3": {
+      "expected": 3,
+      "matched": 0,
+      "recall": 0
+    },
+    "2.4.4": {
+      "expected": 2,
+      "matched": 1,
+      "recall": 0.5
+    },
+    "2.4.7": {
+      "expected": 1,
+      "matched": 0,
+      "recall": 0
+    },
+    "2.5.8": {
+      "expected": 1,
+      "matched": 1,
+      "recall": 1
+    },
+    "3.1.1": {
+      "expected": 1,
+      "matched": 1,
+      "recall": 1
+    },
+    "3.3.1": {
+      "expected": 3,
+      "matched": 3,
+      "recall": 1
+    },
+    "3.3.2": {
+      "expected": 1,
+      "matched": 0,
+      "recall": 0
+    },
+    "4.1.2": {
+      "expected": 4,
+      "matched": 3,
+      "recall": 0.75
+    },
+    "4.1.3": {
+      "expected": 2,
+      "matched": 0,
+      "recall": 0
+    }
+  },
+  "byLayer": {
+    "ai": {
+      "expected": 2,
+      "matched": 0,
+      "recall": 0
+    },
+    "at": {
+      "expected": 4,
+      "matched": 0,
+      "recall": 0
+    },
+    "keyboard": {
+      "expected": 6,
+      "matched": 0,
+      "recall": 0
+    },
+    "states": {
+      "expected": 7,
+      "matched": 7,
+      "recall": 1
+    },
+    "static": {
+      "expected": 4,
+      "matched": 4,
+      "recall": 1
+    },
+    "visual": {
+      "expected": 4,
+      "matched": 2,
+      "recall": 0.5
+    },
+    "widgets": {
+      "expected": 1,
+      "matched": 0,
+      "recall": 0
+    }
+  },
+  "foundBy": {
+    "states": 4,
+    "static": 9
+  },
+  "missed": [
+    {
+      "page": "ai/alt-filename.html",
+      "id": "ai/alt-filename#1",
+      "wcag": [
+        "1.1.1"
+      ],
+      "layer": "ai",
+      "description": "Alt text is a file name (IMG_2041.jpg), not a description of the photo."
+    },
+    {
+      "page": "ai/link-purpose.html",
+      "id": "ai/link-purpose#1",
+      "wcag": [
+        "2.4.4"
+      ],
+      "layer": "ai",
+      "description": "Three identical Click here links go to different places with no context."
+    },
+    {
+      "page": "at/disclosure-no-state.html",
+      "id": "at/disclosure-no-state#1",
+      "wcag": [
+        "4.1.2"
+      ],
+      "layer": "at",
+      "description": "FAQ toggle shows and hides content but never exposes aria-expanded."
+    },
+    {
+      "page": "at/status-message.html",
+      "id": "at/status-message#1",
+      "wcag": [
+        "4.1.3"
+      ],
+      "layer": "at",
+      "description": "Added to cart confirmation is not a live region, so it is not announced."
+    },
+    {
+      "page": "keyboard/clickable-div.html",
+      "id": "keyboard/clickable-div#1",
+      "wcag": [
+        "2.1.1",
+        "4.1.2"
+      ],
+      "layer": "keyboard",
+      "description": "Pay now is a div with a click handler: it cannot be reached or activated with a keyboard."
+    },
+    {
+      "page": "keyboard/focus-not-visible.html",
+      "id": "keyboard/focus-not-visible#1",
+      "wcag": [
+        "2.4.7"
+      ],
+      "layer": "keyboard",
+      "description": "Navigation links have outline: none and no replacement, so keyboard focus is invisible."
+    },
+    {
+      "page": "keyboard/focus-order-backward.html",
+      "id": "keyboard/focus-order-backward#1",
+      "wcag": [
+        "2.4.3",
+        "1.3.2"
+      ],
+      "layer": "keyboard",
+      "description": "Tab goes First name, Country (row 2), then back up to Last name: focus order does not follow the visual order."
+    },
+    {
+      "page": "keyboard/keyboard-trap.html",
+      "id": "keyboard/keyboard-trap#1",
+      "wcag": [
+        "2.1.2"
+      ],
+      "layer": "keyboard",
+      "description": "The comment editor swallows Tab and Shift+Tab; keyboard users cannot leave it."
+    },
+    {
+      "page": "states/form-errors.html",
+      "id": "states/form-errors#2",
+      "wcag": [
+        "4.1.3"
+      ],
+      "layer": "at",
+      "description": "Error messages are injected silently: no live region and focus does not move, so screen reader users are not told."
+    },
+    {
+      "page": "states/modal-focus.html",
+      "id": "states/modal-focus#1",
+      "wcag": [
+        "2.4.3"
+      ],
+      "layer": "keyboard",
+      "description": "Opening the settings dialog leaves focus on the trigger behind it; focus is not moved into the dialog."
+    },
+    {
+      "page": "states/modal-focus.html",
+      "id": "states/modal-focus#2",
+      "wcag": [
+        "2.4.3"
+      ],
+      "layer": "keyboard",
+      "description": "Closing the dialog drops focus to the document instead of returning it to Open settings."
+    },
+    {
+      "page": "static/form-missing-label.html",
+      "id": "static/form-missing-label#1",
+      "wcag": [
+        "3.3.2",
+        "1.3.1",
+        "4.1.2"
+      ],
+      "layer": "at",
+      "description": "Email field has no visible label; the placeholder is the only hint and disappears as soon as you type. Rules scanners accept the placeholder as a name."
+    },
+    {
+      "page": "visual/reflow.html",
+      "id": "visual/reflow#1",
+      "wcag": [
+        "1.4.10"
+      ],
+      "layer": "visual",
+      "description": "A fixed 1100px content column forces horizontal scrolling at 320 CSS px."
+    },
+    {
+      "page": "visual/text-spacing.html",
+      "id": "visual/text-spacing#1",
+      "wcag": [
+        "1.4.12"
+      ],
+      "layer": "visual",
+      "description": "With WCAG text-spacing overrides the plan description is clipped by a fixed height."
+    },
+    {
+      "page": "widgets/tabs-no-arrow-keys.html",
+      "id": "widgets/tabs-no-arrow-keys#1",
+      "wcag": [
+        "2.1.1"
+      ],
+      "layer": "widgets",
+      "description": "Inactive tabs have tabindex=-1 and there is no arrow-key handler, so they cannot be reached by keyboard."
+    }
+  ],
+  "falsePositives": [],
+  "correctPatternNoise": [
+    {
+      "page": "visual/ok.html",
+      "ruleId": "static/color-contrast",
+      "selector": "h2",
+      "tier": "needs-review"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Landing: text over a light background image</title>
+    <style>
+      body { margin: 0; font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      /* Seeded barrier: white text on a pale gradient image, about 1.3:1 in real pixels (1.4.3). */
+      .hero {
+        padding: 48px 24px;
+        background-color: #1a1a1a;
+        background-image: linear-gradient(120deg, #f6f5f4 0%, #deddda 100%);
+      }
+      #hero-title { color: #ffffff; margin: 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="hero"><h1 id="hero-title">Spring sale</h1></div>
+      <p>Up to 30 percent off running gear.</p>
+    </main>
+  </body>
+</html>

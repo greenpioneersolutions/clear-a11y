@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct pattern: card error linked with aria-describedby</title>
+    <style>
+      body { font: 16px/1.5 system-ui, sans-serif; color: #1a1a1a; }
+      .field { display: flex; flex-direction: column; max-width: 360px; margin-bottom: 16px; }
+      .error { color: #a51d2d; font-size: 14px; }
+      input, button { font: inherit; }
+      :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Payment</h1>
+      <!-- Correct pattern: aria-describedby points at the error, aria-invalid is set and focus
+           moves to the field, so a screen reader reads the label, the error and "invalid". -->
+      <form id="payment" action="#" novalidate>
+        <div class="field">
+          <label for="card-number">Card number</label>
+          <input id="card-number" inputmode="numeric" autocomplete="cc-number" aria-describedby="card-number-error" />
+          <span id="card-number-error" class="error"></span>
+        </div>
+        <button type="submit">Pay 120 euros</button>
+      </form>
+    </main>
+    <script>
+      document.getElementById('payment').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const input = document.getElementById('card-number');
+        const error = document.getElementById('card-number-error');
+        if (!/^\d{16}$/.test(input.value)) {
+          input.setAttribute('aria-invalid', 'true');
+          error.textContent = 'Enter the 16 digits on the front of your card.';
+          input.focus();
+        } else {
+          input.removeAttribute('aria-invalid');
+          error.textContent = '';
+        }
+      });
+    </script>
+  </body>
+</html>

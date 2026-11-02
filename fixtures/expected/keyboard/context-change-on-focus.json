@@ -1,0 +1,15 @@
+{
+  "page": "keyboard/context-change-on-focus.html",
+  "title": "Newsletter: focusing the email field opens a window",
+  "correctPattern": false,
+  "issues": [
+    {
+      "id": "keyboard/context-change-on-focus#1",
+      "wcag": ["3.2.1"],
+      "selector": "#email",
+      "layer": "keyboard",
+      "description": "Tabbing onto the Email field opens the privacy policy in a new window, although the user activated nothing.",
+      "ruleId": "keyboard/context-change-on-focus"
+    }
+  ]
+}
